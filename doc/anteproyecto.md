@@ -1,5 +1,3 @@
-Proyecto de Fin de Grado UNED - Algoritmos Evolutivos
-
 # DISEÑO, IMPLEMENTACIÓN Y EVALUACIÓN DE UN ALGORITMO EVOLUTIVO APLICADO A LA OPTIMIZACIÓN DE FUNCIONES REALES DE VARIAS VARIABLES
 
 
@@ -35,7 +33,7 @@ Su efectividad y practicidad radica en los siguientes puntos:
 
 Es sencillo además visualizar como la función a optimizar se puede mapear directamente con la función de aptitud (*fitness*) de cada individuo. Luego la población de soluciones posibles resolverá "naturalmente" el problema, al sobrevivir aquellas soluciones que se encuentren más cercanas al óptimo. Esto puede apreciarse en la siguiente imagen (cortesía de Wikipedia), donde los puntos blancos con borde negro son elementos de la población:
 
-![Exploración de soluciones](./img/anteproyecto/evolutionary_algo.png "Exploración de soluciones")
+![Exploración de soluciones](../img/anteproyecto/evolutionary_algo.png "Exploración de soluciones")
 
 Existen además varios tipos de Algoritmos Evolutivos, siendo a grandes razgos los siguientes:
 
