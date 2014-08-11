@@ -73,7 +73,7 @@ De disponerse más tiempo, se incluirá una fase extra de **pulido final**, dura
 
 Para adquirir la base teórica necesaria sobre computación evolutiva, se utilizará como bibliografía base el libro:
 
-	*“Introduction to Evolutionary Computing”*
+	“Introduction to Evolutionary Computing”
 	A. E. Eiben y J. E. Smith
 	Springer, 2007, Impresión corregida de la 1a edición de 2003
 

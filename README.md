@@ -1,9 +1,9 @@
-Proyecto de Fin de Grado UNED - Algoritmos Evolutivos
+# Proyecto de Fin de Grado UNED - Algoritmos Evolutivos
 
-# DISEÑO, IMPLEMENTACIÓN Y EVALUACIÓN DE UN ALGORITMO EVOLUTIVO APLICADO A LA OPTIMIZACIÓN DE FUNCIONES REALES DE VARIAS VARIABLES
+## DISEÑO, IMPLEMENTACIÓN Y EVALUACIÓN DE UN ALGORITMO EVOLUTIVO APLICADO A LA OPTIMIZACIÓN DE FUNCIONES REALES DE VARIAS VARIABLES
 
 
-## Breve Descripción
+### Breve Descripción
 
 En matemáticas, ciencias de la computación, economía, etc., los **problemas de optimización** consisten en la selección de la mejor solución (con respecto a algún criterio determinado) de entre un conjunto de soluciones posibles.
 
@@ -49,7 +49,7 @@ Existen además varios tipos de Algoritmos Evolutivos, siendo a grandes razgos l
 
 
 
-## Objetivos:
+### Objetivos:
 
 Las técnicas de optimización global no sólo son para encontrar el máximo o el mínimo de una única funcion *f*. En muchos problemas del mundo real se aplican en cambio a conjuntos *F* que consisten de *n* funciones objetivo $f_i$, cada una representando un criterio a ser optimizado. En estos casos los problemas suelen llamarse *multi-objetivo*. La optimización multi-objetivo suele significar balancear el compromiso entre varias metas que conflictúan entre sí.
 
@@ -58,7 +58,7 @@ El PFG se centrará en la resolución de problemas de optimización *simple-obje
 Estos algoritmos intercambian la exactitud asegurada por una mayor rapidez para obtener la solución. Esto no quiere decir que la solución sea incorrecta, sólo que podría no ser el óptimo global. Para solventar este problema existen disintas altenativas para cada una de las fases del algoritmo (codificación, selección, cruza, mutación, etc), contribuyendo cada una de ellas de distintas formas de cara a resolver el problema. Es difícil detectar *a priori* como se comportará el algoritmo con cada una de estas alternativas, necesitándose normalmente de muchas pruebas empíricas para determinar la efectividad de cada una de ellas. Es por ello que se elegirá una de las fases del algoritmo y se evaluarán  implementaciones alternativas desde un punto de vista computacional.
 
 
-## Método de desarrollo, fases del trabajo y fechas de realización:
+### Método de desarrollo, fases del trabajo y fechas de realización:
 
 Las fases de desarrollo del PFG consistirán a grandes razgos de las fases de preparación, implementación, evaluación y pulido final.
 
@@ -71,11 +71,11 @@ Luego de la anterior, y durante el mismo cuatrimestre, se realizará la fase de 
 De disponerse más tiempo, se incluirá una fase extra de **pulido final**, durante el cuatrimestre o hasta el mes de Septiembre. El objetivo principal de esta es dotar al sistema de una interfaz gráfica (via Web/HTTP en un navegador o de escritorio) aún sin definir. Mínimamente se debería poder ingresar los parámetros para el algoritmo, asi como mostrar la solución básica. Será deseable poder mostrar además de la solución, el rendimiento de las distintas fases, la evolución de las generaciones y algunos otros datos de interés, útiles para las comparativas. Una funcionalidad extra, deseable pero opcional (*Nice To Have*), será que el usuario pueda ingresar cualquier función a evaluar con cualquier cantidad de variables mediante la interfaz gráfica, sin que sea necesario recompilar el código.
 
 
-## Medios a utilizar y breve justificación de la pertinencia de los mismos:
+### Medios a utilizar y breve justificación de la pertinencia de los mismos:
 
 Para adquirir la base teórica necesaria sobre computación evolutiva, se utilizará como bibliografía base el libro:
 
-	*“Introduction to Evolutionary Computing”*
+	“Introduction to Evolutionary Computing”
 	A. E. Eiben y J. E. Smith
 	Springer, 2007, Impresión corregida de la 1a edición de 2003
 
