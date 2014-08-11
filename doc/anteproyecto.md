@@ -1,7 +1,5 @@
 # DISEÑO, IMPLEMENTACIÓN Y EVALUACIÓN DE UN ALGORITMO EVOLUTIVO APLICADO A LA OPTIMIZACIÓN DE FUNCIONES REALES DE VARIAS VARIABLES
 
-!!Algunos cambios hechos por el colaborador!!
-
 ## Breve Descripción
 
 En matemáticas, ciencias de la computación, economía, etc., los **problemas de optimización** consisten en la selección de la mejor solución (con respecto a algún criterio determinado) de entre un conjunto de soluciones posibles.
