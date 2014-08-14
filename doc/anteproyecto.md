@@ -3,23 +3,13 @@
 
 ## Breve Descripción
 
-En matemáticas, ciencias de la computación, economía, etc., los **problemas de optimización** consisten en la selección de la mejor solución (con respecto a algún criterio determinado) de entre un conjunto de soluciones posibles.
-
-En el caso más simple, el problema se reduce a minimizar o maximizar una función real eligiendo valores para las variables de entrada y calculando el valor de la función. Por convención suelen definirse como problemas de minimización, y si un criterio *f* debiera maximizarse, simplemente se minimiza su negación (*-f*).
-
-Las aplicaciones de este tipo de problemas incluyen, pero no se limitan a:
-
-* Economía y finanzas
-* Matemáticas
-* Química
-* Redes y comunicaciones
-* Mecánica
+Los **problemas de optimización** consisten en hallar la mejor solución de entre un conjunto de soluciones posibles. En el caso más sencillo, el problema se reduce a optimizar una única función real objetivo. Por convención suelen definirse como problemas de minimización, y si un criterio *f* debiera maximizarse, simplemente se minimiza su negación (*-f*).
 
 La complicación que presenta la optimización de funciones reales multivariables es que no siempre son derivables, o la derivada no es trivial. Aún más grave es el hecho de que pueden presentar multitud de mínimos locales o mesetas, que dificultan la exploración. Por supuesto la exploración completa del espacio de búsqueda es intratable cuando la cantidad de variables aumenta (recordar que la función no se limita exclusivamente a 3 variables). No existe además una heurística admisible que sirva para guiar la búsqueda, al menos no para cualquier función que se le presente.
 
 Es por ello que se requiere otro tipo de algoritmos distintos a los deterministas, relajando la condición de optimalidad global para obtener una mayor rapidez. Se introducen entonces a los **Algoritmos Evolutivos** (AE) como una alternativa eficiente y robusta para la búsqueda de soluciones óptimas. Los mismos son algoritmos metaheurísticos basados en poblaciones que utilizan conceptos inspirados en la biología, como mutación, cruce, selección natural y supervivencia del más apto. Son en cierta forma estocásticos, dado que tienen un componente aleatorio.
 
-Su efectividad y practicidad radica en los siguientes puntos:
+La efectividad y practicidad de un AE radica en los siguientes puntos:
 
 * Sus características aleatorias hacen al método menos sensible a errores de modelado y en ocasiones le permiten escapar de óptimos locales.
 
@@ -33,7 +23,7 @@ Su efectividad y practicidad radica en los siguientes puntos:
 
 Es sencillo además visualizar cómo la función a optimizar se puede mapear directamente con la función de aptitud (*fitness*) de cada individuo. Luego la población de soluciones posibles resolverá "naturalmente" el problema, al sobrevivir aquellas soluciones que se encuentren más cercanas al óptimo.
 
-Existen además varios tipos de Algoritmos Evolutivos, siendo a grandes rasgos los siguientes:
+Existen varios tipos de Algoritmos Evolutivos, siendo a grandes rasgos los siguientes:
 
 * **Algoritmos Genéticos**: las soluciones se codifican como cadenas de bits (1's y 0's), enteros, flotantes, etc. y buscan la solución mediante selección, recombinación y mutación de las cadenas.
 
@@ -47,11 +37,11 @@ Existen además varios tipos de Algoritmos Evolutivos, siendo a grandes rasgos l
 
 ## Objetivos:
 
-Las técnicas de optimización global no sólo son para encontrar el máximo o el mínimo de una única función *f*. En muchos problemas del mundo real se aplican en cambio a conjuntos *F* que consisten de *n* funciones objetivo $f_i$, cada una representando un criterio a ser optimizado. En estos casos los problemas suelen llamarse *multi-objetivo*. La optimización multi-objetivo suele significar balancear el compromiso entre varias metas que conflictúan entre sí.
+Las técnicas de optimización global no se aplican sólo para encontrar el máximo o el mínimo de una única función *f*. En muchos problemas del mundo real se aplican en cambio a conjuntos *F* que consisten de *n* funciones objetivo $f_i$, cada una representando un criterio a ser optimizado. En estos casos los problemas suelen llamarse *multi-objetivo*. La optimización multi-objetivo suele significar balancear el compromiso entre varias metas que conflictúan entre sí.
 
-El PFG se centrará en la resolución de problemas de optimización *simple-objetivo* de funciones de *n* variables mediante el uso de Algoritmos Evolutivos. Se considerará que las funciones no cambiarán en el tiempo (es decir a lo largo de las iteraciones), por lo que la cualidad de auto adaptación no es un requisito escencial. Es por ello que se utilizarán Algoritmos Genéticos, por su sencillez y mapeo más intuitivo con el problema.
+El PFG se centrará en la resolución de problemas de optimización *simple-objetivo* de funciones de *n* variables mediante el uso de Algoritmos Evolutivos. Se considerará que las funciones no cambiarán en el tiempo (es decir a lo largo de las iteraciones), por lo que la cualidad de auto adaptación no es un requisito escencial. Es por ello que se desarrollará un Algoritmo Genético, por su sencillez y mapeo más intuitivo con el problema.
 
-Estos algoritmos intercambian la exactitud asegurada por una mayor rapidez para obtener la solución. Esto no quiere decir que la solución sea incorrecta, sólo que podría no ser el óptimo global. Para solventar este problema existen distintas alternativas para cada una de las fases del algoritmo (codificación, selección, cruce, mutación, etc), contribuyendo cada una de ellas de distintas formas de cara a resolver el problema. Es difícil detectar *a priori* cómo se comportará el algoritmo con cada una de estas alternativas, necesitándose normalmente de muchas pruebas empíricas para determinar la efectividad de cada una de ellas. Es por ello que se elegirá una de las fases del algoritmo y se evaluarán implementaciones alternativas desde un punto de vista computacional.
+Los algoritmos genéticos intercambian la exactitud asegurada por una mayor rapidez para obtener la solución. Esto no quiere decir que la solución sea incorrecta, sólo que podría no ser el óptimo global. Para intentar solventar este problema existen distintas alternativas para cada una de las fases del algoritmo (codificación, selección, cruce, mutación, etc), contribuyendo cada una de ellas de distintas formas de cara a resolver el problema. Es difícil detectar *a priori* cómo se comportará el algoritmo con cada una de estas alternativas, necesitándose normalmente de muchas pruebas empíricas para determinar la efectividad de cada una de ellas. Es por ello que se elegirá una de las fases del algoritmo y se evaluarán implementaciones alternativas desde un punto de vista computacional.
 
 
 ## Método de desarrollo, fases del trabajo y fechas de realización:
@@ -77,8 +67,8 @@ Para adquirir la base teórica necesaria sobre computación evolutiva, se utiliz
 
 Se utilizarán también recursos obtenidos de Internet, sean publicaciones, código abierto, etc.
 
-La programación se realizará enteramente en Java 1.6, por la comunidad, librerías y código abierto disponible. Además de poseer un modelo de objetos avanzado y moderno es multiplataforma, requisito indispensable dado que el entorno de desarrollo será Linux y se deba soportar también Windows.
+La programación del algoritmo genético se realizará enteramente en Java 1.6, por la comunidad, librerías y código abierto disponible. Además de poseer un modelo de objetos avanzado y moderno es multiplataforma, requisito indispensable dado que el entorno de desarrollo será Linux y se deba soportar también Windows.
 
-En cuanto a librerías se utilizarán, de ser necesarias, Jetty (servidor HTTP), Swing (Interfaces gráficas) y ANTLr (parser de gramáticas), entre otras.
+En cuanto a librerías auxiliares se utilizarán, de ser necesarias, Jetty (servidor HTTP), Swing (Interfaces gráficas) y ANTLr (parser de gramáticas), entre otras.
 
 Para el manejo, revisión y versionado de código se utilizará la plataforma GitHub, con intención de facilitar el acceso y distribución del código, la documentación y la memoria, tanto con el Director del proyecto como con todo el alumnado y otras terceras partes. Puede accederse al repositorio libremente en el siguiente enlace: [https://github.com/fermin-silva/pfg](https://github.com/fermin-silva/pfg)
