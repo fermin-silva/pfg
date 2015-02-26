@@ -58,7 +58,11 @@ public class Aleatorio {
 		return val + media;
 	}
 	
-	public Individuo de(Individuo[] i);
+	public Individuo de(Individuo[] i) {
+		return i[rnd.nextInt(i.length)];
+	}
 	
-	public double de(double[] d);
+	public double de(double[] d) {
+		return d[rnd.nextInt(d.length)];
+	}
 }
