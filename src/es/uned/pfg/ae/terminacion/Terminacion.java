@@ -1,6 +1,6 @@
 package es.uned.pfg.ae.terminacion;
 
-import es.uned.pfg.ae.Poblacion;
+import es.uned.pfg.ae.poblacion.Poblacion;
 
 public interface Terminacion {
 

@@ -1,7 +1,7 @@
 package es.uned.pfg.ae.seleccion;
 
 import es.uned.pfg.ae.Individuo;
-import es.uned.pfg.ae.Poblacion;
+import es.uned.pfg.ae.poblacion.Poblacion;
 
 /**
  * 

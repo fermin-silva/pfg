@@ -1,6 +1,7 @@
 package es.uned.pfg.ae;
 
 import es.uned.pfg.ae.mutacion.Mutacion;
+import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
 import es.uned.pfg.ae.seleccion.Seleccion;
 import es.uned.pfg.ae.terminacion.Terminacion;
