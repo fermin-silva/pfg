@@ -1,11 +1,11 @@
 package es.uned.pfg.ae;
 
-import static es.uned.pfg.ae.utils.StringUtils.toShortString;
+import static es.uned.pfg.ae.utils.Utils.toShortString;
 
 import java.util.Arrays;
 
 import es.uned.pfg.ae.funcion.Funcion;
-import es.uned.pfg.ae.utils.StringUtils;
+import es.uned.pfg.ae.utils.Utils;
 
 public class Individuo implements Comparable<Individuo> {
 
@@ -17,6 +17,8 @@ public class Individuo implements Comparable<Individuo> {
 	 * fitness es menor.
 	 */
 	public static final boolean MAXIMIZAR = false;
+	
+	public static final boolean USAR_JSON = false;
 	
 	protected double fitness;
 	private double[] valores;
@@ -61,8 +63,14 @@ public class Individuo implements Comparable<Individuo> {
 	
 	@Override
 	public String toString() {
-		return "{ \"fit\" : " + StringUtils.toString(getFitness()) + 
-				", \"vals\" : " + toShortString(valores) + " }";
+		if (USAR_JSON) {
+			return "{ \"fit\" : " + Utils.toString(getFitness()) + 
+					", \"vals\" : " + toShortString(valores) + " }";
+		}
+		else {
+			return Utils.toString(getFitness()) + 
+					" ==> " + toShortString(valores);
+		}
 	}
 	
 	@Override

@@ -1,7 +1,7 @@
 package es.uned.pfg.ae.poblacion;
 
 import es.uned.pfg.ae.Individuo;
-import es.uned.pfg.ae.utils.StringUtils;
+import es.uned.pfg.ae.utils.Utils;
 
 //TODO crear poblacion generacional y steady-state como dos implementaciones distintas
 public abstract class Poblacion {
@@ -56,6 +56,6 @@ public abstract class Poblacion {
 	
 	@Override
 	public String toString() {
-		return StringUtils.toString(individuos);
+		return Utils.toString(individuos);
 	}
 }

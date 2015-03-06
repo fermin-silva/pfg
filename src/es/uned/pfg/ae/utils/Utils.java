@@ -1,11 +1,18 @@
 package es.uned.pfg.ae.utils;
 
 
-public class StringUtils {
+public class Utils {
 
 	private static final int MAX_SIZE_SHORT_STRING = 5;
 	private static final String NL = System.getProperty("line.separator");
 	
+	
+	public static double clamp(double d, double min, double max) {
+		if (d < min) return min;
+		if (d > max) return max;
+		
+		return d;
+	}
 	
 	public static String toShortString(double[] d) {
 		return toShortString(d, false);

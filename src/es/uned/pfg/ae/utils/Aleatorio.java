@@ -65,4 +65,8 @@ public class Aleatorio {
 	public double de(double[] d) {
 		return d[rnd.nextInt(d.length)];
 	}
+	
+	public boolean menorQue(double probabilidad) {
+		return get() < probabilidad;
+	}
 }
