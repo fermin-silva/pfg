@@ -24,7 +24,7 @@ public class MutacionUniforme implements Mutacion {
 		boolean cambiado = false;
 		
 		for (int j = 0; j < alelos.length; j++) {
-			if (aleatorio.menorQue(prob)) {
+			if (aleatorio.isMenorQue(prob)) {
 				alelos[j] = aleatorio.getEntre(min, max);
 				cambiado = true;
 			}

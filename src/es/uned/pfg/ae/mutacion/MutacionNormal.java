@@ -37,7 +37,7 @@ public class MutacionNormal implements Mutacion {
 		boolean cambiado = false;
 		
 		for (int j = 0; j < alelos.length; j++) {
-			if (aleatorio.menorQue(prob)) {
+			if (aleatorio.isMenorQue(prob)) {
 				alelos[j] = Utils.clamp(alelos[j] + aleatorio.getNormal(0, desviacion),
 										min, max);
 				cambiado = true;

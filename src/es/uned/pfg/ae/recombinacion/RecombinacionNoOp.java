@@ -9,8 +9,8 @@ import es.uned.pfg.ae.Individuo;
 public class RecombinacionNoOp implements Recombinacion {
 
 	@Override
-	public Individuo[] getCrias(Individuo... padres) {
-		return padres;
+	public Individuo[] getCrias(Individuo i1, Individuo i2) {
+		return new Individuo[] { i1, i2 };
 	}
 }
 

@@ -21,6 +21,7 @@ public class Aleatorio {
 	 * todo el rango de valores.
 	 */
 	public double get() {
+//		System.err.println("Random get");
 		return rnd.nextDouble();
 	}
 	
@@ -33,6 +34,7 @@ public class Aleatorio {
 	}
 	
 	public double getEntre(double a, double b) {
+//		System.err.println("Random get entre");
 		return get() * (b - a) + a;
 	}
 	
@@ -43,6 +45,8 @@ public class Aleatorio {
 	 * grandes.
 	 */
 	public double getNormal(double media, double stdev) {
+//		System.err.println("Random get normal");
+		
 		double val = rnd.nextGaussian() * stdev;
 		
 		double limite = 3 * stdev;
@@ -58,15 +62,50 @@ public class Aleatorio {
 		return val + media;
 	}
 	
-	public Individuo de(Individuo[] i) {
-		return i[rnd.nextInt(i.length)];
+	public Individuo[] getDe(Individuo[] i, int cantidad) {
+		Individuo[] ret = new Individuo[cantidad];
+		
+		for (int j = 0; j < cantidad; j++) {
+			ret[j] = getDe(i);
+		}
+		
+		return ret;
 	}
 	
-	public double de(double[] d) {
+	public Individuo getDe(Individuo[] i) {
+		int index = rnd.nextInt(i.length); 
+//		System.err.println("Random get de indiv index " + index);
+		
+		return i[index];
+	}
+	
+	public double getDe(double[] d) {
+//		System.err.println("Random get de double");
+		
 		return d[rnd.nextInt(d.length)];
 	}
 	
-	public boolean menorQue(double probabilidad) {
+	public boolean isMenorQue(double probabilidad) {
+//		System.err.println("Random is menor que");
+		
 		return get() < probabilidad;
+	}
+
+	/**
+	 * Devuelve una posicion aleatoria del array
+	 */
+	public int getPosicion(double[] d) {
+//		System.err.println("Random get posicion");
+		
+		return rnd.nextInt(d.length);
+	}
+	
+	/**
+	 * Devuelve una posicion aleatoria del array
+	 */
+	public int getPosicion(Object[] o) {
+//		System.err.println("Random get posicion object");
+		
+		return rnd.nextInt(o.length);
 	}
 }

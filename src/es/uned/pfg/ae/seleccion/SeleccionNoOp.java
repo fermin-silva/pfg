@@ -10,7 +10,7 @@ import es.uned.pfg.ae.poblacion.Poblacion;
 public class SeleccionNoOp implements Seleccion {
 
 	@Override
-	public Individuo[] seleccionar(Poblacion p, int cantidad) {
+	public Individuo[] seleccionar(Poblacion p) {
 		return p.getIndividuos();
 	}
 }

@@ -51,7 +51,7 @@ public class TestPoblacion {
 		}
 
 		@Override
-		public void setSobrevivientes(Individuo[] padres, Individuo[] crias) {
+		public void setSobrevivientes(Individuo[] crias) {
 			
 		}
 	}

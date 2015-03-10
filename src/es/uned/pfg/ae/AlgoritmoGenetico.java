@@ -1,5 +1,7 @@
 package es.uned.pfg.ae;
 
+import java.util.Arrays;
+
 import es.uned.pfg.ae.mutacion.Mutacion;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
@@ -37,11 +39,22 @@ public class AlgoritmoGenetico {
 	}
 	
 	public boolean iteracion(int iteracion) {
-		//TODO 1) seleccionar padres
-		Individuo[] padres = seleccion.seleccionar(poblacion, conf.getCantPadres());
+		Individuo[] padres = seleccion.seleccionar(poblacion);
 		
-		//TODO 2) recombinar pares de padres
-		Individuo[] crias = recombinacion.getCrias(padres);
+//		System.out.println("Padres " + Arrays.toString(padres));
+		
+		//TODO la seleccion deberia devolver grupos de a 2 padres para recombinar
+		
+		Individuo[] crias = new Individuo[padres.length];
+			
+		for (int i = 0; i < padres.length - 1; i += 2) {
+			Individuo[] c = recombinacion.getCrias(padres[i], padres[i + 1]);
+			
+			crias[i] = c[0];
+			crias[i + 1] = c[1];
+		}
+		
+//		System.out.println("Crias  " + Arrays.toString(crias));
 		
 		//TODO 3) mutar las crias
 		//TODO 4) evaluar a las crias
@@ -49,8 +62,13 @@ public class AlgoritmoGenetico {
 			mutacion.mutar(individuo);
 		}
 		
+//		System.out.println("Mutas " + Arrays.toString(crias));
+		
 		//TODO 5) seleccionar supervivientes para la nueva generacion (padres + crias)
-		poblacion.setSobrevivientes(padres, crias);
+		poblacion.setSobrevivientes(crias);
+		
+//		System.out.println("Fin iter " + iteracion);
+//		System.out.println();
 		
 		//TODO 6) agregar condicion de terminacion (si es que hace falta)
 		return terminacion.isTerminado(iteracion, poblacion);

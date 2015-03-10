@@ -45,7 +45,7 @@ public class Utils {
 	}
 	
 	public static String toString(double d) {
-		return String.format("%.3f", d);
+		return (d > 0 ? "+" : "") + String.format("%.3f", d);
 	}
 	
 	public static String toString(Object[] o) {

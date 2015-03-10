@@ -19,12 +19,10 @@ public abstract class Poblacion {
 	/**
 	 * Calcula los supervivientes de la siguiente generación y los integra a la población.
 	 * 
-	 * @param padres Los padres de la generación anterior, utilizados dependiendo de la
-	 * implementación de la población
 	 * @param crias Los nuevos individuos generados en la recombinación que deben ser
 	 * integrados a la población.
 	 */
-	public abstract void setSobrevivientes(Individuo[] padres, Individuo[] crias);
+	public abstract void setSobrevivientes(Individuo[] crias);
 
 	public Individuo getMejorIndividuo() {
 		return mejorIndividuo;
@@ -34,7 +32,7 @@ public abstract class Poblacion {
 		this.mejorIndividuo = mejorIndividuo;
 	}
 	
-	protected Individuo getMejorIndividuo(Individuo[] individuos) {
+	public Individuo getMejorIndividuo(Individuo[] individuos) {
 		Individuo mejor = individuos[0];
 		
 		for (int i = 1; i < individuos.length; i++) {
@@ -48,6 +46,24 @@ public abstract class Poblacion {
 		}
 		
 		return mejor;
+	}
+	
+	public int encontrarPeor(Individuo[] individuos) {
+		Individuo peor = individuos[0];
+		int indice = 0;
+		
+		for (int i = 1; i < individuos.length; i++) {
+
+			//la comparacion es > 0 tanto si el problema es de maximizacion
+			//como de minimizacion. La logica de cambiar el signo de la 
+			//comparacion se hace en el propio codigo de Individuo
+			if (individuos[i].compareTo(peor) > 0) {
+				peor = individuos[i];
+				indice = i;
+			}
+		}
+		
+		return indice;
 	}
 	
 	public Individuo[] getIndividuos() {
