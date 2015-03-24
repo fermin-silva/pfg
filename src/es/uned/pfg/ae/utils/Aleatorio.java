@@ -101,6 +101,13 @@ public class Aleatorio {
 	}
 	
 	/**
+	 * Devuelve un numero entero aleatorio entre [0, n)
+	 */
+	public int getInt(int n) {
+		return rnd.nextInt(n);
+	}
+	
+	/**
 	 * Devuelve una posicion aleatoria del array
 	 */
 	public int getPosicion(Object[] o) {

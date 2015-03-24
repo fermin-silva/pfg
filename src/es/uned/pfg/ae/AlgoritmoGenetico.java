@@ -50,8 +50,18 @@ public class AlgoritmoGenetico {
 		for (int i = 0; i < padres.length - 1; i += 2) {
 			Individuo[] c = recombinacion.getCrias(padres[i], padres[i + 1]);
 			
-			crias[i] = c[0];
-			crias[i + 1] = c[1];
+			if (c == null || c.length == 0) { //no se han recombinado
+				crias[i] = padres[i];
+				crias[i + 1] = padres[i + 1];
+			}
+			else {
+				for (Individuo cria : c) {
+					mutacion.mutar(cria);
+				}
+				
+				crias[i] = c[0];
+				crias[i + 1] = c[1];				
+			}
 		}
 		
 //		System.out.println("Crias  " + Arrays.toString(crias));

@@ -51,5 +51,9 @@ public class MutacionNormal implements Mutacion {
 
 	public void iteracion() {
 		desviacion -= 1;
+		
+		if (desviacion <= 0) {
+			desviacion = 1;
+		}
 	}
 }
