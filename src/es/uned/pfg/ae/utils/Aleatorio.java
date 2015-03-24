@@ -74,7 +74,7 @@ public class Aleatorio {
 	
 	public Individuo getDe(Individuo[] i) {
 		int index = rnd.nextInt(i.length); 
-//		System.err.println("Random get de indiv index " + index);
+//		System.out.printf("   index %3d", index);
 		
 		return i[index];
 	}

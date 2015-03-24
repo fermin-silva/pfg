@@ -5,6 +5,7 @@ import java.util.Arrays;
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.utils.Aleatorio;
+import es.uned.pfg.ae.utils.Utils;
 
 public class SeleccionTorneo implements Seleccion {
 
@@ -24,10 +25,11 @@ public class SeleccionTorneo implements Seleccion {
 		
 		for (int i = 0; i < individuos.length; i++) {
 			Individuo[] torneo = aleatorio.getDe(individuos, tamaño);
+			Individuo ganador = p.getMejorIndividuo(torneo);
 			
-//			System.out.println("Elegi aleatoriamente a " + Arrays.toString(torneo));
+//			System.out.println(" ==> " + Arrays.toString(torneo) + " --- Gano : " + Utils.toString(ganador.getFitness()));
 			
-			pool[i] = p.getMejorIndividuo(torneo);
+			pool[i] = ganador; 
 		}
 		
 		return pool;

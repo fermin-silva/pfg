@@ -1,7 +1,5 @@
 package es.uned.pfg.ae;
 
-import static es.uned.pfg.ae.utils.Utils.toShortString;
-
 import java.util.Arrays;
 
 import es.uned.pfg.ae.funcion.Funcion;
@@ -9,15 +7,6 @@ import es.uned.pfg.ae.utils.Utils;
 
 public class Individuo implements Comparable<Individuo> {
 
-	//TODO parametrizar esta constante
-	/**
-	 * True si el problema es de maximizacion: un individuo es mejor si su
-	 * fitness es mayor.
-	 * False si el problema es de minimizacion: un individuo es mejor si su
-	 * fitness es menor.
-	 */
-	public static final boolean MAXIMIZAR = false;
-	
 	public static final boolean USAR_JSON = false;
 	
 	protected double fitness;
@@ -41,7 +30,8 @@ public class Individuo implements Comparable<Individuo> {
 	}
 	
 	public void calcularFitness() {
-		this.fitness = funcion.calcular(valores);
+		//TODO si es un problema de maximizacion, +funcion, sino -funcion
+		this.fitness = -funcion.calcular(valores);
 	}
 	
 	public double getFitness() {
@@ -65,11 +55,12 @@ public class Individuo implements Comparable<Individuo> {
 	public String toString() {
 		if (USAR_JSON) {
 			return "{ \"fit\" : " + Utils.toString(getFitness()) + 
-					", \"vals\" : " + toShortString(valores) + " }";
+					", \"vals\" : " + Utils.toShortString(valores) + " }";
 		}
 		else {
-			return Utils.toString(getFitness()) + 
-					" ==> " + toShortString(valores);
+			return Utils.toShortString(valores) + " == " + Utils.toString(getFitness());
+//			return Utils.toString(getFitness()) + 
+//					" ==> " + toShortString(valores);
 		}
 	}
 	
@@ -80,13 +71,12 @@ public class Individuo implements Comparable<Individuo> {
 	}
 
 
+	public Individuo clone() {
+		return new Individuo(generacion, Arrays.copyOf(valores, valores.length), funcion);
+	}
+	
 	@Override
 	public int compareTo(Individuo o) {
-		if (MAXIMIZAR) {
-			return Double.compare(o.fitness, fitness);
-		}
-		else { //se invierte la comparacion para invertir el signo de la misma
-			return Double.compare(fitness, o.fitness);
-		}
+		return Double.compare(o.fitness, fitness);
 	}
 }

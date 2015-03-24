@@ -1,5 +1,8 @@
 package es.uned.pfg.ae.poblacion;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.utils.Utils;
 
@@ -36,11 +39,7 @@ public abstract class Poblacion {
 		Individuo mejor = individuos[0];
 		
 		for (int i = 1; i < individuos.length; i++) {
-
-			//la comparacion es < 0 tanto si el problema es de maximizacion
-			//como de minimizacion. La logica de cambiar el signo de la 
-			//comparacion se hace en el propio codigo de Individuo
-			if (individuos[i].compareTo(mejor) < 0) {
+			if (individuos[i].getFitness() > mejor.getFitness()) {
 				mejor = individuos[i];
 			}
 		}
@@ -53,11 +52,7 @@ public abstract class Poblacion {
 		int indice = 0;
 		
 		for (int i = 1; i < individuos.length; i++) {
-
-			//la comparacion es > 0 tanto si el problema es de maximizacion
-			//como de minimizacion. La logica de cambiar el signo de la 
-			//comparacion se hace en el propio codigo de Individuo
-			if (individuos[i].compareTo(peor) > 0) {
+			if (individuos[i].getFitness() < peor.getFitness()) {
 				peor = individuos[i];
 				indice = i;
 			}
@@ -68,6 +63,10 @@ public abstract class Poblacion {
 	
 	public Individuo[] getIndividuos() {
 		return individuos;
+	}
+	
+	public int getTamaño() {
+		return individuos.length;
 	}
 	
 	@Override

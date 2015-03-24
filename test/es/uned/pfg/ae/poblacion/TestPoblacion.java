@@ -23,12 +23,7 @@ public class TestPoblacion {
 		
 		MockPoblacion mockPoblacion = new MockPoblacion(is);
 		
-		if (Individuo.MAXIMIZAR) {
-			Assert.assertTrue(i5 == mockPoblacion.getMejorIndividuo());
-		}
-		else {
-			Assert.assertTrue(i1 == mockPoblacion.getMejorIndividuo());
-		}
+		Assert.assertTrue(i5 == mockPoblacion.getMejorIndividuo());
 	}
 	
 	

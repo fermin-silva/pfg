@@ -1,5 +1,7 @@
 package es.uned.pfg.ae.poblacion;
 
+import java.util.Arrays;
+
 import es.uned.pfg.ae.Individuo;
 
 /**
@@ -20,12 +22,10 @@ public class PoblacionGeneracional extends Poblacion {
 	public void setSobrevivientes(Individuo[] crias) {
 		this.individuos = crias;
 		
-		//TODO agregar elitismo opcional
-		
 		if (elitista) {
 			Individuo nuevoMejor = getMejorIndividuo(crias);
-			
-			if (getMejorIndividuo().compareTo(nuevoMejor) < 0) {
+
+			if (getMejorIndividuo().getFitness() > nuevoMejor.getFitness()) {
 				//ninguna de las crias supera al mejor individuo anterior, por lo cual
 				//se conserva en la poblacion
 				int indice = encontrarPeor(crias);
@@ -41,6 +41,8 @@ public class PoblacionGeneracional extends Poblacion {
 		else {
 			setMejorIndividuo(getMejorIndividuo(crias));
 		}
+		
+//		Arrays.sort(individuos);
 	}
 }
 

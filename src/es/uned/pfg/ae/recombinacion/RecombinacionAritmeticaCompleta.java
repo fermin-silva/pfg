@@ -8,16 +8,28 @@ public class RecombinacionAritmeticaCompleta implements Recombinacion {
 
 	private Funcion funcion;
 	private double alpha;
+	private double probabilidad;
+	
+	private Aleatorio aleatorio;
 
 
 	//TODO y si se usa alpha = nextGaussian centrado en cero y con stdev de 1/3 ?
-	public RecombinacionAritmeticaCompleta(Funcion f, double alpha) {
+	public RecombinacionAritmeticaCompleta(Funcion f, double alpha, 
+											double probabilidad, 
+											Aleatorio aleatorio) 
+	{
 		this.funcion = f;
 		this.alpha = alpha;
+		this.probabilidad = probabilidad;
+		this.aleatorio = aleatorio;
 	}
 	
 	@Override
 	public Individuo[] getCrias(Individuo i1, Individuo i2) {
+		if (!aleatorio.isMenorQue(probabilidad)) {
+			return new Individuo[]{ i1.clone(), i2.clone() };
+		}
+		
 		double[] v1 = i1.getValores();
 		double[] v2 = i2.getValores();
 		
@@ -30,7 +42,9 @@ public class RecombinacionAritmeticaCompleta implements Recombinacion {
 		}
 		
 		//TODO cambiarle la iteracion, no es cero!
-		return new Individuo[] { new Individuo(0, v11, funcion), 
-								 new Individuo(0, v22, funcion) };
+		Individuo i11 = new Individuo(0, v11, funcion);
+		Individuo i22 = new Individuo(0, v22, funcion);
+
+		return new Individuo[] { i11, i22 };
 	}
 }

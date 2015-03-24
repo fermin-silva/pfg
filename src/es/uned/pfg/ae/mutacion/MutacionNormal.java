@@ -48,4 +48,8 @@ public class MutacionNormal implements Mutacion {
 			i.calcularFitness();
 		}
 	}
+
+	public void iteracion() {
+		desviacion -= 1;
+	}
 }
