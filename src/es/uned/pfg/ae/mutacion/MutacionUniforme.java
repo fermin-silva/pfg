@@ -10,7 +10,9 @@ public class MutacionUniforme implements Mutacion {
 	private double prob;
 	private Aleatorio aleatorio;
 	
-	public MutacionUniforme(double min, double max, Aleatorio aleatorio, double prob) {
+	public MutacionUniforme(double min, double max, Aleatorio aleatorio, 
+							 double prob) 
+	{
 		this.min = min;
 		this.max = max;
 		this.aleatorio = aleatorio;
@@ -33,5 +35,18 @@ public class MutacionUniforme implements Mutacion {
 		if (cambiado) {
 			i.calcularFitness();
 		}
+	}
+	
+	@Override
+	public void set(Aleatorio aleatorio) {
+		this.aleatorio = aleatorio;
+	}
+	
+	public void setMin(double min) {
+		this.min = min;
+	}
+	
+	public void setMax(double max) {
+		this.max = max;
 	}
 }

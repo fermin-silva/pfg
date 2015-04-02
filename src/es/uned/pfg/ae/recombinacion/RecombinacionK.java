@@ -33,11 +33,10 @@ public class RecombinacionK implements Recombinacion {
 	
 	public RecombinacionK(Aleatorio aleatorio, Funcion f, int k, double alpha) {
 		this.aleatorio = aleatorio;
-		this.funcion = f;
-		this.min = f.getMin();
-		this.max = f.getMax();
 		this.k = k;
 		this.alpha = alpha;
+		
+		setFuncion(f);
 	}
 	
 	@Override
@@ -74,5 +73,21 @@ public class RecombinacionK implements Recombinacion {
 		//TODO cambiarle la iteracion, no es cero!
 		return new Individuo[] { new Individuo(0, x2, funcion), 
 								  new Individuo(0, y2, funcion) };
+	}
+
+	@Override
+	public String toString() {
+		return "RecombinacionK (" + k + ", " + alpha + ")";
+	}
+	
+	@Override
+	public void set(Aleatorio aleatorio) {
+		this.aleatorio = aleatorio;
+	}
+	
+	public void setFuncion(Funcion f) {
+		this.funcion = f;
+		this.min = f.getMin();
+		this.max = f.getMax();
 	}
 }

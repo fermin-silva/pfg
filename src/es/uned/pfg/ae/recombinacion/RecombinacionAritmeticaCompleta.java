@@ -34,17 +34,16 @@ public class RecombinacionAritmeticaCompleta implements Recombinacion {
 											double probabilidad, 
 											Aleatorio aleatorio) 
 	{
-		this.funcion = f;
-		this.min = f.getMin();
-		this.max = f.getMax();
-		
 		this.alpha = alpha;
 		this.probabilidad = probabilidad;
 		this.aleatorio = aleatorio;
+		
+		setFuncion(f);
 	}
 	
 	@Override
 	public Individuo[] getCrias(Individuo i1, Individuo i2) {
+		//TODO usar RecombinacionProbable para esto!
 		if (!aleatorio.isMenorQue(probabilidad)) {
 			return null;
 		}
@@ -68,5 +67,16 @@ public class RecombinacionAritmeticaCompleta implements Recombinacion {
 		Individuo i22 = new Individuo(0, v22, funcion);
 
 		return new Individuo[] { i11, i22 };
+	}
+	
+	@Override
+	public void set(Aleatorio aleatorio) {
+		this.aleatorio = aleatorio;
+	}
+	
+	public void setFuncion(Funcion f) {
+		this.funcion = f;
+		this.min = f.getMin();
+		this.max = f.getMax();
 	}
 }

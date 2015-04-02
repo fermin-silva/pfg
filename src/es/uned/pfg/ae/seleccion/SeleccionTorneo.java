@@ -34,4 +34,9 @@ public class SeleccionTorneo implements Seleccion {
 		
 		return pool;
 	}
+	
+	@Override
+	public void set(Aleatorio aleatorio) {
+		this.aleatorio = aleatorio;
+	}
 }

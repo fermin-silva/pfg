@@ -22,7 +22,9 @@ public class MutacionNormal implements Mutacion {
 	private double max;
 
 	
-	public MutacionNormal(double desviacion, Aleatorio aleatorio, double min, double max) {
+	public MutacionNormal(double desviacion, Aleatorio aleatorio, double min, 
+						   double max) 
+	{
 		this.aleatorio = aleatorio;
 		this.desviacion = desviacion;
 		this.min = min;
@@ -55,5 +57,18 @@ public class MutacionNormal implements Mutacion {
 		if (desviacion <= 0) {
 			desviacion = 1;
 		}
+	}
+
+	@Override
+	public void set(Aleatorio aleatorio) {
+		this.aleatorio = aleatorio;
+	}
+	
+	public void setMin(double min) {
+		this.min = min;
+	}
+	
+	public void setMax(double max) {
+		this.max = max;
 	}
 }

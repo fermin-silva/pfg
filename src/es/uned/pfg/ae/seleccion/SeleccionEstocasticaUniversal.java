@@ -78,5 +78,10 @@ public class SeleccionEstocasticaUniversal implements Seleccion {
 
 		return pSel;
 	}
+	
+	@Override
+	public void set(Aleatorio aleatorio) {
+		this.aleatorio = aleatorio;
+	}
 }
 

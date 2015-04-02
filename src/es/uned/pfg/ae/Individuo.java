@@ -38,6 +38,10 @@ public class Individuo implements Comparable<Individuo> {
 		return fitness;
 	}
 	
+	public Funcion getFuncion() {
+		return funcion;
+	}
+	
 	public double[] getValores() {
 		return valores;
 	}

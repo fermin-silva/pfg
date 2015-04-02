@@ -1,7 +1,5 @@
 package es.uned.pfg.ae;
 
-import java.util.Arrays;
-
 import es.uned.pfg.ae.mutacion.Mutacion;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
@@ -41,8 +39,6 @@ public class AlgoritmoGenetico {
 	public boolean iteracion(int iteracion) {
 		Individuo[] padres = seleccion.seleccionar(poblacion);
 		
-//		System.out.println("Padres " + Arrays.toString(padres));
-		
 		//TODO la seleccion deberia devolver grupos de a 2 padres para recombinar
 		
 		Individuo[] crias = new Individuo[padres.length];
@@ -64,23 +60,8 @@ public class AlgoritmoGenetico {
 			}
 		}
 		
-//		System.out.println("Crias  " + Arrays.toString(crias));
-		
-		//TODO 3) mutar las crias
-		//TODO 4) evaluar a las crias
-		for (Individuo individuo : crias) {
-			mutacion.mutar(individuo);
-		}
-		
-//		System.out.println("Mutas " + Arrays.toString(crias));
-		
-		//TODO 5) seleccionar supervivientes para la nueva generacion (padres + crias)
 		poblacion.setSobrevivientes(crias);
 		
-//		System.out.println("Fin iter " + iteracion);
-//		System.out.println();
-		
-		//TODO 6) agregar condicion de terminacion (si es que hace falta)
 		return terminacion.isTerminado(iteracion, poblacion);
 	}
 }

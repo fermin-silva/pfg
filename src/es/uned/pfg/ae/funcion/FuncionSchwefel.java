@@ -52,4 +52,9 @@ public class FuncionSchwefel implements Funcion {
 	public double getMax() {
 		return MAX;
 	}
+	
+	@Override
+	public String toString() {
+		return "F_Schwefel(" + dimension + ")";
+	}
 }
