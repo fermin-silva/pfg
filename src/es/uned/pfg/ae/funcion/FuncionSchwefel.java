@@ -1,6 +1,11 @@
 package es.uned.pfg.ae.funcion;
 
 /**
+ * <a href="http://www.sfu.ca/~ssurjano/schwef.html">
+ * 		http://www.sfu.ca/~ssurjano/schwef.html
+ * </a>
+ * 
+ * El minimo se encuentra en la coordenada 420.9687 para cada xi.
  * 
  * @author Fermin Silva < fermins@olx.com >
  */
@@ -56,5 +61,10 @@ public class FuncionSchwefel implements Funcion {
 	@Override
 	public String toString() {
 		return "F_Schwefel(" + dimension + ")";
+	}
+	
+	@Override
+	public double getMinimoGlobal() {
+		return 0;
 	}
 }

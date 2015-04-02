@@ -3,6 +3,11 @@ package es.uned.pfg.ae;
 import static es.uned.pfg.ae.Configuracion.ALEATORIO_DEFAULT;
 
 import es.uned.pfg.ae.funcion.Funcion;
+import es.uned.pfg.ae.funcion.FuncionAckley;
+import es.uned.pfg.ae.funcion.FuncionGriewank;
+import es.uned.pfg.ae.funcion.FuncionRastrigin;
+import es.uned.pfg.ae.funcion.FuncionSchaffer2;
+import es.uned.pfg.ae.funcion.FuncionSchubert;
 import es.uned.pfg.ae.funcion.FuncionSchwefel;
 import es.uned.pfg.ae.mutacion.Mutacion;
 import es.uned.pfg.ae.mutacion.MutacionNormal;
@@ -33,18 +38,20 @@ public class Benchmark {
 				System.out.println(recombinacion + " + " + f);
 				
 				for (int i = 0; i < RUNS; i++) {
-					double mejor = ejecucion(conf, seleccion, mutacion, 
-											  recombinacion, terminacion, f);
+					Individuo mejor = ejecucion(conf, seleccion, mutacion, 
+											    recombinacion, terminacion, f);
 					
 					System.out.println("Ejecucion " + i + ", mejor: " + mejor);
 				}
+				
+				System.out.println();
 			}
 		}
 	}
 	
-	protected double ejecucion(Configuracion conf, Seleccion seleccion, 
-							   Mutacion mutacion, Recombinacion recombinacion,
-							   Terminacion terminacion, Funcion f) 
+	protected Individuo ejecucion(Configuracion conf, Seleccion seleccion, 
+							       Mutacion mutacion, Recombinacion recombinacion,
+							       Terminacion terminacion, Funcion f) 
 	{
 		Aleatorio aleatorio = new Aleatorio();
 		
@@ -69,7 +76,7 @@ public class Benchmark {
 		
 		ag.comenzar();
 		
-		return poblacion.getMejorIndividuo().getFitness();
+		return poblacion.getMejorIndividuo();
 	}
 	
 	public static Individuo[] getIndividuosInicial(int tamaño, Funcion f,
@@ -99,7 +106,14 @@ public class Benchmark {
 		
 		Funcion[] funciones = new Funcion[] {
 				
-				new FuncionSchwefel(15)
+				new FuncionAckley(10),
+				new FuncionAckley(10),
+				new FuncionGriewank(10),
+				new FuncionRastrigin(10),
+				new FuncionSchaffer2(),
+				new FuncionSchubert(),
+				new FuncionSchwefel(10),
+				
 		};
 		
 		Recombinacion[] recombs = new Recombinacion[]{

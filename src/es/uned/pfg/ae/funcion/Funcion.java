@@ -10,6 +10,9 @@ public interface Funcion {
 
 	public double getMin();
 	public double getMax();
+	
+	public double getMinimoGlobal();
+	
 	public boolean isLimitada();
 	
 	public double calcular(double[] valores);

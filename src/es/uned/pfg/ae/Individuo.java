@@ -31,7 +31,7 @@ public class Individuo implements Comparable<Individuo> {
 	
 	public void calcularFitness() {
 		//TODO si es un problema de maximizacion, +funcion, sino -funcion
-		this.fitness = -funcion.calcular(valores);
+		this.fitness = funcion.getMinimoGlobal() - funcion.calcular(valores);
 	}
 	
 	public double getFitness() {
