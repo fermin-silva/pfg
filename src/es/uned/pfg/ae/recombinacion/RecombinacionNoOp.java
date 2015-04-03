@@ -23,5 +23,10 @@ public class RecombinacionNoOp implements Recombinacion {
 	public void setFuncion(Funcion f) {
 		//no hacer nada
 	}
+	
+	@Override
+	public String toString() {
+		return "RecombinacionNO_OP";
+	}
 }
 

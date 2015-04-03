@@ -79,4 +79,9 @@ public class RecombinacionAritmeticaCompleta implements Recombinacion {
 		this.min = f.getMin();
 		this.max = f.getMax();
 	}
+	
+	@Override
+	public String toString() {
+		return "RecombinacionAritmeticaCompleta (" + alpha + ")"; 
+	}
 }

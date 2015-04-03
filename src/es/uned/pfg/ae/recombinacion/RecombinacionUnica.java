@@ -23,4 +23,9 @@ public class RecombinacionUnica extends RecombinacionK {
 	public RecombinacionUnica(Aleatorio aleatorio, Funcion f, double alpha) {
 		super(aleatorio, f, 1, alpha); //solo 1 punto de cruce
 	}
+	
+	@Override
+	public String toString() {
+		return "RecombinacionUnica (" + alpha + ")"; 
+	}
 }

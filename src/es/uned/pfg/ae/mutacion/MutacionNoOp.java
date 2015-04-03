@@ -28,4 +28,9 @@ public class MutacionNoOp implements Mutacion {
 	public void setMax(double max) {
 		//no hacer nada
 	}
+	
+	@Override
+	public String toString() {
+		return "MutacionNoOp";
+	}
 }

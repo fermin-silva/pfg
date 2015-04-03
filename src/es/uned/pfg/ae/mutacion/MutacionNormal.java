@@ -29,6 +29,8 @@ public class MutacionNormal implements Mutacion {
 		this.desviacion = desviacion;
 		this.min = min;
 		this.max = max;
+		
+		//TODO parametrizar esta probabilidad
 		this.prob = 1.0;
 	}
 
@@ -70,5 +72,10 @@ public class MutacionNormal implements Mutacion {
 	
 	public void setMax(double max) {
 		this.max = max;
+	}
+	
+	@Override
+	public String toString() {
+		return "MutacionNormal (" + desviacion + ")";
 	}
 }

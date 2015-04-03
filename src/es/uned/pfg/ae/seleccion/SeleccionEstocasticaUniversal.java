@@ -5,7 +5,6 @@ import java.util.Arrays;
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.utils.Aleatorio;
-import es.uned.pfg.ae.utils.Utils;
 
 /**
  * 
@@ -83,5 +82,9 @@ public class SeleccionEstocasticaUniversal implements Seleccion {
 	public void set(Aleatorio aleatorio) {
 		this.aleatorio = aleatorio;
 	}
+	
+	@Override
+	public String toString() {
+		return "SeleccionEstocasticaUniversal";
+	}
 }
-

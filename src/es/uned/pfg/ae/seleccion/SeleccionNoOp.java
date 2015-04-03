@@ -19,5 +19,10 @@ public class SeleccionNoOp implements Seleccion {
 	public void set(Aleatorio aleatorio) {
 		//no hacer nada
 	}
+	
+	@Override
+	public String toString() {
+		return "SeleccionNoOp";
+	}
 }
 

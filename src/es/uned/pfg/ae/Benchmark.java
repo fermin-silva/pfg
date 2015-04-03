@@ -1,7 +1,6 @@
 package es.uned.pfg.ae;
 
 import static es.uned.pfg.ae.Configuracion.ALEATORIO_DEFAULT;
-
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.funcion.FuncionAckley;
 import es.uned.pfg.ae.funcion.FuncionGriewank;
@@ -10,15 +9,21 @@ import es.uned.pfg.ae.funcion.FuncionSchaffer2;
 import es.uned.pfg.ae.funcion.FuncionSchubert;
 import es.uned.pfg.ae.funcion.FuncionSchwefel;
 import es.uned.pfg.ae.mutacion.Mutacion;
+import es.uned.pfg.ae.mutacion.MutacionNoOp;
 import es.uned.pfg.ae.mutacion.MutacionNormal;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.poblacion.PoblacionGeneracional;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
+import es.uned.pfg.ae.recombinacion.RecombinacionAritmeticaCompleta;
 import es.uned.pfg.ae.recombinacion.RecombinacionK;
+import es.uned.pfg.ae.recombinacion.RecombinacionNoOp;
+import es.uned.pfg.ae.recombinacion.RecombinacionSimple;
+import es.uned.pfg.ae.recombinacion.RecombinacionUnica;
 import es.uned.pfg.ae.seleccion.Seleccion;
 import es.uned.pfg.ae.seleccion.SeleccionTorneo;
 import es.uned.pfg.ae.terminacion.Terminacion;
 import es.uned.pfg.ae.utils.Aleatorio;
+import es.uned.pfg.ae.utils.Utils;
 
 /**
  * 
@@ -32,16 +37,31 @@ public class Benchmark {
 					  Terminacion terminacion, Configuracion conf, 
 					  Recombinacion[] recombinaciones) 
 	{
+		System.out.println(seleccion);
+		System.out.println(mutacion);
+		System.out.println("Iteraciones: " + conf.getMaxIteraciones());
+		System.out.println("Poblacion: " + conf.getTamañoPoblacion());
+		System.out.println();
+		
 		for (Funcion f : fs) {
 			for (Recombinacion recombinacion : recombinaciones) {
 				
 				System.out.println(recombinacion + " + " + f);
+				System.out.println("Ejecucion\tMejor_Individuo\tRuntime");
 				
-				for (int i = 0; i < RUNS; i++) {
+				
+				for (int i = 1; i <= RUNS; i++) {
+					long start = System.currentTimeMillis();
+					
 					Individuo mejor = ejecucion(conf, seleccion, mutacion, 
 											    recombinacion, terminacion, f);
 					
-					System.out.println("Ejecucion " + i + ", mejor: " + mejor);
+					long end = System.currentTimeMillis();
+					double segundos = (end - start) / 1000.0;
+					
+					System.out.println("   " + i + "\t" + 
+							   		   Utils.toString(mejor.getFitness()) + "\t" + 
+									   Utils.toString(segundos));
 				}
 				
 				System.out.println();
@@ -107,7 +127,6 @@ public class Benchmark {
 		Funcion[] funciones = new Funcion[] {
 				
 				new FuncionAckley(10),
-				new FuncionAckley(10),
 				new FuncionGriewank(10),
 				new FuncionRastrigin(10),
 				new FuncionSchaffer2(),
@@ -116,16 +135,26 @@ public class Benchmark {
 				
 		};
 		
+		double alpha = 0.2;
+		
 		Recombinacion[] recombs = new Recombinacion[]{
 				
-			new RecombinacionK(ALEATORIO_DEFAULT, funciones[0], 2, 0.2)
+			new RecombinacionNoOp(),
+			new RecombinacionAritmeticaCompleta(funciones[0], alpha, 0.5, ALEATORIO_DEFAULT),
+			new RecombinacionSimple(ALEATORIO_DEFAULT, funciones[0], alpha),
+			new RecombinacionUnica(ALEATORIO_DEFAULT, funciones[0], alpha),
+			new RecombinacionK(ALEATORIO_DEFAULT, funciones[0], 2, alpha),
 		};
 
-		Seleccion seleccion = new SeleccionTorneo(4, ALEATORIO_DEFAULT);
+		Seleccion seleccion = new SeleccionTorneo(2, ALEATORIO_DEFAULT);
 		
-		Mutacion mutacion = new MutacionNormal(5, ALEATORIO_DEFAULT, 
+		//los valores altos de mutacion generan problemas en espacios pequeños
+		//como el de rastrigin (-5, 5), aunque ayudan en los grandes (-600, 600)
+		Mutacion mutacion = new MutacionNormal(0.1, ALEATORIO_DEFAULT, 
 											   funciones[0].getMin(), 
 											   funciones[0].getMax());
+		
+//		Mutacion mutacion = new MutacionNoOp();
 		
 		Terminacion terminacion = new Terminacion() {
 			@Override

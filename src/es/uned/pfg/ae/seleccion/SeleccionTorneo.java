@@ -1,11 +1,8 @@
 package es.uned.pfg.ae.seleccion;
 
-import java.util.Arrays;
-
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.utils.Aleatorio;
-import es.uned.pfg.ae.utils.Utils;
 
 public class SeleccionTorneo implements Seleccion {
 
@@ -38,5 +35,10 @@ public class SeleccionTorneo implements Seleccion {
 	@Override
 	public void set(Aleatorio aleatorio) {
 		this.aleatorio = aleatorio;
+	}
+	
+	@Override
+	public String toString() {
+		return "SeleccionTorneo (" + tamaño + ")";
 	}
 }

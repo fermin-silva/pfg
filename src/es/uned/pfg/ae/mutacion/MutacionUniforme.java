@@ -49,4 +49,9 @@ public class MutacionUniforme implements Mutacion {
 	public void setMax(double max) {
 		this.max = max;
 	}
+	
+	@Override
+	public String toString() {
+		return "MutacionUniforme (prob " + prob + ")";
+	}
 }

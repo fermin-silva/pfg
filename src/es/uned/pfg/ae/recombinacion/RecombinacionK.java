@@ -18,7 +18,7 @@ public class RecombinacionK implements Recombinacion {
 
 	private Aleatorio aleatorio;
 	private Funcion funcion;
-	private double alpha;
+	protected double alpha;
 	private double min;
 	private double max;
 	

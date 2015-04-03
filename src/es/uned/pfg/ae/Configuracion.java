@@ -15,6 +15,6 @@ public class Configuracion {
 	}
 	
 	public int getMaxIteraciones() {
-		return 300;
+		return 500;
 	}
 }
