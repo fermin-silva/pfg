@@ -10,8 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Arrays;
 
-import javax.imageio.ImageIO;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -23,21 +21,18 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
 
-import es.uned.pfg.ae.chart.GraficadorFitness;
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.funcion.FuncionSchwefel;
 import es.uned.pfg.ae.mutacion.Mutacion;
 import es.uned.pfg.ae.mutacion.MutacionNormal;
+import es.uned.pfg.ae.params.Parametros;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.poblacion.PoblacionGeneracional;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
-import es.uned.pfg.ae.recombinacion.RecombinacionAritmeticaCompleta;
 import es.uned.pfg.ae.recombinacion.RecombinacionK;
-import es.uned.pfg.ae.recombinacion.RecombinacionUnica;
 import es.uned.pfg.ae.seleccion.Seleccion;
 import es.uned.pfg.ae.seleccion.SeleccionTorneo;
 import es.uned.pfg.ae.terminacion.Terminacion;
-import es.uned.pfg.ae.utils.Aleatorio;
 
 /**
  * 
@@ -45,37 +40,34 @@ import es.uned.pfg.ae.utils.Aleatorio;
  */
 public class Bootstrap {
 
-	private static Aleatorio aleatorio = new Aleatorio(1425117445324L);
-//	private static Aleatorio aleatorio = new Aleatorio();
-	
 	private static void display(String name) throws Exception {
 		Runtime.getRuntime().exec(new String[]{ "eog", name });
 	}
 	
 	public static void main(String[] args) throws Exception {
+		Configuracion conf = new Configuracion(Parametros.crear(args));
+		
 //		Profiler profiler = new Profiler();
 //		profiler.startCollecting();
 		
 //		GraficadorFitness graficadorFitness = new GraficadorFitness(ITERACIONES);
-		Funcion f = new FuncionSchwefel(10);
+		Funcion f = new FuncionSchwefel(conf.getDimension());
 		
 //		Seleccion seleccion = new SeleccionNoOp();
-		Seleccion seleccion = new SeleccionTorneo(4, aleatorio);
-//		Seleccion seleccion = new SeleccionEstocasticaUniversal(aleatorio);
+		Seleccion seleccion = new SeleccionTorneo(conf.getTamañoTorneo(), Configuracion.ALEATORIO_ESTATICO);
+//		Seleccion seleccion = new SeleccionEstocasticaUniversal(Configuracion.ALEATORIO_ESTATICO);
 //		Recombinacion recombinacion = new RecombinacionNoOp();
-//		Recombinacion recombinacion = new RecombinacionAritmeticaCompleta(f, 0.3, 1, aleatorio);
-//		Recombinacion recombinacion = new RecombinacionUnica(aleatorio, f, 0.3);
-		Recombinacion recombinacion = new RecombinacionK(aleatorio, f, 2);
+//		Recombinacion recombinacion = new RecombinacionAritmeticaCompleta(f, 0.3, 1, Configuracion.ALEATORIO_ESTATICO);
+//		Recombinacion recombinacion = new RecombinacionUnica(Configuracion.ALEATORIO_ESTATICO, f, 0.3);
+		Recombinacion recombinacion = new RecombinacionK(Configuracion.ALEATORIO_ESTATICO, f, conf.getK());
 		
-//		Mutacion mutacion = new MutacionUniforme(f.getMin(), f.getMax(), aleatorio,
+//		Mutacion mutacion = new MutacionUniforme(f.getMin(), f.getMax(), Configuracion.ALEATORIO_ESTATICO,
 //												 0.01);
 		
-		Mutacion mutacion = new MutacionNormal(5, aleatorio, f.getMin(), f.getMax());
+		Mutacion mutacion = new MutacionNormal(conf.getDesviacionMutacion(), Configuracion.ALEATORIO_ESTATICO, f.getMin(), f.getMax());
 //		Mutacion mutacion = new MutacionNoOp();
 		
-		Configuracion conf = new Configuracion();
-		
-		Individuo[] individuos = getIndividuosInicial(2000, f);
+		Individuo[] individuos = getIndividuosInicial(conf.getTamañoPoblacion(), f);
 		
 //		System.out.print("===   ANTES   == \n");
 //		System.out.println(Utils.toShortString(individuos));
@@ -83,7 +75,7 @@ public class Bootstrap {
 //			System.out.println(individuo.getValores()[0] + "\t" + individuo.getValores()[1]);
 //		}
 		
-		Poblacion poblacion = new PoblacionGeneracional(individuos, true);
+		Poblacion poblacion = new PoblacionGeneracional(individuos, conf.getElitismo());
 		
 		Terminacion terminacion = new Terminacion() {
 			public boolean isTerminado(int iteracion, Poblacion p) {
@@ -92,7 +84,7 @@ public class Bootstrap {
 		};
 		
 		
-		AlgoritmoGenetico ag = new AlgoritmoGenetico(conf, poblacion, seleccion, 
+		AlgoritmoGenetico ag = new AlgoritmoGenetico(poblacion, seleccion, 
 													 recombinacion, mutacion, 
 													 terminacion);
 
@@ -107,7 +99,7 @@ public class Bootstrap {
 	    
 //		plot(individuos, "iteracion_" + String.format("%03d", 0));
 		
-		for (int i = 1; i <= conf.getMaxIteraciones(); i++) {
+		for (int i = 1; i <= conf.getGeneraciones(); i++) {
 			ag.iteracion(i);
 //			((MutacionNormal)mutacion).iteracion();
 			
@@ -296,7 +288,7 @@ public class Bootstrap {
 			double[] valores = new double[dimension];
 			
 			for (int j = 0; j < valores.length; j++) {
-				valores[j] = aleatorio.getEntre(f.getMin(), f.getMax());
+				valores[j] = Configuracion.ALEATORIO_ESTATICO.getEntre(f.getMin(), f.getMax());
 			}
 			
 			individuos[i] = new Individuo(i, valores, f);

@@ -1,6 +1,7 @@
 package es.uned.pfg.ae.funcion;
 
-import static java.lang.Math.*;
+import static java.lang.Math.PI;
+import static java.lang.Math.cos;
 
 /**
  * <a href="http://www.sfu.ca/~ssurjano/rastr.html">

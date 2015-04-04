@@ -10,17 +10,15 @@ public class AlgoritmoGenetico {
 
 	private Poblacion poblacion;
 	private Seleccion seleccion;
-	private Configuracion conf;
 	private Recombinacion recombinacion;
 	private Mutacion mutacion;
 	private Terminacion terminacion;
 
 	
-	public AlgoritmoGenetico(Configuracion conf, Poblacion poblacionInicial, 
-							 Seleccion seleccion, Recombinacion recombinacion,
-							 Mutacion mutacion, Terminacion terminacion) 
+	public AlgoritmoGenetico(Poblacion poblacionInicial, Seleccion seleccion, 
+							  Recombinacion recombinacion, Mutacion mutacion, 
+							  Terminacion terminacion) 
 	{
-		this.conf = conf;
 		this.poblacion = poblacionInicial;
 		this.seleccion = seleccion;
 		this.recombinacion = recombinacion;
@@ -31,7 +29,7 @@ public class AlgoritmoGenetico {
 	public void comenzar() {
 		boolean terminado = false;
 		
-		for (int i = 1; i < conf.getMaxIteraciones() && !terminado; i++) {
+		for (int i = 1; !terminado; i++) {
 			terminado = iteracion(i);
 		}
 	}

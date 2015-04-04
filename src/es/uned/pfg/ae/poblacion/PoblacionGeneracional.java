@@ -1,7 +1,5 @@
 package es.uned.pfg.ae.poblacion;
 
-import java.util.Arrays;
-
 import es.uned.pfg.ae.Individuo;
 
 /**

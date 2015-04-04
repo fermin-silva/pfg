@@ -1,6 +1,7 @@
 package es.uned.pfg.ae.funcion;
 
-import static java.lang.Math.*;
+import static java.lang.Math.pow;
+import static java.lang.Math.sin;
 
 /**
  * <a href="http://www.sfu.ca/~ssurjano/schaffer2.html">

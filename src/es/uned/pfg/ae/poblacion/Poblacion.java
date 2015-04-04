@@ -1,8 +1,5 @@
 package es.uned.pfg.ae.poblacion;
 
-import java.util.Arrays;
-import java.util.Comparator;
-
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.utils.Utils;
 

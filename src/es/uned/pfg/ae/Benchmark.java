@@ -9,8 +9,8 @@ import es.uned.pfg.ae.funcion.FuncionSchaffer2;
 import es.uned.pfg.ae.funcion.FuncionSchubert;
 import es.uned.pfg.ae.funcion.FuncionSchwefel;
 import es.uned.pfg.ae.mutacion.Mutacion;
-import es.uned.pfg.ae.mutacion.MutacionNoOp;
 import es.uned.pfg.ae.mutacion.MutacionNormal;
+import es.uned.pfg.ae.params.Parametros;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.poblacion.PoblacionGeneracional;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
@@ -39,7 +39,7 @@ public class Benchmark {
 	{
 		System.out.println(seleccion);
 		System.out.println(mutacion);
-		System.out.println("Iteraciones: " + conf.getMaxIteraciones());
+		System.out.println("Iteraciones: " + conf.getGeneraciones());
 		System.out.println("Poblacion: " + conf.getTamañoPoblacion());
 		System.out.println();
 		
@@ -90,7 +90,7 @@ public class Benchmark {
 		Poblacion poblacion = new PoblacionGeneracional(individuos, true);
 		
 		AlgoritmoGenetico ag = 
-				new AlgoritmoGenetico(conf, poblacion, seleccion, 
+				new AlgoritmoGenetico(poblacion, seleccion, 
 								      recombinacion, mutacion, 
 								      terminacion);
 		
@@ -121,36 +121,43 @@ public class Benchmark {
 	
 	//TODO eliminar este main de prueba
 	public static void main(String[] args) {
-		final Configuracion conf = new Configuracion();
+		final Configuracion conf = new Configuracion(Parametros.crear(args));
 
 		
 		Funcion[] funciones = new Funcion[] {
 				
-				new FuncionAckley(10),
-				new FuncionGriewank(10),
-				new FuncionRastrigin(10),
+				new FuncionAckley(conf.getDimension()),
+				new FuncionGriewank(conf.getDimension()),
+				new FuncionRastrigin(conf.getDimension()),
 				new FuncionSchaffer2(),
 				new FuncionSchubert(),
-				new FuncionSchwefel(10),
+				new FuncionSchwefel(conf.getDimension()),
 				
 		};
 		
-		double alpha = 0.2;
+		double alpha = conf.getAlpha();
 		
 		Recombinacion[] recombs = new Recombinacion[]{
 				
 			new RecombinacionNoOp(),
-			new RecombinacionAritmeticaCompleta(funciones[0], alpha, 0.5, ALEATORIO_DEFAULT),
+			new RecombinacionAritmeticaCompleta(funciones[0], alpha, 
+												 conf.getProbRecombinacion(), 
+												 ALEATORIO_DEFAULT),
+												 
 			new RecombinacionSimple(ALEATORIO_DEFAULT, funciones[0], alpha),
 			new RecombinacionUnica(ALEATORIO_DEFAULT, funciones[0], alpha),
-			new RecombinacionK(ALEATORIO_DEFAULT, funciones[0], 2, alpha),
+			
+			new RecombinacionK(ALEATORIO_DEFAULT, funciones[0], conf.getK(), 
+								alpha),
 		};
 
-		Seleccion seleccion = new SeleccionTorneo(2, ALEATORIO_DEFAULT);
+		Seleccion seleccion = new SeleccionTorneo(conf.getTamañoTorneo(), 
+												  ALEATORIO_DEFAULT);
 		
 		//los valores altos de mutacion generan problemas en espacios pequeños
 		//como el de rastrigin (-5, 5), aunque ayudan en los grandes (-600, 600)
-		Mutacion mutacion = new MutacionNormal(0.1, ALEATORIO_DEFAULT, 
+		Mutacion mutacion = new MutacionNormal(conf.getDesviacionMutacion(), 
+											   ALEATORIO_DEFAULT, 
 											   funciones[0].getMin(), 
 											   funciones[0].getMax());
 		
@@ -159,7 +166,7 @@ public class Benchmark {
 		Terminacion terminacion = new Terminacion() {
 			@Override
 			public boolean isTerminado(int iteracion, Poblacion p) {
-				return iteracion > conf.getMaxIteraciones();
+				return iteracion > conf.getGeneraciones();
 			}
 		};
 		
