@@ -19,7 +19,12 @@ public class FuncionRastrigin implements Funcion {
 	
 	private int d;
 	
-	public FuncionRastrigin(int dimension) {
+	public FuncionRastrigin() {
+		
+	}
+	
+	@Override
+	public void setDimension(int dimension) {
 		this.d = dimension;
 	}
 	
@@ -45,6 +50,10 @@ public class FuncionRastrigin implements Funcion {
 
 	@Override
 	public double calcular(double[] valores) {
+		if (d <= 0) {
+			throw new RuntimeException("Llamar a setDimension primero");
+		}
+		
 		double sum = 0;
 		
 		for (int i = 0; i < valores.length; i++) {

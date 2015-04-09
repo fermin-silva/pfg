@@ -25,7 +25,13 @@ public class FuncionAckley implements Funcion {
 	
 	private int d;
 
-	public FuncionAckley(int dimension) {
+	
+	public FuncionAckley() {
+		
+	}
+	
+	@Override
+	public void setDimension(int dimension) {
 		this.d = dimension;
 	}
 	
@@ -51,6 +57,10 @@ public class FuncionAckley implements Funcion {
 
 	@Override
 	public double calcular(double[] valores) {
+		if (d <= 0) {
+			throw new RuntimeException("Llamar a setDimension primero");
+		}
+		
 		double sum1 = 0.0;
 		double sum2 = 0.0;
 

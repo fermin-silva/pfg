@@ -10,9 +10,12 @@ public class SeleccionTorneo implements Seleccion {
 	private Aleatorio aleatorio;
 
 	
-	public SeleccionTorneo(int tamaño, Aleatorio aleatorio) {
+	public SeleccionTorneo() {
+		
+	}
+	
+	public void setTamaño(int tamaño) {
 		this.tamaño = tamaño;
-		this.aleatorio = aleatorio;
 	}
 	
 	@Override

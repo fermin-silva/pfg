@@ -6,6 +6,9 @@ package es.uned.pfg.ae.funcion;
  */
 public interface Funcion {
 
+	public void setDimension(int dimension);
+	
+	
 	public int getDimension();
 
 	public double getMin();

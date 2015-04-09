@@ -22,16 +22,17 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
 
 import es.uned.pfg.ae.funcion.Funcion;
-import es.uned.pfg.ae.funcion.FuncionSchwefel;
+import es.uned.pfg.ae.funcion.FuncionFactory;
 import es.uned.pfg.ae.mutacion.Mutacion;
-import es.uned.pfg.ae.mutacion.MutacionNormal;
+import es.uned.pfg.ae.mutacion.MutacionFactory;
 import es.uned.pfg.ae.params.Parametros;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.poblacion.PoblacionGeneracional;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
+import es.uned.pfg.ae.recombinacion.RecombinacionFactory;
 import es.uned.pfg.ae.recombinacion.RecombinacionK;
 import es.uned.pfg.ae.seleccion.Seleccion;
-import es.uned.pfg.ae.seleccion.SeleccionTorneo;
+import es.uned.pfg.ae.seleccion.SeleccionFactory;
 import es.uned.pfg.ae.terminacion.Terminacion;
 
 /**
@@ -51,21 +52,10 @@ public class Bootstrap {
 //		profiler.startCollecting();
 		
 //		GraficadorFitness graficadorFitness = new GraficadorFitness(ITERACIONES);
-		Funcion f = new FuncionSchwefel(conf.getDimension());
-		
-//		Seleccion seleccion = new SeleccionNoOp();
-		Seleccion seleccion = new SeleccionTorneo(conf.getTamañoTorneo(), Configuracion.ALEATORIO_ESTATICO);
-//		Seleccion seleccion = new SeleccionEstocasticaUniversal(Configuracion.ALEATORIO_ESTATICO);
-//		Recombinacion recombinacion = new RecombinacionNoOp();
-//		Recombinacion recombinacion = new RecombinacionAritmeticaCompleta(f, 0.3, 1, Configuracion.ALEATORIO_ESTATICO);
-//		Recombinacion recombinacion = new RecombinacionUnica(Configuracion.ALEATORIO_ESTATICO, f, 0.3);
-		Recombinacion recombinacion = new RecombinacionK(Configuracion.ALEATORIO_ESTATICO, f, conf.getK());
-		
-//		Mutacion mutacion = new MutacionUniforme(f.getMin(), f.getMax(), Configuracion.ALEATORIO_ESTATICO,
-//												 0.01);
-		
-		Mutacion mutacion = new MutacionNormal(conf.getDesviacionMutacion(), Configuracion.ALEATORIO_ESTATICO, f.getMin(), f.getMax());
-//		Mutacion mutacion = new MutacionNoOp();
+		Funcion f = FuncionFactory.crear(conf);
+		Seleccion seleccion = SeleccionFactory.crear(conf);
+		Recombinacion recombinacion = RecombinacionFactory.crear(conf);
+		Mutacion mutacion = MutacionFactory.crear(conf);
 		
 		Individuo[] individuos = getIndividuosInicial(conf.getTamañoPoblacion(), f);
 		
@@ -288,7 +278,7 @@ public class Bootstrap {
 			double[] valores = new double[dimension];
 			
 			for (int j = 0; j < valores.length; j++) {
-				valores[j] = Configuracion.ALEATORIO_ESTATICO.getEntre(f.getMin(), f.getMax());
+				valores[j] = Configuracion.ALEATORIO.getEntre(f.getMin(), f.getMax());
 			}
 			
 			individuos[i] = new Individuo(i, valores, f);

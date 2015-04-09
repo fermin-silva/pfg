@@ -18,36 +18,21 @@ import es.uned.pfg.ae.utils.Utils;
  * 
  * @author Fermin Silva < fermins@olx.com >
  */
-public class RecombinacionAritmeticaCompleta implements Recombinacion {
+public class RecombinacionAritmeticaCompleta extends RecombinacionAlpha {
 
 	private Funcion funcion;
-	private double alpha;
-	private double probabilidad;
 	
-	private Aleatorio aleatorio;
 	private double min;
 	private double max;
 
 
 	//TODO y si se usa alpha = nextGaussian centrado en cero y con stdev de 1/3 ?
-	public RecombinacionAritmeticaCompleta(Funcion f, double alpha, 
-											double probabilidad, 
-											Aleatorio aleatorio) 
-	{
-		this.alpha = alpha;
-		this.probabilidad = probabilidad;
-		this.aleatorio = aleatorio;
-		
-		setFuncion(f);
+	public RecombinacionAritmeticaCompleta() {
+
 	}
 	
 	@Override
 	public Individuo[] getCrias(Individuo i1, Individuo i2) {
-		//TODO usar RecombinacionProbable para esto!
-		if (!aleatorio.isMenorQue(probabilidad)) {
-			return null;
-		}
-		
 		double[] v1 = i1.getValores();
 		double[] v2 = i2.getValores();
 		
@@ -71,7 +56,7 @@ public class RecombinacionAritmeticaCompleta implements Recombinacion {
 	
 	@Override
 	public void set(Aleatorio aleatorio) {
-		this.aleatorio = aleatorio;
+		//no hacer nada
 	}
 	
 	public void setFuncion(Funcion f) {

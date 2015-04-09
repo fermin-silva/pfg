@@ -14,29 +14,27 @@ import es.uned.pfg.ae.utils.Utils;
  * 
  * @author Fermin Silva < fermins@olx.com >
  */
-public class RecombinacionK implements Recombinacion {
+public class RecombinacionK extends RecombinacionAlpha {
 
 	private Aleatorio aleatorio;
 	private Funcion funcion;
-	protected double alpha;
+
 	private double min;
 	private double max;
 	
 	/** Cantidad de alelos que deben promediarse */
-	private int k;
+	private int k = 1;
 
-	public RecombinacionK(Aleatorio aleatorio, Funcion f, int k) {
 		//Al poder ser alpha < 0, puede salir un poco del espacio interior de los padres!
 		//TODO probar el < -0.1
-		this(aleatorio, f, k, aleatorio.getEntre(-0.1, 0.4)); 
+//		alpha =  aleatorio.getEntre(-0.1, 0.4)); 
+	
+	public RecombinacionK() {
+		
 	}
 	
-	public RecombinacionK(Aleatorio aleatorio, Funcion f, int k, double alpha) {
-		this.aleatorio = aleatorio;
+	public RecombinacionK(int k) {
 		this.k = k;
-		this.alpha = alpha;
-		
-		setFuncion(f);
 	}
 	
 	@Override
@@ -83,6 +81,10 @@ public class RecombinacionK implements Recombinacion {
 	@Override
 	public void set(Aleatorio aleatorio) {
 		this.aleatorio = aleatorio;
+	}
+
+	public void setK(int k) {
+		this.k = k;
 	}
 	
 	public void setFuncion(Funcion f) {

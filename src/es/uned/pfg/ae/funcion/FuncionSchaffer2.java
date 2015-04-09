@@ -22,6 +22,11 @@ public class FuncionSchaffer2 implements Funcion {
 	}
 	
 	@Override
+	public void setDimension(int dimension) {
+		//solo es valido dimension 2, no hacer nada
+	}
+	
+	@Override
 	public int getDimension() {
 		return 2;
 	}

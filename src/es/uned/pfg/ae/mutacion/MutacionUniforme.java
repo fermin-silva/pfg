@@ -10,6 +10,10 @@ public class MutacionUniforme implements Mutacion {
 	private double prob;
 	private Aleatorio aleatorio;
 	
+	public MutacionUniforme() {
+		
+	}
+	
 	public MutacionUniforme(double min, double max, Aleatorio aleatorio, 
 							 double prob) 
 	{
@@ -48,6 +52,10 @@ public class MutacionUniforme implements Mutacion {
 	
 	public void setMax(double max) {
 		this.max = max;
+	}
+	
+	public void setProb(double prob) {
+		this.prob = prob;
 	}
 	
 	@Override

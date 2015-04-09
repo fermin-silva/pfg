@@ -19,23 +19,17 @@ import es.uned.pfg.ae.utils.Utils;
  * 
  * @author Fermin Silva < fermins@olx.com >
  */
-public class RecombinacionSimple implements Recombinacion {
+public class RecombinacionSimple extends RecombinacionAlpha {
 
 	private Aleatorio aleatorio;
 	private Funcion funcion;
-	private double alpha;
+	
 	private double min;
 	private double max;
 
-	public RecombinacionSimple(Aleatorio aleatorio, Funcion f) {
-		this(aleatorio, f, 0.5);
-	}
-	
-	public RecombinacionSimple(Aleatorio aleatorio, Funcion f, double alpha) {
-		this.aleatorio = aleatorio;
-		this.alpha = alpha;
 
-		setFuncion(f);
+	public RecombinacionSimple() {
+		
 	}
 	
 	@Override

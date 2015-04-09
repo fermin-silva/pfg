@@ -19,7 +19,12 @@ public class FuncionGriewank implements Funcion {
 
 	private int d;
 
-	public FuncionGriewank(int dimension) {
+	public FuncionGriewank() {
+		
+	}
+	
+	@Override
+	public void setDimension(int dimension) {
 		this.d = dimension;
 	}
 	
@@ -45,6 +50,10 @@ public class FuncionGriewank implements Funcion {
 
 	@Override
 	public double calcular(double[] valores) {
+		if (d <= 0) {
+			throw new RuntimeException("Llamar a setDimension primero");
+		}
+		
 		double sum = 0;
 		double prod = 1;
 		

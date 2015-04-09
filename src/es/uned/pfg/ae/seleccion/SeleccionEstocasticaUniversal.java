@@ -14,13 +14,13 @@ public class SeleccionEstocasticaUniversal implements Seleccion {
 
 	private Aleatorio aleatorio;
 
-	
-	public SeleccionEstocasticaUniversal(Aleatorio aleatorio) {
-		this.aleatorio = aleatorio;
+	public SeleccionEstocasticaUniversal() {
+		
 	}
 	
 	@Override
 	public Individuo[] seleccionar(Poblacion p) {
+		//TODO implementar (si no se puede hacer proporcional a fitness, hacer proporcional a ranking)
 		if (1 < 2) {
 			throw new UnsupportedOperationException("El mejor individuo tiene menos chances porque |fitness| es menor!");
 		}

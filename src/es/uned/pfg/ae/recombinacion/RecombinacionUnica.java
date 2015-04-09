@@ -1,7 +1,5 @@
 package es.uned.pfg.ae.recombinacion;
 
-import es.uned.pfg.ae.funcion.Funcion;
-import es.uned.pfg.ae.utils.Aleatorio;
 
 /**
  * Elige un alelo aleatorio k. En esa posicion se toma el promedio aritmetico
@@ -16,12 +14,8 @@ import es.uned.pfg.ae.utils.Aleatorio;
  */
 public class RecombinacionUnica extends RecombinacionK {
 
-	public RecombinacionUnica(Aleatorio aleatorio, Funcion f) {
-		this(aleatorio, f, 0.5);
-	}
-	
-	public RecombinacionUnica(Aleatorio aleatorio, Funcion f, double alpha) {
-		super(aleatorio, f, 1, alpha); //solo 1 punto de cruce
+	public RecombinacionUnica() {
+		super(1); //solo 1 punto de cruce
 	}
 	
 	@Override

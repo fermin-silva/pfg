@@ -15,32 +15,36 @@ public class FuncionSchwefel implements Funcion {
 	private static final double MIN = -500;
 	private static final double MAX = 500;
 	
-	private int dimension;
+	private int d;
 	
 	
 	public FuncionSchwefel() {
-		this(2);
+		
 	}
 	
-	public FuncionSchwefel(int dimension) {
-		this.dimension = dimension;
+	public void setDimension(int dimension) {
+		this.d = dimension;
 	}
 	
 	@Override
 	public double calcular(double[] valores) {
+		if (d <= 0) {
+			throw new RuntimeException("Llamar a setDimension primero");
+		}
+		
 		double sum = 0;
 		
-		for (int i = 0; i < valores.length; i++) {
+		for (int i = 0; i < d; i++) {
 			sum += valores[i] * Math.sin(Math.sqrt(Math.abs(valores[i])));
 		}
 		
-		return dimension * ALPHA - sum;
+		return d * ALPHA - sum;
 	}
 	
 	
 	@Override
 	public int getDimension() {
-		return dimension;
+		return d;
 	}
 
 	@Override
@@ -60,7 +64,7 @@ public class FuncionSchwefel implements Funcion {
 	
 	@Override
 	public String toString() {
-		return "F_Schwefel(" + dimension + ")";
+		return "F_Schwefel(" + d + ")";
 	}
 	
 	@Override

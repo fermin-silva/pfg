@@ -21,6 +21,11 @@ public class FuncionSchubert implements Funcion {
 	}
 	
 	@Override
+	public void setDimension(int dimension) {
+		//no hacer nada, solo es valida la dimension 2
+	}
+	
+	@Override
 	public double getMinimoGlobal() {
 		return -186.7309;
 	}

@@ -1,26 +1,17 @@
 package es.uned.pfg.ae;
 
-import static es.uned.pfg.ae.Configuracion.ALEATORIO_DEFAULT;
 import es.uned.pfg.ae.funcion.Funcion;
-import es.uned.pfg.ae.funcion.FuncionAckley;
-import es.uned.pfg.ae.funcion.FuncionGriewank;
-import es.uned.pfg.ae.funcion.FuncionRastrigin;
-import es.uned.pfg.ae.funcion.FuncionSchaffer2;
-import es.uned.pfg.ae.funcion.FuncionSchubert;
-import es.uned.pfg.ae.funcion.FuncionSchwefel;
+import es.uned.pfg.ae.funcion.FuncionFactory;
 import es.uned.pfg.ae.mutacion.Mutacion;
-import es.uned.pfg.ae.mutacion.MutacionNormal;
+import es.uned.pfg.ae.mutacion.MutacionFactory;
 import es.uned.pfg.ae.params.Parametros;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.poblacion.PoblacionGeneracional;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
-import es.uned.pfg.ae.recombinacion.RecombinacionAritmeticaCompleta;
+import es.uned.pfg.ae.recombinacion.RecombinacionFactory;
 import es.uned.pfg.ae.recombinacion.RecombinacionK;
-import es.uned.pfg.ae.recombinacion.RecombinacionNoOp;
-import es.uned.pfg.ae.recombinacion.RecombinacionSimple;
-import es.uned.pfg.ae.recombinacion.RecombinacionUnica;
 import es.uned.pfg.ae.seleccion.Seleccion;
-import es.uned.pfg.ae.seleccion.SeleccionTorneo;
+import es.uned.pfg.ae.seleccion.SeleccionFactory;
 import es.uned.pfg.ae.terminacion.Terminacion;
 import es.uned.pfg.ae.utils.Aleatorio;
 import es.uned.pfg.ae.utils.Utils;
@@ -33,10 +24,19 @@ public class Benchmark {
 
 	public static final int RUNS = 10;
 	
-	public Benchmark(Funcion[] fs, Seleccion seleccion, Mutacion mutacion,
-					  Terminacion terminacion, Configuracion conf, 
-					  Recombinacion[] recombinaciones) 
-	{
+	public Benchmark(final Configuracion conf) {
+		Seleccion seleccion = SeleccionFactory.crear(conf);
+		Mutacion mutacion = MutacionFactory.crear(conf);
+		Funcion[] fs = FuncionFactory.crearBenchmark(conf);
+		Recombinacion[] recombinaciones = RecombinacionFactory.crearBenchmark(conf);
+		
+		Terminacion terminacion = new Terminacion() {
+			@Override
+			public boolean isTerminado(int iteracion, Poblacion p) {
+				return iteracion > conf.getGeneraciones();
+			}
+		};
+		
 		System.out.println(seleccion);
 		System.out.println(mutacion);
 		System.out.println("Iteraciones: " + conf.getGeneraciones());
@@ -46,9 +46,12 @@ public class Benchmark {
 		for (Funcion f : fs) {
 			for (Recombinacion recombinacion : recombinaciones) {
 				
+				if (recombinacion instanceof RecombinacionK) {
+					System.out.println();
+				}
+				
 				System.out.println(recombinacion + " + " + f);
 				System.out.println("Ejecucion\tMejor_Individuo\tRuntime");
-				
 				
 				for (int i = 1; i <= RUNS; i++) {
 					long start = System.currentTimeMillis();
@@ -87,7 +90,8 @@ public class Benchmark {
 		int tamaño = conf.getTamañoPoblacion();
 		Individuo[] individuos = getIndividuosInicial(tamaño, f, aleatorio);
 		
-		Poblacion poblacion = new PoblacionGeneracional(individuos, true);
+		Poblacion poblacion = new PoblacionGeneracional(individuos, 
+														conf.getElitismo());
 		
 		AlgoritmoGenetico ag = 
 				new AlgoritmoGenetico(poblacion, seleccion, 
@@ -123,55 +127,7 @@ public class Benchmark {
 	public static void main(String[] args) {
 		final Configuracion conf = new Configuracion(Parametros.crear(args));
 
-		
-		Funcion[] funciones = new Funcion[] {
-				
-				new FuncionAckley(conf.getDimension()),
-				new FuncionGriewank(conf.getDimension()),
-				new FuncionRastrigin(conf.getDimension()),
-				new FuncionSchaffer2(),
-				new FuncionSchubert(),
-				new FuncionSchwefel(conf.getDimension()),
-				
-		};
-		
-		double alpha = conf.getAlpha();
-		
-		Recombinacion[] recombs = new Recombinacion[]{
-				
-			new RecombinacionNoOp(),
-			new RecombinacionAritmeticaCompleta(funciones[0], alpha, 
-												 conf.getProbRecombinacion(), 
-												 ALEATORIO_DEFAULT),
-												 
-			new RecombinacionSimple(ALEATORIO_DEFAULT, funciones[0], alpha),
-			new RecombinacionUnica(ALEATORIO_DEFAULT, funciones[0], alpha),
-			
-			new RecombinacionK(ALEATORIO_DEFAULT, funciones[0], conf.getK(), 
-								alpha),
-		};
-
-		Seleccion seleccion = new SeleccionTorneo(conf.getTamañoTorneo(), 
-												  ALEATORIO_DEFAULT);
-		
-		//los valores altos de mutacion generan problemas en espacios pequeños
-		//como el de rastrigin (-5, 5), aunque ayudan en los grandes (-600, 600)
-		Mutacion mutacion = new MutacionNormal(conf.getDesviacionMutacion(), 
-											   ALEATORIO_DEFAULT, 
-											   funciones[0].getMin(), 
-											   funciones[0].getMax());
-		
-//		Mutacion mutacion = new MutacionNoOp();
-		
-		Terminacion terminacion = new Terminacion() {
-			@Override
-			public boolean isTerminado(int iteracion, Poblacion p) {
-				return iteracion > conf.getGeneraciones();
-			}
-		};
-		
-		new Benchmark(funciones, seleccion, mutacion, terminacion, 
-					  conf, recombs);
+		new Benchmark(conf);
 	}
 }
 
