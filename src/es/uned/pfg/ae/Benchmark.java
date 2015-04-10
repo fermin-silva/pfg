@@ -9,12 +9,10 @@ import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.poblacion.PoblacionGeneracional;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
 import es.uned.pfg.ae.recombinacion.RecombinacionFactory;
-import es.uned.pfg.ae.recombinacion.RecombinacionK;
 import es.uned.pfg.ae.seleccion.Seleccion;
 import es.uned.pfg.ae.seleccion.SeleccionFactory;
 import es.uned.pfg.ae.terminacion.Terminacion;
 import es.uned.pfg.ae.utils.Aleatorio;
-import es.uned.pfg.ae.utils.Utils;
 
 /**
  * 
@@ -43,38 +41,27 @@ public class Benchmark {
 		System.out.println("Poblacion: " + conf.getTamañoPoblacion());
 		System.out.println();
 		
+		ResultadoBenchmark resultado = null;
+		
+		System.out.println("Recombinacion\tFuncion\tMin_fit\tAvg_fit\tMax_fit\tStdev\tAvg_time");
 		for (Funcion f : fs) {
 			for (Recombinacion recombinacion : recombinaciones) {
-				
-				if (recombinacion instanceof RecombinacionK) {
-					System.out.println();
-				}
-				
-				System.out.println(recombinacion + " + " + f);
-				System.out.println("Ejecucion\tMejor_Individuo\tRuntime");
+				resultado = new ResultadoBenchmark(f, recombinacion);
 				
 				for (int i = 1; i <= RUNS; i++) {
-					long start = System.currentTimeMillis();
-					
-					Individuo mejor = ejecucion(conf, seleccion, mutacion, 
-											    recombinacion, terminacion, f);
-					
-					long end = System.currentTimeMillis();
-					double segundos = (end - start) / 1000.0;
-					
-					System.out.println("   " + i + "\t" + 
-							   		   Utils.toString(mejor.getFitness()) + "\t" + 
-									   Utils.toString(segundos));
+					ejecucion(conf, seleccion, mutacion, recombinacion, 
+							  terminacion, f, resultado);
 				}
 				
-				System.out.println();
+				System.out.println(resultado);
 			}
 		}
 	}
 	
-	protected Individuo ejecucion(Configuracion conf, Seleccion seleccion, 
-							       Mutacion mutacion, Recombinacion recombinacion,
-							       Terminacion terminacion, Funcion f) 
+	protected void ejecucion(Configuracion conf, Seleccion seleccion, 
+						       Mutacion mutacion, Recombinacion recombinacion,
+						       Terminacion terminacion, Funcion f,
+						       ResultadoBenchmark resultado) 
 	{
 		Aleatorio aleatorio = new Aleatorio();
 		
@@ -93,14 +80,12 @@ public class Benchmark {
 		Poblacion poblacion = new PoblacionGeneracional(individuos, 
 														conf.getElitismo());
 		
-		AlgoritmoGenetico ag = 
-				new AlgoritmoGenetico(poblacion, seleccion, 
-								      recombinacion, mutacion, 
-								      terminacion);
+		AlgoritmoGenetico ag = new AlgoritmoGenetico(poblacion, seleccion, 
+								      				 recombinacion, mutacion, 
+								      				 terminacion);
 		
 		ag.comenzar();
-		
-		return poblacion.getMejorIndividuo();
+		resultado.recolectar(ag);
 	}
 	
 	public static Individuo[] getIndividuosInicial(int tamaño, Funcion f,

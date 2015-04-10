@@ -1,5 +1,8 @@
 package es.uned.pfg.ae;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import es.uned.pfg.ae.mutacion.Mutacion;
 import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
@@ -13,7 +16,9 @@ public class AlgoritmoGenetico {
 	private Recombinacion recombinacion;
 	private Mutacion mutacion;
 	private Terminacion terminacion;
-
+	private List<Double> curvaProgreso;
+	
+	private long tiempo = -1;
 	
 	public AlgoritmoGenetico(Poblacion poblacionInicial, Seleccion seleccion, 
 							  Recombinacion recombinacion, Mutacion mutacion, 
@@ -24,14 +29,18 @@ public class AlgoritmoGenetico {
 		this.recombinacion = recombinacion;
 		this.mutacion = mutacion;
 		this.terminacion = terminacion;
+		this.curvaProgreso = new ArrayList<Double>();
 	}
 	
 	public void comenzar() {
 		boolean terminado = false;
+		long start = System.currentTimeMillis();
 		
 		for (int i = 1; !terminado; i++) {
 			terminado = iteracion(i);
 		}
+		
+		tiempo = System.currentTimeMillis() - start;
 	}
 	
 	public boolean iteracion(int iteracion) {
@@ -59,7 +68,21 @@ public class AlgoritmoGenetico {
 		}
 		
 		poblacion.setSobrevivientes(crias);
+	
+		curvaProgreso.add(poblacion.getMejorIndividuo().getFitness());
 		
 		return terminacion.isTerminado(iteracion, poblacion);
+	}
+
+	public Individuo getMejorIndividuo() {
+		return poblacion.getMejorIndividuo();
+	}
+	
+	public List<Double> getCurvaProgreso() {
+		return curvaProgreso;
+	}
+	
+	public long getTiempo() {
+		return tiempo;
 	}
 }

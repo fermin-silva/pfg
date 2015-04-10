@@ -20,7 +20,10 @@ public class TestRecombinacionSimple {
 		Individuo i1 = new Individuo(0, new double[] { 1, 2, 3, 4 }, f);
 		Individuo i2 = new Individuo(0, new double[] { 5, 6, 7, 8 }, f);
 		
-		RecombinacionSimple recombinacion = new RecombinacionSimple(a, f);
+		RecombinacionSimple recombinacion = new RecombinacionSimple();
+		
+		recombinacion.set(a);
+		recombinacion.setFuncion(f);
 		
 		Individuo[] crias = recombinacion.getCrias(i1, i2);
 		
