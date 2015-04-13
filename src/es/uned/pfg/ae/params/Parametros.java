@@ -89,6 +89,12 @@ public class Parametros {
 			   				 "de properties es '" + PROP_ALPHA + "'")
 	public Double alpha;
 	
+	@Parameter(names = { "-beta" }, validateValueWith = Validador01.class, 
+			   description = "Para las recombinaciones que utilizan un valor " +
+			   				 "beta para el promedio ponderado de la segunda cria. " +
+			   				 "En archivo de properties es '" + PROP_BETA + "'")
+	public Double beta;
+	
 	@Parameter(names = { "-puntosCombinacion", "-k" },
 			   validateValueWith = MayorQueCero.class,
 			   description = "Cantidad de puntos de cruce (solo aplicable a " +

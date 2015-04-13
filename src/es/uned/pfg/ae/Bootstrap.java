@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -21,6 +23,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
 
+import es.uned.pfg.ae.chart.GraficadorFitness;
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.funcion.FuncionFactory;
 import es.uned.pfg.ae.mutacion.Mutacion;
@@ -51,7 +54,7 @@ public class Bootstrap {
 //		Profiler profiler = new Profiler();
 //		profiler.startCollecting();
 		
-//		GraficadorFitness graficadorFitness = new GraficadorFitness(ITERACIONES);
+//		GraficadorFitness graficadorFitness = new GraficadorFitness(conf.getGeneraciones());
 		Funcion f = FuncionFactory.crear(conf);
 		Seleccion seleccion = SeleccionFactory.crear(conf);
 		Recombinacion recombinacion = RecombinacionFactory.crear(conf);
@@ -80,13 +83,13 @@ public class Bootstrap {
 
 //		graficadorFitness.agregar(0, poblacion.getMejorIndividuo().getFitness());
 //		graficadorFitness.salvar("fitness_" + String.format("%03d", 0) + ".png", 460, 360);
-		
+//		
 //		BufferedImage fitnessImagen = graficadorFitness.getImagen(460, 260);
 //		BufferedImage poblacionImagen = getAsImagen(individuos, "iteracion_" + String.format("%03d", 0));
 //		
 //		BufferedImage merge = Bootstrap.joinBufferedImage(poblacionImagen, fitnessImagen);
 //	    ImageIO.write(merge, "png", new File("combined_" + String.format("%03d", 0) + ".png"));
-	    
+//	    
 //		plot(individuos, "iteracion_" + String.format("%03d", 0));
 		
 		for (int i = 1; i <= conf.getGeneraciones(); i++) {
@@ -101,16 +104,16 @@ public class Bootstrap {
 				System.out.println(individuos[0]);
 
 //				plot(individuos, "iteracion_" + String.format("%03d", i));
-				
+//				
 //				System.out.println(Utils.toShortString(individuos));
 //				for (Individuo individuo : individuos) {
 //					System.out.println(individuo.getValores()[0] + "\t" + individuo.getValores()[1] + " ---> " + individuo.getFitness());
 //				}
 //			}
-				
+//				
 //			graficadorFitness.agregar(i, poblacion.getMejorIndividuo().getFitness());
 //			graficadorFitness.salvar("fitness_" + String.format("%03d", i) + ".png", 460, 360);
-			
+//			
 //			fitnessImagen = graficadorFitness.getImagen(460, 260);
 //			poblacionImagen = getAsImagen(individuos, "iteracion_" + String.format("%03d", i));
 //			
@@ -131,7 +134,7 @@ public class Bootstrap {
 		
 //		plot(individuos, "final");
 //		graficadorFitness.salvar("fitness.png", 460, 360);
-//		display("fitness.png");
+//		display("combined_000.png");
 	}
 	
     private static void plot(Individuo[] individuos, String name) throws Exception {

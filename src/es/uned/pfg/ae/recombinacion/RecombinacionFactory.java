@@ -19,6 +19,7 @@ public class RecombinacionFactory {
 		put(              "NoOp", new RecombinacionNoOp());
 		put("AritmeticaCompleta", new RecombinacionAritmeticaCompleta());
 		put(                 "K", new RecombinacionK());
+		put(         "AlphaBeta", new RecombinacionAlphaBeta());
 		put(            "Simple", new RecombinacionSimple());
 		put(             "Unica", new RecombinacionUnica());
 	}};
@@ -41,6 +42,10 @@ public class RecombinacionFactory {
 		
 		if (recombinacion instanceof RecombinacionAlpha) {
 			((RecombinacionAlpha)recombinacion).setAlpha(conf.getAlpha());
+		}
+		
+		if (recombinacion instanceof RecombinacionAlphaBeta) {
+			((RecombinacionAlphaBeta)recombinacion).setBeta(conf.getBeta());
 		}
 		
 		if (recombinacion instanceof RecombinacionK) {

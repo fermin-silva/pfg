@@ -15,6 +15,7 @@ public class Configuracion {
 	public static final String PROP_DESVIACION_MUT = "desviacion.mutacion";
 	public static final String PROP_PUNTOS_COMBINACION = "puntos.combinacion";
 	public static final String PROP_ALPHA = "alpha";
+	public static final String PROP_BETA = "beta";
 	public static final String PROP_ELITISMO = "elitismo";
 	public static final String PROP_DIMENSION_FUNC = "dimension.funcion";
 	public static final String PROP_MUTACION = "mutacion";
@@ -81,6 +82,10 @@ public class Configuracion {
 	
 	public double getAlpha() {
 		return getDouble(params.alpha, PROP_ALPHA, 0.2);
+	}
+	
+	public double getBeta() {
+		return getDouble(params.beta, PROP_BETA, 0.1);
 	}
 	
 	public int getK() {

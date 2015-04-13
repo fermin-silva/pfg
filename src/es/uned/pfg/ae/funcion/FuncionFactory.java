@@ -18,8 +18,8 @@ public class FuncionFactory {
 		put(   "Ackley", new FuncionAckley());
 		put( "Griewank", new FuncionGriewank());
 		put("Rastrigin", new FuncionRastrigin());
-		put("Schaffer2", new FuncionSchaffer2());
-		put( "Schubert", new FuncionSchubert());
+		put("Schaffer2", new FuncionSchaffer2());  //muy baja dimensionalidad
+		put( "Schubert", new FuncionSchubert());   //muy baja dimensionalidad
 		put( "Schwefel", new FuncionSchwefel());
 	}};
 	

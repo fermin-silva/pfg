@@ -52,17 +52,22 @@ public class RecombinacionK extends RecombinacionAlpha {
 		for (int cantidad = 0; cantidad < k; cantidad++) {
 			int i = aleatorio.getInt(n); //punto de cruce
 			
-			//TODO probar si esta modificacion cambia algo
-//			double min = Math.min(v1[i], v2[i]);
-//			double max = Math.max(v1[i], v2[i]);
-//			double delta = max - min;
-//				
-//			v11[i] = min + alpha * delta;
-//			v22[i] = min + (1 - alpha) * delta;
-			//end modificado
+			//TODO agregar esta conclusion a la tesis
+			//asi era originalmente, pero haciendo el algebra en el cuaderno me da al reves
+			//en el libro se intercambia el gen de padre:
+			//Ejemplo: se cambia el gen 2, el hijo X queda en -94 en vez de -247 (que esta mas cerca de -266)
+			//	Padre X [-328.70, 172.33, -266.94 ]
+			//	Padre Y [ 421.52,  28.67,  -75.83 ]
+			// 	 Hijo X [-328.70, 172.33,  -94.94 ]
+			// 	 Hijo Y [ 421.52,  28.67, -247.83 ]
 			
 			x2[i] = alpha * x[i] + (1 - alpha) * y[i];
 			y2[i] = alpha * y[i] + (1 - alpha) * x[i];
+			
+			//Asi es como me da a mi en el cuaderno, el gen i que se cambia es del padre
+			//correspondiente (x para x2 e y para y2)
+//			x2[i] = alpha * y[i] + (1 - alpha) * x[i];
+//			y2[i] = alpha * x[i] + (1 - alpha) * y[i];
 			
 			x2[i] = Utils.clamp(x2[i], min, max);
 			y2[i] = Utils.clamp(y2[i], min, max);			
@@ -70,7 +75,7 @@ public class RecombinacionK extends RecombinacionAlpha {
 		
 		//TODO cambiarle la iteracion, no es cero!
 		return new Individuo[] { new Individuo(0, x2, funcion), 
-								  new Individuo(0, y2, funcion) };
+								 new Individuo(0, y2, funcion) };
 	}
 
 	@Override
