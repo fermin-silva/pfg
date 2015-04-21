@@ -1,5 +1,6 @@
 package es.uned.pfg.ae;
 
+import es.uned.pfg.ae.chart.BoxPlot;
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.funcion.FuncionFactory;
 import es.uned.pfg.ae.mutacion.Mutacion;
@@ -45,16 +46,22 @@ public class Benchmark {
 		
 		System.out.println("Recombinacion\tFuncion\tMin_fit\tAvg_fit\tMax_fit\tStdev\tAvg_time");
 		for (Funcion f : fs) {
+			BoxPlot boxPlot = new BoxPlot();
+
 			for (Recombinacion recombinacion : recombinaciones) {
 				resultado = new ResultadoBenchmark(f, recombinacion);
-				
+
 				for (int i = 1; i <= RUNS; i++) {
-					ejecucion(conf, seleccion, mutacion, recombinacion, 
+					ejecucion(conf, seleccion, mutacion, recombinacion,
 							  terminacion, f, resultado);
 				}
-				
+
 				System.out.println(resultado);
+
+				boxPlot.agregar(resultado);
 			}
+
+			boxPlot.show();
 		}
 	}
 	

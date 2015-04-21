@@ -1,11 +1,12 @@
 package es.uned.pfg.ae;
 
+import es.uned.pfg.ae.funcion.Funcion;
+import es.uned.pfg.ae.recombinacion.Recombinacion;
+import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import es.uned.pfg.ae.funcion.Funcion;
-import es.uned.pfg.ae.recombinacion.Recombinacion;
 
 /**
  * 
@@ -19,15 +20,14 @@ public class ResultadoBenchmark {
 	private int n;
 	private List<List<Double>> progresos;
 	private List<Double> fitness;
-	
+
 	private Recombinacion recombinacion;
 	private Funcion funcion;
-	
-	
+
+
 	public ResultadoBenchmark(Funcion f, Recombinacion recombinacion) {
 		this.recombinacion = recombinacion;
 		this.funcion = f;
-		
 		this.progresos = new LinkedList<List<Double>>();
 		this.fitness = new ArrayList<Double>();
 	}
@@ -43,9 +43,9 @@ public class ResultadoBenchmark {
 		else if (max == null || individuo.getFitness() > max.getFitness()) {
 			max = individuo;
 		}
-		
+
 		fitness.add(individuo.getFitness());
-		
+
 		sumaFitness += individuo.getFitness();
 		sumaT += ag.getTiempo();
 		n++;
@@ -61,7 +61,19 @@ public class ResultadoBenchmark {
 		
 		return Math.sqrt(sum / n);
 	}
-	
+
+	public List<Double> getFitness() {
+		return fitness;
+	}
+
+	public Recombinacion getRecombinacion() {
+		return recombinacion;
+	}
+
+	public Funcion getFuncion() {
+		return funcion;
+	}
+
 	@Override
 	public String toString() {
 		double avgFitness = sumaFitness / n;
