@@ -22,7 +22,10 @@ import es.uned.pfg.ae.utils.Aleatorio;
 public class Benchmark {
 
 	public static final int RUNS = 10;
-	
+	public static final int ANCHO = 640;
+	public static final int ALTO = 480;
+
+
 	public Benchmark(final Configuracion conf) {
 		Seleccion seleccion = SeleccionFactory.crear(conf);
 		Mutacion mutacion = MutacionFactory.crear(conf);
@@ -61,7 +64,8 @@ public class Benchmark {
 				boxPlot.agregar(resultado);
 			}
 
-			boxPlot.show();
+			boxPlot.guardar(f.toString().replace(' ', '_') + "_benchmark.png",
+							ANCHO, ALTO);
 		}
 	}
 	

@@ -1,7 +1,7 @@
 package es.uned.pfg.ae.chart;
 
 import es.uned.pfg.ae.ResultadoBenchmark;
-import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
@@ -9,11 +9,11 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.MiBoxAndWhiskerRenderer;
 import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedList;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * @author Fermin Silva < fermins@olx.com >
@@ -35,6 +35,11 @@ public class BoxPlot {
                                     .replace("Funcion", "");
 
         dataset.add(resultado.getFitness(), nombre, categoria);
+
+        List<Double> list = resultado.getFitness();
+        Collections.sort(list);
+
+        System.out.println(nombre + "  " + list);
 
         if (titulo == null) {
             titulo = categoria;
@@ -61,6 +66,7 @@ public class BoxPlot {
         renderer.setSeriesPaint(4, new Color(187, 71, 230));
         renderer.setSeriesPaint(5, new Color(255, 108, 0));
 //        renderer.setSeriesOutlinePaint(2, new Color(255, 0, 0));
+
         renderer.setWhiskerWidth(0.4);
         renderer.setMedianWidth(6);
         CategoryPlot plot = new CategoryPlot(dataset, xAxis, yAxis, renderer);
@@ -69,43 +75,16 @@ public class BoxPlot {
         return chart;
     }
 
-    //TODO metodo para salvar el plot como imagen al disco
+    public void guardar(String archivo, int ancho, int alto) {
+        try {
+            System.out.println("Guardando el archivo en " +
+                                new File(archivo).getAbsolutePath());
 
-    public void show() {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.add(new ChartPanel(crearPlot()), BorderLayout.CENTER);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        BoxPlot boxPlot = new BoxPlot();
-        Random random = new Random();
-
-        List<Double> data1 = new LinkedList<Double>();
-        for (int i = 0; i < 100; i++) {
-            data1.add(random.nextGaussian() * 5);
+            ChartUtilities.saveChartAsPNG(new File(archivo), crearPlot(),
+                                          ancho, alto);
         }
-
-        boxPlot.agregar(data1, "data1", "cat1");
-
-        data1 = new LinkedList<Double>();
-        for (int i = 0; i < 100; i++) {
-            data1.add(random.nextGaussian() * 3 + 1);
+        catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-        boxPlot.agregar(data1, "data2", "cat1");
-
-        data1 = new LinkedList<Double>();
-        for (int i = 0; i < 100; i++) {
-            data1.add(random.nextDouble() * 5);
-        }
-
-        boxPlot.agregar(data1, "data3", "cat1");
-
-        boxPlot.show();
     }
 }
