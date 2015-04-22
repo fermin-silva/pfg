@@ -1,6 +1,9 @@
 package es.uned.pfg.ae.utils;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utils {
 
 	private static final int MAX_SIZE_SHORT_STRING = 8;
@@ -103,5 +106,21 @@ public class Utils {
 		}
 		
 		return sb.append("]").toString();
+	}
+
+	public static List<Double> avg(List<List<Double>> listas) {
+		List<Double> ret = new ArrayList<Double>();
+
+		for (int i = 0; i < listas.get(0).size(); i++) {
+			double suma = 0;
+
+			for (List<Double> lista : listas) {
+				suma += lista.get(i);
+			}
+
+			ret.add(suma / listas.size());
+		}
+
+		return ret;
 	}
 }

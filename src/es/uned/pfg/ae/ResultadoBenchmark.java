@@ -2,7 +2,6 @@ package es.uned.pfg.ae;
 
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.recombinacion.Recombinacion;
-import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -60,6 +59,10 @@ public class ResultadoBenchmark {
 		}
 		
 		return Math.sqrt(sum / n);
+	}
+
+	public List<List<Double>> getProgresos() {
+		return progresos;
 	}
 
 	public List<Double> getFitness() {

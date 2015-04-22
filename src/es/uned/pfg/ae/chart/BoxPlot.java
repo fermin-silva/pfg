@@ -59,17 +59,27 @@ public class BoxPlot {
         MiBoxAndWhiskerRenderer renderer = new MiBoxAndWhiskerRenderer();
         renderer.setMaximumBarWidth(0.3);
         renderer.setShowOutliers(false);
-        renderer.setSeriesPaint(0, new Color(38, 197, 17));
-        renderer.setSeriesPaint(1, new Color(42, 57, 255));
-        renderer.setSeriesPaint(2, new Color(244, 53, 45));
-        renderer.setSeriesPaint(3, new Color(28, 135, 224));
-        renderer.setSeriesPaint(4, new Color(187, 71, 230));
-        renderer.setSeriesPaint(5, new Color(255, 108, 0));
-//        renderer.setSeriesOutlinePaint(2, new Color(255, 0, 0));
+
+        renderer.setSeriesPaint(0, new Color(226, 34, 34));
+        renderer.setSeriesPaint(1, new Color(83, 152, 218));
+        renderer.setSeriesPaint(2, new Color(246, 162, 54));
+        renderer.setSeriesPaint(3, new Color(96, 189, 104));
+        renderer.setSeriesPaint(4, new Color(171, 107, 235));
+        renderer.setSeriesPaint(5, new Color(178, 145, 47));
+        renderer.setSeriesPaint(6, new Color(222, 207, 63));
+        renderer.setSeriesPaint(7, new Color(77, 77, 77));
+
 
         renderer.setWhiskerWidth(0.4);
         renderer.setMedianWidth(6);
+
         CategoryPlot plot = new CategoryPlot(dataset, xAxis, yAxis, renderer);
+
+        plot.setOutlineVisible(false);
+        plot.setBackgroundPaint(new Color(247, 247, 247));
+        plot.setDomainGridlinesVisible(false);
+        plot.setRangeGridlinePaint(Color.WHITE);
+
         JFreeChart chart = new JFreeChart("Benchmark " + titulo, plot);
 
         return chart;
@@ -77,6 +87,8 @@ public class BoxPlot {
 
     public void guardar(String archivo, int ancho, int alto) {
         try {
+            archivo = archivo.replace(' ', '_');
+
             System.out.println("Guardando el archivo en " +
                                 new File(archivo).getAbsolutePath());
 
