@@ -9,11 +9,11 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import sun.plugin2.util.ColorUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
@@ -22,19 +22,24 @@ import java.util.List;
  * 
  * @author Fermin Silva < fermins@olx.com >
  */
-public class GraficadorFitnessMultiple {
+public class GraficadorCurvas {
 
 	private final String titulo;
+	private final String nombreEje;
+
 	private Map<String, XYSeries> series;
-	private XYSeriesCollection coleccion;
 
 	private int maxIteracion;
 
 
-	public GraficadorFitnessMultiple(String titulo, int maxIteraciones) {
-		this.series = new HashMap<String, XYSeries>();
+	public GraficadorCurvas(String titulo, String nombreEje,
+							int maxIteraciones)
+	{
+		this.series = new LinkedHashMap<String, XYSeries>();
+
 		this.maxIteracion = maxIteraciones;
 		this.titulo = titulo;
+		this.nombreEje = nombreEje;
 	}
 
 	public void agregar(String nombre, List<Double> progreso) {
@@ -65,8 +70,9 @@ public class GraficadorFitnessMultiple {
 			System.out.println("Guardando el archivo en " +
 					new File(archivo).getAbsolutePath());
 
-			ChartUtilities.saveChartAsPNG(new File(archivo), getChart(),
-					ancho, alto);
+			//doble de escala (2, 2) para mejorar DPI y aliasing en Retina
+			ChartUtilities.writeScaledChartAsPNG(new FileOutputStream(archivo),
+												 getChart(), ancho, alto, 2, 2);
 		}
 		catch (IOException e) {
 			throw new RuntimeException(e);
@@ -81,9 +87,9 @@ public class GraficadorFitnessMultiple {
 		}
 
 		JFreeChart chart = ChartFactory.createXYLineChart(
-				"Curva Progreso " + titulo,
+				titulo,
 				"Iteracion",           // x axis label
-				"Fitness",             // y axis label
+				nombreEje,             // y axis label
 				dataset,
 				PlotOrientation.VERTICAL,
 				true,                     // incluir leyenda
@@ -95,11 +101,14 @@ public class GraficadorFitnessMultiple {
 
 		XYPlot plot = chart.getXYPlot();
 
+		plot.getDomainAxis().setRange(0, maxIteracion);
+
 		plot.setOutlineVisible(false);
 		plot.setBackgroundPaint(new Color(247, 247, 247));
-		plot.setDomainGridlinePaint(Color.LIGHT_GRAY);
+		plot.setDomainGridlinePaint(Color.WHITE);
 		plot.setDomainGridlinesVisible(false);
 		plot.setRangeGridlinePaint(Color.WHITE);
+//		plot.setRangeGridlineStroke(new BasicStroke(1));
 
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 		renderer.setBaseShapesVisible(false);
@@ -107,7 +116,6 @@ public class GraficadorFitnessMultiple {
 		for (int i = 0; i < 10; i++) {
 			renderer.setSeriesStroke(i, new BasicStroke(2));
 		}
-
 
 		renderer.setSeriesPaint(0, new Color(226, 34, 34, 180));
 		renderer.setSeriesPaint(1, new Color(83, 152, 218, 180));
@@ -128,14 +136,15 @@ public class GraficadorFitnessMultiple {
 		frame.setPreferredSize(new Dimension(1280, 1280));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		frame.add(new ChartPanel(getChart()), BorderLayout.CENTER);
+		frame.add(new ChartPanel(getChart(), false), BorderLayout.CENTER);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
+	//TODO eliminar este main de prueba
 	public static void main(String[] args) {
-		GraficadorFitnessMultiple graf = new GraficadorFitnessMultiple("Prueba", 300);
+		GraficadorCurvas graf = new GraficadorCurvas("Prueba", "y", 300);
 		Random rnd = new Random();
 
 		for (int j = 0; j < 5; j++) {

@@ -17,6 +17,7 @@ public class AlgoritmoGenetico {
 	private Mutacion mutacion;
 	private Terminacion terminacion;
 	private List<Double> curvaProgreso;
+	private List<Double> momentosInercia;
 	
 	private long tiempo = -1;
 	
@@ -30,6 +31,7 @@ public class AlgoritmoGenetico {
 		this.mutacion = mutacion;
 		this.terminacion = terminacion;
 		this.curvaProgreso = new ArrayList<Double>();
+		this.momentosInercia= new ArrayList<Double>();
 	}
 	
 	public void comenzar() {
@@ -70,8 +72,13 @@ public class AlgoritmoGenetico {
 		poblacion.setSobrevivientes(crias);
 	
 		curvaProgreso.add(poblacion.getMejorIndividuo().getFitness());
-		
+		momentosInercia.add(poblacion.getMomentoInercia());
+
 		return terminacion.isTerminado(iteracion, poblacion);
+	}
+
+	public List<Double> getMomentosInercia() {
+		return momentosInercia;
 	}
 
 	public Individuo getMejorIndividuo() {

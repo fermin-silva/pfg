@@ -18,6 +18,7 @@ public class ResultadoBenchmark {
 	private double sumaT;
 	private int n;
 	private List<List<Double>> progresos;
+	private List<List<Double>> momentosInercia;
 	private List<Double> fitness;
 
 	private Recombinacion recombinacion;
@@ -28,14 +29,16 @@ public class ResultadoBenchmark {
 		this.recombinacion = recombinacion;
 		this.funcion = f;
 		this.progresos = new LinkedList<List<Double>>();
+		this.momentosInercia = new LinkedList<List<Double>>();
 		this.fitness = new ArrayList<Double>();
 	}
 
 	public void recolectar(AlgoritmoGenetico ag) {
 		progresos.add(ag.getCurvaProgreso());
-		
+		momentosInercia.add(ag.getMomentosInercia());
+
 		Individuo individuo = ag.getMejorIndividuo();
-		
+
 		if (min == null || individuo.getFitness() < min.getFitness()) {
 			min = individuo;
 		}
@@ -60,6 +63,8 @@ public class ResultadoBenchmark {
 		
 		return Math.sqrt(sum / n);
 	}
+
+	public List<List<Double>> getMomentosInercia() { return momentosInercia; }
 
 	public List<List<Double>> getProgresos() {
 		return progresos;

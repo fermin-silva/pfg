@@ -57,7 +57,43 @@ public abstract class Poblacion {
 		
 		return indice;
 	}
-	
+
+	public double getMomentoInercia() {
+		double[] centroide = getCentroide();
+
+		int n = mejorIndividuo.getFuncion().getDimension();
+		double sum = 0;
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < individuos.length; j++) {
+				double[] x = individuos[j].getValores();
+
+				sum += Math.pow(x[i] - centroide[i], 2);
+			}
+		}
+
+		return sum;
+	}
+
+	public double[] getCentroide() {
+		int d = mejorIndividuo.getFuncion().getDimension();
+		double[] centroide = new double[d];
+
+		for (Individuo individuo : individuos) {
+			double[] valores = individuo.getValores();
+
+			for (int i = 0; i < valores.length; i++) {
+				centroide[i] += valores[i];
+			}
+		}
+
+		for (int i = 0; i < centroide.length; i++) {
+			centroide[i] /= (float)individuos.length;
+		}
+
+		return centroide;
+	}
+
 	public Individuo[] getIndividuos() {
 		return individuos;
 	}

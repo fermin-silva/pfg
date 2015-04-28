@@ -1,7 +1,5 @@
 package es.uned.pfg.ae;
 
-import es.uned.pfg.ae.chart.BoxPlot;
-import es.uned.pfg.ae.chart.GraficadorFitnessMultiple;
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.funcion.FuncionFactory;
 import es.uned.pfg.ae.mutacion.Mutacion;
@@ -15,7 +13,6 @@ import es.uned.pfg.ae.seleccion.Seleccion;
 import es.uned.pfg.ae.seleccion.SeleccionFactory;
 import es.uned.pfg.ae.terminacion.Terminacion;
 import es.uned.pfg.ae.utils.Aleatorio;
-import es.uned.pfg.ae.utils.Utils;
 
 /**
  * 
@@ -51,11 +48,7 @@ public class Benchmark {
 		
 		System.out.println("Recombinacion\tFuncion\tMin_fit\tAvg_fit\tMax_fit\tStdev\tAvg_time");
 		for (Funcion f : fs) {
-			BoxPlot boxPlot = new BoxPlot();
-
-			GraficadorFitnessMultiple graficadorFitness =
-						new GraficadorFitnessMultiple(f.toString(),
-													  conf.getGeneraciones());
+			BenchmarkPlot plot = new BenchmarkPlot(f, conf.getGeneraciones());
 
 			for (Recombinacion recombinacion : recombinaciones) {
 				resultado = new ResultadoBenchmark(f, recombinacion);
@@ -66,24 +59,17 @@ public class Benchmark {
 				}
 
 				System.out.println(resultado);
-
-				boxPlot.agregar(resultado);
-				graficadorFitness.agregar(recombinacion.toString(),
-										  Utils.avg(resultado.getProgresos()));
+				plot.agregar(resultado);
 			}
 
-			graficadorFitness.guardar(f.toString() + "_benchmark_progreso.png",
-									  ANCHO, ALTO);
-
-			boxPlot.guardar(f.toString() + "_benchmark_boxplot.png",
-							ANCHO, ALTO);
+			plot.guardar(ANCHO, ALTO);
 		}
 	}
 	
 	protected void ejecucion(Configuracion conf, Seleccion seleccion, 
-						       Mutacion mutacion, Recombinacion recombinacion,
-						       Terminacion terminacion, Funcion f,
-						       ResultadoBenchmark resultado) 
+							 Mutacion mutacion, Recombinacion recombinacion,
+							 Terminacion terminacion, Funcion f,
+							 ResultadoBenchmark resultado)
 	{
 		Aleatorio aleatorio = new Aleatorio();
 		
