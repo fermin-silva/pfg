@@ -1,8 +1,8 @@
 package es.uned.pfg.ae.utils;
 
-import java.util.Random;
-
 import es.uned.pfg.ae.Individuo;
+
+import java.util.Random;
 
 public class Aleatorio {
 

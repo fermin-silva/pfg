@@ -1,15 +1,14 @@
 package es.uned.pfg.ae.params;
 
-import static es.uned.pfg.ae.Configuracion.*;
-import static java.lang.System.out;
-
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-
 import es.uned.pfg.ae.funcion.FuncionFactory;
 import es.uned.pfg.ae.mutacion.MutacionFactory;
 import es.uned.pfg.ae.recombinacion.RecombinacionFactory;
 import es.uned.pfg.ae.seleccion.SeleccionFactory;
+
+import static es.uned.pfg.ae.Configuracion.*;
+import static java.lang.System.out;
 
 
 /**
@@ -82,8 +81,14 @@ public class Parametros {
 			   				 "contrario se asume que no se utiliza. En " +
 			   				 "archivo de properties es '" + PROP_ELITISMO + "'")
 	public Boolean elitismo;
-	
-	@Parameter(names = { "-alpha" }, validateValueWith = Validador01.class, 
+
+	@Parameter(names = { "-benchmark" },
+			description = "Si esta presente se activa el elitismo, de lo " +
+					"contrario se asume que no se utiliza. En " +
+					"archivo de properties es '" + PROP_ELITISMO + "'")
+	public Boolean benchmark;
+
+	@Parameter(names = { "-alpha" }, validateValueWith = Validador01.class,
 			   description = "Para las recombinaciones que utilizan un valor " +
 			   				 "alpha para el promedio ponderado. En archivo " +
 			   				 "de properties es '" + PROP_ALPHA + "'")

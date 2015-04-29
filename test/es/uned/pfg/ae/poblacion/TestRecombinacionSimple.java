@@ -1,13 +1,12 @@
 package es.uned.pfg.ae.poblacion;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.funcion.FuncionSchwefel;
 import es.uned.pfg.ae.recombinacion.RecombinacionSimple;
 import es.uned.pfg.ae.utils.Aleatorio;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestRecombinacionSimple {
 

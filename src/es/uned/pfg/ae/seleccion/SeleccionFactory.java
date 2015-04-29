@@ -1,9 +1,9 @@
 package es.uned.pfg.ae.seleccion;
 
+import es.uned.pfg.ae.Configuracion;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import es.uned.pfg.ae.Configuracion;
 
 /**
  * 

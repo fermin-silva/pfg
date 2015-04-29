@@ -1,9 +1,10 @@
 package es.uned.pfg.ae;
 
-import java.util.Arrays;
-
 import es.uned.pfg.ae.funcion.Funcion;
+import es.uned.pfg.ae.utils.Aleatorio;
 import es.uned.pfg.ae.utils.Utils;
+
+import java.util.Arrays;
 
 public class Individuo implements Comparable<Individuo> {
 
@@ -82,5 +83,30 @@ public class Individuo implements Comparable<Individuo> {
 	@Override
 	public int compareTo(Individuo o) {
 		return Double.compare(o.fitness, fitness);
+	}
+
+
+
+	public static Individuo[] getIndividuosInicial(int tamaño, Funcion f) {
+		return getIndividuosInicial(tamaño, f, Configuracion.ALEATORIO);
+	}
+
+	public static Individuo[] getIndividuosInicial(int tamaño, Funcion f,
+												   Aleatorio aleatorio) {
+		int dimension = f.getDimension();
+
+		Individuo[] individuos = new Individuo[tamaño];
+
+		for (int i = 0; i < individuos.length; i++) {
+			double[] valores = new double[dimension];
+
+			for (int j = 0; j < valores.length; j++) {
+				valores[j] = aleatorio.getEntre(f.getMin(), f.getMax());
+			}
+
+			individuos[i] = new Individuo(i, valores, f);
+		}
+
+		return individuos;
 	}
 }

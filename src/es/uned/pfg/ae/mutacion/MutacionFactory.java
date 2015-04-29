@@ -1,11 +1,11 @@
 package es.uned.pfg.ae.mutacion;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import es.uned.pfg.ae.Configuracion;
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.funcion.FuncionFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 

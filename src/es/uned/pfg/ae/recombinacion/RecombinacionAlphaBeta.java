@@ -1,11 +1,11 @@
 package es.uned.pfg.ae.recombinacion;
 
-import java.util.Arrays;
-
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.utils.Aleatorio;
 import es.uned.pfg.ae.utils.Utils;
+
+import java.util.Arrays;
 
 public class RecombinacionAlphaBeta extends RecombinacionAlpha {
 

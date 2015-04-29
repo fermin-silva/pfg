@@ -5,8 +5,6 @@ import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.encoders.EncoderUtil;
-import org.jfree.chart.encoders.SunPNGEncoderAdapter;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.MiBoxAndWhiskerRenderer;
 import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
@@ -15,7 +13,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -72,7 +69,7 @@ public class BoxPlot {
         renderer.setSeriesPaint(6, new Color(222, 207, 63, 180));
         renderer.setSeriesPaint(7, new Color(77, 77, 77, 180));
 
-        
+
         renderer.setWhiskerWidth(0.4);
         renderer.setMedianWidth(6);
 
@@ -96,7 +93,7 @@ public class BoxPlot {
             archivo = archivo.replace(' ', '_');
 
             System.out.println("Guardando el archivo en " +
-                                new File(archivo).getAbsolutePath());
+                    new File(archivo).getAbsolutePath());
 
             //doble de escala (2, 2) para mejorar DPI y aliasing en Retina
             ChartUtilities.writeScaledChartAsPNG(new FileOutputStream(archivo),

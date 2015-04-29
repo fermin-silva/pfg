@@ -1,10 +1,10 @@
 package es.uned.pfg.ae.recombinacion;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import es.uned.pfg.ae.Configuracion;
 import es.uned.pfg.ae.funcion.FuncionFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 

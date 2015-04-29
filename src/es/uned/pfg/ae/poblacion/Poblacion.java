@@ -72,7 +72,8 @@ public abstract class Poblacion {
 			}
 		}
 
-		return sum;
+		//TODO diferencias entre devolver
+		return sum / individuos.length;
 	}
 
 	public double[] getCentroide() {

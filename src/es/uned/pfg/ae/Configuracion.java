@@ -1,11 +1,11 @@
 package es.uned.pfg.ae;
 
+import es.uned.pfg.ae.params.Parametros;
+import es.uned.pfg.ae.utils.Aleatorio;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
-import es.uned.pfg.ae.params.Parametros;
-import es.uned.pfg.ae.utils.Aleatorio;
 
 public class Configuracion {
 
@@ -24,8 +24,9 @@ public class Configuracion {
 	public static final String PROP_TAMAÑO_TORNEO = "tamaño.torneo";
 	public static final String PROP_GENERACIONES = "generaciones";
 	public static final String PROP_TAMAÑO_POBL = "tamaño.poblacion";
-	
-	public static final Aleatorio ALEATORIO = 
+	public static final String PROP_BENCHMARK = "benchmark";
+
+	public static final Aleatorio ALEATORIO =
 												new Aleatorio();
 //												new Aleatorio(1425117445324L);
 	
@@ -79,7 +80,11 @@ public class Configuracion {
 	public boolean getElitismo() {
 		return getBool(params.elitismo, PROP_ELITISMO, true);
 	}
-	
+
+	public boolean getBenchmark() {
+		return getBool(params.benchmark, PROP_BENCHMARK, false);
+	}
+
 	public double getAlpha() {
 		return getDouble(params.alpha, PROP_ALPHA, 0.2);
 	}
@@ -108,7 +113,7 @@ public class Configuracion {
 		return getString(params.funcion, PROP_FUNCION, "Schwefel");
 	}
 	
-	
+
 	/**
 	 * Si el entero no es nulo, lo devuelve, sino intenta buscar en las
 	 * properties, y si ahi tambien es nulo, devuelve el valor por defecto.

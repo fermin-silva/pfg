@@ -1,9 +1,8 @@
 package es.uned.pfg.ae.poblacion;
 
+import es.uned.pfg.ae.Individuo;
 import org.junit.Assert;
 import org.junit.Test;
-
-import es.uned.pfg.ae.Individuo;
 
 /**
  * 

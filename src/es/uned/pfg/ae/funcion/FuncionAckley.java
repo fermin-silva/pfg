@@ -1,9 +1,6 @@
 package es.uned.pfg.ae.funcion;
 
-import static java.lang.Math.E;
-import static java.lang.Math.cos;
-import static java.lang.Math.exp;
-import static java.lang.Math.sqrt;
+import static java.lang.Math.*;
 
 /**
  * <a href="http://www.sfu.ca/~ssurjano/ackley.html">
