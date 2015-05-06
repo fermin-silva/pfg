@@ -82,6 +82,10 @@ public class ResultadoBenchmark {
 		return funcion;
 	}
 
+	public double getTiempo() {
+		return sumaT / n / 1000;
+	}
+
 	@Override
 	public String toString() {
 		double avgFitness = sumaFitness / n;

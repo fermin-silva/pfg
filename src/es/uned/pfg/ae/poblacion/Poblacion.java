@@ -72,8 +72,8 @@ public abstract class Poblacion {
 			}
 		}
 
-		//TODO diferencias entre devolver
-		return sum / individuos.length;
+		//TODO diferencias entre devolver con o sin raiz cuadrada
+		return Math.sqrt(sum / individuos.length);
 	}
 
 	public double[] getCentroide() {

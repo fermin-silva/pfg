@@ -666,7 +666,6 @@ public class MiBoxAndWhiskerRenderer extends AbstractCategoryItemRenderer
 
             g2.setStroke(getItemOutlineStroke(row, column));
             g2.setPaint(outlinePaint);
-            g2.draw(box);
         }
 
         g2.setPaint(this.artifactPaint);

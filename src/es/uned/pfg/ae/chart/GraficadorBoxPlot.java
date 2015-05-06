@@ -18,13 +18,14 @@ import java.util.List;
 /**
  * @author Fermin Silva < fermins@olx.com >
  */
-public class BoxPlot {
+public class GraficadorBoxPlot {
 
     private DefaultBoxAndWhiskerCategoryDataset dataset;
     private String titulo;
 
-    public BoxPlot() {
+    public GraficadorBoxPlot(String titulo) {
         this.dataset = new DefaultBoxAndWhiskerCategoryDataset();
+        this.titulo = titulo;
     }
 
     public void agregar(ResultadoBenchmark resultado) {
@@ -35,15 +36,6 @@ public class BoxPlot {
                                     .replace("Funcion", "");
 
         dataset.add(resultado.getFitness(), nombre, categoria);
-
-//        List<Double> list = resultado.getFitness();
-//        Collections.sort(list);
-//
-//        System.out.println(nombre + "  " + list);
-
-        if (titulo == null) {
-            titulo = categoria;
-        }
     }
 
     public void agregar(List<Double> data, String rowLabel, String colLabel) {
@@ -69,6 +61,7 @@ public class BoxPlot {
         renderer.setSeriesPaint(6, new Color(222, 207, 63, 180));
         renderer.setSeriesPaint(7, new Color(77, 77, 77, 180));
 
+        renderer.setArtifactPaint(new Color(0, 0, 0, 200));
 
         renderer.setWhiskerWidth(0.4);
         renderer.setMedianWidth(6);
@@ -82,7 +75,7 @@ public class BoxPlot {
         plot.setRangeGridlinePaint(Color.WHITE);
 //        plot.setRangeGridlineStroke(new BasicStroke(1));
 
-        JFreeChart chart = new JFreeChart("Benchmark " + titulo, plot);
+        JFreeChart chart = new JFreeChart(titulo, plot);
         chart.setBackgroundPaint(Color.white);
 
         return chart;
