@@ -52,9 +52,11 @@ public class RecombinacionSimple extends RecombinacionAlpha {
 		
 		//desde k hasta n se utiliza el promedio aritmetico de los padres
 		for (int i = k + 1; i < n; i++) {
+			//TODO en el libro el hijo x usa alpha * y
 			x2[i] = Utils.clamp(alpha * x[i] + (1 - alpha) * y[i],
 								min, max);
-			
+
+			//TODO en el libro el hijo y usa alpha * x
 			y2[i] = Utils.clamp(alpha * y[i] + (1 - alpha) * x[i],
 								min, max);
 		}

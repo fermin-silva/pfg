@@ -33,23 +33,23 @@ public class RecombinacionAritmeticaCompleta extends RecombinacionAlpha {
 	
 	@Override
 	public Individuo[] getCrias(Individuo i1, Individuo i2) {
-		double[] v1 = i1.getValores();
-		double[] v2 = i2.getValores();
+		double[] x = i1.getValores();
+		double[] y = i2.getValores();
 		
-		double[] v11 = new double[v1.length];
-		double[] v22 = new double[v2.length];
+		double[] x1 = new double[x.length];
+		double[] y1 = new double[y.length];
 		
-		for (int i = 0; i < v1.length; i++) {
-			v11[i] = alpha * v1[i] + (1 - alpha) * v2[i];
-			v22[i] = alpha * v2[i] + (1 - alpha) * v1[i];
+		for (int i = 0; i < x.length; i++) {
+			x1[i] = alpha * x[i] + (1 - alpha) * y[i];
+			y1[i] = alpha * y[i] + (1 - alpha) * x[i];
 			
-			v11[i] = Utils.clamp(v11[i], min, max);
-			v22[i] = Utils.clamp(v22[i], min, max);
+			x1[i] = Utils.clamp(x1[i], min, max);
+			y1[i] = Utils.clamp(y1[i], min, max);
 		}
 		
 		//TODO cambiarle la iteracion, no es cero!
-		Individuo i11 = new Individuo(0, v11, funcion);
-		Individuo i22 = new Individuo(0, v22, funcion);
+		Individuo i11 = new Individuo(0, x1, funcion);
+		Individuo i22 = new Individuo(0, y1, funcion);
 
 		return new Individuo[] { i11, i22 };
 	}

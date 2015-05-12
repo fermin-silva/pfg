@@ -17,7 +17,6 @@ public class SeleccionFactory {
 	{{
 		put(       "NoOp", new SeleccionNoOp());
 		put(     "Torneo", new SeleccionTorneo());
-		put("Estocastica", new SeleccionEstocasticaUniversal());
 	}};
 	
 	
