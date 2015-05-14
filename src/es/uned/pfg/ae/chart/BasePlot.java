@@ -1,6 +1,7 @@
 package es.uned.pfg.ae.chart;
 
 import es.uned.pfg.ae.funcion.Funcion;
+import es.uned.pfg.ae.recombinacion.Recombinacion;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class BasePlot {
                                                  maxGeneraciones);
 
         graficadorMomento = new GraficadorCurvas("Convergencia " + nombre,
-                                                 "Momento Inercia",
+                                                 "Desviacion",
                                                  maxGeneraciones);
     }
 
@@ -41,5 +42,9 @@ public class BasePlot {
     public void guardar(int ancho, int alto) {
         graficadorMomento.guardar(nombre + "_momento.png", ancho, alto);
         graficadorFitness.guardar(nombre + "_progreso.png", ancho, alto);
+    }
+
+    public String getNombre(Recombinacion r) {
+        return r.getClass().getSimpleName().replace("Recombinacion", "");
     }
 }

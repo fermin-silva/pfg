@@ -22,6 +22,8 @@ public class RecombinacionFactory {
 		put(         "AlphaBeta", new RecombinacionAlphaBeta());
 		put(            "Simple", new RecombinacionSimple());
 		put(             "Unica", new RecombinacionUnica());
+		put(       "DiscretaBGA", new RecombinacionDiscretaBGA());
+		put(           "UnPunto", new RecombinacionUnPunto());
 	}};
 	
 	

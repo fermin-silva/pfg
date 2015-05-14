@@ -27,11 +27,12 @@ public class BenchmarkPlot extends BasePlot {
 
     public void agregar(ResultadoBenchmark resultado) {
         Recombinacion recombinacion = resultado.getRecombinacion();
+        String nombre = getNombre(recombinacion);
 
-        boxPlot.agregar(resultado);
-        graficadorTiempo.agregar(recombinacion.toString(), resultado.getTiempo());
+        boxPlot.agregar(nombre, resultado);
+        graficadorTiempo.agregar(nombre, resultado.getTiempo());
 
-        super.agregar(recombinacion.toString(),
+        super.agregar(nombre,
                       Utils.avg(resultado.getProgresos()),
                       Utils.avg(resultado.getMomentosInercia()));
     }

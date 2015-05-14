@@ -58,7 +58,7 @@ public abstract class Poblacion {
 		return indice;
 	}
 
-	public double getMomentoInercia() {
+	public double getDesviacion() {
 		double[] centroide = getCentroide();
 
 		int n = mejorIndividuo.getFuncion().getDimension();

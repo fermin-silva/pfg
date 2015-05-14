@@ -72,7 +72,7 @@ public class AlgoritmoGenetico {
 		poblacion.setSobrevivientes(crias);
 	
 		curvaProgreso.add(poblacion.getMejorIndividuo().getFitness());
-		momentosInercia.add(poblacion.getMomentoInercia());
+		momentosInercia.add(poblacion.getDesviacion());
 
 		return terminacion.isTerminado(iteracion, poblacion);
 	}

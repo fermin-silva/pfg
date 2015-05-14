@@ -28,10 +28,7 @@ public class GraficadorBoxPlot {
         this.titulo = titulo;
     }
 
-    public void agregar(ResultadoBenchmark resultado) {
-        String nombre = resultado.getRecombinacion().toString()
-                                 .replace("Recombinacion", "");
-
+    public void agregar(String nombre, ResultadoBenchmark resultado) {
         String categoria = resultado.getFuncion().toString()
                                     .replace("Funcion", "");
 
