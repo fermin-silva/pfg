@@ -32,6 +32,7 @@ public class GraficadorCurvas {
 	private Map<String, XYSeries> series;
 
 	private int maxIteracion;
+	private boolean mostrarLeyenda = true;
 
 
 	public GraficadorCurvas(String titulo, String nombreEje,
@@ -42,6 +43,10 @@ public class GraficadorCurvas {
 		this.maxIteracion = maxIteraciones;
 		this.titulo = titulo;
 		this.nombreEje = nombreEje;
+	}
+
+	public void setMostrarLeyenda(boolean mostrarLeyenda) {
+		this.mostrarLeyenda = mostrarLeyenda;
 	}
 
 	public void agregar(String nombre, List<Double> progreso) {
@@ -100,6 +105,7 @@ public class GraficadorCurvas {
 		);
 
 		chart.setBackgroundPaint(Color.white);
+		chart.setAntiAlias(true);
 
 		XYPlot plot = chart.getXYPlot();
 
@@ -127,6 +133,8 @@ public class GraficadorCurvas {
 		renderer.setSeriesPaint(5, new Color(178, 145, 47, 180));
 		renderer.setSeriesPaint(6, new Color(222, 207, 63, 180));
 		renderer.setSeriesPaint(7, new Color(77, 77, 77, 180));
+
+		renderer.setBaseSeriesVisibleInLegend(this.mostrarLeyenda);
 
 		plot.setRenderer(renderer);
 

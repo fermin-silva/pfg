@@ -30,7 +30,7 @@ public class GraficadorBoxPlot {
 
     public void agregar(String nombre, ResultadoBenchmark resultado) {
         String categoria = resultado.getFuncion().toString()
-                                    .replace("Funcion", "");
+                                    .replace("F_", "");
 
         dataset.add(resultado.getFitness(), nombre, categoria);
     }
@@ -74,6 +74,7 @@ public class GraficadorBoxPlot {
 
         JFreeChart chart = new JFreeChart(titulo, plot);
         chart.setBackgroundPaint(Color.white);
+        chart.setAntiAlias(true);
 
         return chart;
     }

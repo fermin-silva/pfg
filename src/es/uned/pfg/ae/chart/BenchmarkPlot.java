@@ -18,11 +18,12 @@ public class BenchmarkPlot extends BasePlot {
         super(f, maxGeneraciones);
 
         super.nombre += "_benchmark";
-        this.boxPlot = new GraficadorBoxPlot("Benchmark " +
-                                            f.toString().replace("Funcion", ""));
+        String nombreF = f.toString().replace("F_", "");
 
-        this.graficadorTiempo = new GraficadorBarras("Tiempos de Ejecucion",
-                                                     "Tiempo (s)");
+        this.boxPlot = new GraficadorBoxPlot("Benchmark " + nombreF);
+
+        graficadorTiempo = new GraficadorBarras("Tiempos de Ejecucion " + nombreF,
+                                                "Tiempo (s)");
     }
 
     public void agregar(ResultadoBenchmark resultado) {

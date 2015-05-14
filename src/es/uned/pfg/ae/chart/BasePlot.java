@@ -32,6 +32,11 @@ public class BasePlot {
                                                  maxGeneraciones);
     }
 
+    public void setMostrarLeyenda(boolean mostrarLeyenda) {
+        graficadorFitness.setMostrarLeyenda(mostrarLeyenda);
+        graficadorMomento.setMostrarLeyenda(mostrarLeyenda);
+    }
+
     public void agregar(String nombre, List<Double> curvaProgreso,
                         List<Double> curvaMomentoInercia)
     {

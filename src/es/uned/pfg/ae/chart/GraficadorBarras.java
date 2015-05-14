@@ -68,6 +68,7 @@ public class GraficadorBarras {
 
         JFreeChart chart = new JFreeChart(titulo, plot);
         chart.setBackgroundPaint(Color.white);
+        chart.setAntiAlias(true);
 
         return chart;
     }
