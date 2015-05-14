@@ -63,7 +63,7 @@ public class RecombinacionSimple extends RecombinacionAlpha {
 		
 		//TODO cambiarle la iteracion, no es cero!
 		return new Individuo[] { new Individuo(0, x2, funcion), 
-								  new Individuo(0, y2, funcion) };
+								 new Individuo(0, y2, funcion) };
 	}
 	
 	@Override

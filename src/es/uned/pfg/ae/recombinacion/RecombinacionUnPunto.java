@@ -8,8 +8,9 @@ import java.util.Arrays;
 
 /**
  * Recombinacion Discreta de un punto (one point crossover)
- * Cada hijo es identico a uno de los padres, excepto por un gen i, que se
- * intercambia entre los padres.
+ * Se elige un punto de cruce. Hasta ese punto cada cria tiene los genes del
+ * padre correspondiente. A partir de ese punto se intercambian los genes del
+ * otro padre.
  *
  * @author Fermin Silva < fermins@olx.com >
  */
@@ -29,16 +30,22 @@ public class RecombinacionUnPunto implements Recombinacion {
 
         int n = x.length;
 
-        //se copian los arrays enteros, luego se sobreescriben algunos alelos
-        double[] x2 = Arrays.copyOf(x, n);
-        double[] y2 = Arrays.copyOf(y, n);
+        double[] x2 = new double[n];
+        double[] y2 = new double[n];
 
-        int i = aleatorio.getInt(n); //punto de cruce
+        int punto = aleatorio.getInt(n); //punto de cruce
 
-        //intercambiar la i-esima entrada
-        double aux = x2[i];
-        x2[i] = y2[i];
-        y2[i] = aux;
+        //hasta el punto de cruce cada uno de su padre correspondiente
+        for (int i = 0; i < punto; i++) {
+            x2[i] = x[i];
+            y2[i] = y[i];
+        }
+
+        //desde el punto hasta el final del arreglo tomar del otro padre
+        for (int i = punto; i < n; i++) {
+            x2[i] = y[i];
+            y2[i] = x[i];
+        }
 
         //TODO cambiarle la iteracion, no es cero!
         return new Individuo[] { new Individuo(0, x2, funcion),
