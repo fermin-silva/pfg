@@ -39,13 +39,13 @@ public class BenchmarkPlot extends BasePlot {
     }
 
     public void guardar(int ancho, int alto) {
-        guardar("./", ancho, alto);
+        guardar("./" + this.nombre, ancho, alto);
     }
 
-    public void guardar(String basePath, int ancho, int alto) {
-        super.guardar(basePath, ancho, alto);
+    public void guardar(String nombre, int ancho, int alto) {
+        super.guardar(nombre, ancho, alto);
 
-        boxPlot.guardar(basePath + nombre + "_boxplot.png", ancho, alto);
-        graficadorTiempo.guardar(basePath + nombre + "_tiempos.png", ancho, alto);
+        boxPlot.guardar(nombre + "_boxplot.png", ancho, alto);
+        graficadorTiempo.guardar(nombre + "_tiempos.png", ancho, alto);
     }
 }

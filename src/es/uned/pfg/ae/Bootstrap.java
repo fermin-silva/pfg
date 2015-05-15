@@ -69,7 +69,7 @@ public class Bootstrap {
 		}
 
 		BasePlot basePlot = new BasePlot(f, conf.getGeneraciones());
-		basePlot.setMostrarLeyenda(true);
+		basePlot.setMostrarLeyenda(false);
 		basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getMomentosInercia());
 		basePlot.guardar(Benchmark.ANCHO, Benchmark.ALTO);
 	}

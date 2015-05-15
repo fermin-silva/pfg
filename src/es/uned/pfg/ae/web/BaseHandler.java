@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,10 +23,11 @@ public class BaseHandler extends AbstractHandler {
     private Configuracion config;
 
 
-    public BaseHandler(Configuracion config) {
+    public BaseHandler(Configuracion config, String imgPath) {
         this.config = config;
 
         //TODO completar recursos REST
+        recursos.put("/api/ag", new RecursoAG(config, imgPath));
     }
 
     @Override
@@ -43,11 +46,21 @@ public class BaseHandler extends AbstractHandler {
         if (recurso != null && metodo.equalsIgnoreCase("GET")) {
             Map<String, String[]> parametros = request.getParameterMap();
 
-            String respuesta = recurso.get(new MultiMap(parametros));
+            try {
+                String respuesta = recurso.get(new MultiMap(parametros));
 
-            response.setContentType("text/html;charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().println(respuesta);
+                response.setContentType("application/json;charset=utf-8");
+                response.setStatus(HttpServletResponse.SC_OK);
+                response.getWriter().println(respuesta);
+            }
+            catch (Exception e) {
+                response.setContentType("text/plain;charset=utf-8");
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
+                StringWriter stack = new StringWriter();
+                e.printStackTrace(new PrintWriter(stack));
+                response.getWriter().println(stack.toString());
+            }
 
             baseRequest.setHandled(true);
         }

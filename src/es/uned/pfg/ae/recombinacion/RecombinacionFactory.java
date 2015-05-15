@@ -16,7 +16,7 @@ public class RecombinacionFactory {
 	private static final Map<String, Recombinacion> RECOMBINACIONES =
 			new HashMap<String, Recombinacion>() 
 	{{
-//		put(              "NoOp", new RecombinacionNoOp());
+		put(              "NoOp", new RecombinacionNoOp());
 		put("AritmeticaCompleta", new RecombinacionAritmeticaCompleta());
 		put(                 "K", new RecombinacionK());
 		put(         "AlphaBeta", new RecombinacionAlphaBeta());

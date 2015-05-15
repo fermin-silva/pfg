@@ -44,13 +44,13 @@ public class BasePlot {
         graficadorMomento.agregar(nombre, curvaMomentoInercia);
     }
 
-    public void guardar(String basePath, int ancho, int alto) {
-        graficadorMomento.guardar(basePath + nombre + "_momento.png", ancho, alto);
-        graficadorFitness.guardar(basePath + nombre + "_progreso.png", ancho, alto);
+    public void guardar(String nombre, int ancho, int alto) {
+        graficadorMomento.guardar(nombre + "_momento.png", ancho, alto);
+        graficadorFitness.guardar(nombre + "_progreso.png", ancho, alto);
     }
 
     public void guardar(int ancho, int alto) {
-        guardar("./", ancho, alto);
+        guardar("./" + this.nombre, ancho, alto);
     }
 
     public String getNombre(Recombinacion r) {

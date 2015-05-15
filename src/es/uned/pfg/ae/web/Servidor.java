@@ -7,10 +7,16 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.nio.SelectChannelConnector;
 
+import java.io.File;
+
 /**
  * @author Fermin Silva < fermins@olx.com >
  */
 public class Servidor {
+
+    public static final String DIR_BASE = "./web/";
+    public static final String TMP = "tmp/";
+
 
     private Configuracion config;
     private Server server;
@@ -36,17 +42,33 @@ public class Servidor {
     }
 
     protected void agregarHandlers(Configuracion config) {
+        crearDirectorios();
+
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(false);
-        resourceHandler.setResourceBase("./web/");
+        resourceHandler.setResourceBase(".");
         resourceHandler.setWelcomeFiles(new String[]{ "index.html" });
 
-        BaseHandler baseHandler = new BaseHandler(config);
+        BaseHandler baseHandler = new BaseHandler(config, DIR_BASE + TMP);
 
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[]{ resourceHandler, baseHandler });
+        handlers.setHandlers(new Handler[]{resourceHandler, baseHandler});
 
         server.setHandler(handlers);
+    }
+
+    private void crearDirectorios() {
+        File directorio = new File(DIR_BASE);
+
+        if (!directorio.exists() || !directorio.isDirectory()) {
+            directorio.mkdir();
+        }
+
+        File tmp = new File(directorio, TMP);
+
+        if (!tmp.exists() || !tmp.isDirectory()) {
+            tmp.mkdir();
+        }
     }
 
     public void start() {
