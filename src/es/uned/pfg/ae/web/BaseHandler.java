@@ -23,11 +23,11 @@ public class BaseHandler extends AbstractHandler {
     private Configuracion config;
 
 
-    public BaseHandler(Configuracion config, String imgPath) {
+    public BaseHandler(Configuracion config, String imgPath, String webPath) {
         this.config = config;
 
         //TODO completar recursos REST
-        recursos.put("/api/ag", new RecursoAG(config, imgPath));
+        recursos.put("/api/ag", new RecursoAG(config, imgPath, webPath));
     }
 
     @Override

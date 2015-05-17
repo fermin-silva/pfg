@@ -53,7 +53,7 @@ public class ConfiguracionWeb extends Configuracion {
         return getBool(mapa, PROP_ELITISMO, true);
     }
 
-    public boolean getBenchmark() {
+    public boolean isBenchmark() {
         return getBool(mapa, PROP_BENCHMARK, false);
     }
 

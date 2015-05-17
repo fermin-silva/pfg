@@ -26,10 +26,12 @@ import java.util.Map;
  */
 public class ControladorAG {
 
-    private final String tmpDir;
+    private String webDir;
+    private String tmpDir;
 
-    public ControladorAG(String tmpDir) {
+    public ControladorAG(String tmpDir, String webDir) {
         this.tmpDir = tmpDir;
+        this.webDir = webDir;
     }
 
     public Map<String, Object> ejecutar(Configuracion conf) {
@@ -78,7 +80,7 @@ public class ControladorAG {
         BasePlot basePlot = new BasePlot(f, conf.getGeneraciones());
         basePlot.setMostrarLeyenda(false);
         basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getMomentosInercia());
-        basePlot.guardar(imgPath, Benchmark.ANCHO, Benchmark.ALTO);
+        basePlot.guardar(webDir + imgPath, Benchmark.ANCHO, Benchmark.ALTO);
 
         mapa.put("img.momento", imgPath + "_momento.png");
         mapa.put("img.progreso", imgPath + "_progreso.png");

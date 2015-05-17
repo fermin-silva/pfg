@@ -26,9 +26,9 @@ public class Servidor {
 
         server = new Server();
 
-        //TODO configurar puerto
         SelectChannelConnector connector = new SelectChannelConnector();
-        connector.setPort(8080);
+        connector.setPort(config.getPuerto());
+
         server.addConnector(connector);
 
         agregarHandlers(config);
@@ -46,10 +46,10 @@ public class Servidor {
 
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(false);
-        resourceHandler.setResourceBase(".");
+        resourceHandler.setResourceBase(DIR_BASE);
         resourceHandler.setWelcomeFiles(new String[]{ "index.html" });
 
-        BaseHandler baseHandler = new BaseHandler(config, DIR_BASE + TMP);
+        BaseHandler baseHandler = new BaseHandler(config, TMP, DIR_BASE);
 
         HandlerList handlers = new HandlerList();
         handlers.setHandlers(new Handler[]{resourceHandler, baseHandler});
@@ -87,9 +87,5 @@ public class Servidor {
         catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        new Servidor(null).start();
     }
 }

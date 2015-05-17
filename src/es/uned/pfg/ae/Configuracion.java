@@ -25,6 +25,7 @@ public class Configuracion {
     public static final String PROP_GENERACIONES = "generaciones";
     public static final String PROP_TAMAÑO_POBL = "tamaño.poblacion";
     public static final String PROP_BENCHMARK = "benchmark";
+    public static final String PROP_PUERTO = "puerto";
 
     public static final Aleatorio ALEATORIO =
             new Aleatorio();
@@ -80,7 +81,7 @@ public class Configuracion {
         return getBool(params.elitismo, PROP_ELITISMO, true);
     }
 
-    public boolean getBenchmark() {
+    public boolean isBenchmark() {
         return getBool(params.benchmark, PROP_BENCHMARK, false);
     }
 
@@ -112,12 +113,15 @@ public class Configuracion {
         return getString(params.funcion, PROP_FUNCION, "Schwefel");
     }
 
+    public Integer getPuerto() {
+        return getInt(params.puerto, PROP_PUERTO, null);
+    }
 
     /**
      * Si el entero no es nulo, lo devuelve, sino intenta buscar en las
      * properties, y si ahi tambien es nulo, devuelve el valor por defecto.
      */
-    protected int getInt(Integer i, String clave, int defecto) {
+    protected int getInt(Integer i, String clave, Integer defecto) {
         if (i != null) {
             return i;
         }

@@ -4,6 +4,7 @@ import es.uned.pfg.ae.Configuracion;
 import es.uned.pfg.ae.utils.MultiMap;
 import org.eclipse.jetty.util.ajax.JSON;
 
+import javax.xml.ws.WebEndpoint;
 import java.util.Map;
 
 /**
@@ -14,20 +15,24 @@ import java.util.Map;
  */
 public class RecursoAG extends Recurso {
 
-    private final String tmpDir;
+    private String tmpDir;
+    private String webDir;
+
     private Configuracion config;
 
 
-    public RecursoAG(Configuracion config, String tmpDir) {
+    public RecursoAG(Configuracion config, String tmpDir, String webDir) {
         this.config = config;
         this.tmpDir = tmpDir;
+        this.webDir = webDir;
     }
 
     @Override
     public String get(MultiMap multiMap) {
         Configuracion conf = new ConfiguracionWeb(multiMap);
 
-        Map<String, Object> mapa = new ControladorAG(tmpDir).ejecutar(conf);
+        Map<String, Object> mapa =
+                new ControladorAG(tmpDir, webDir).ejecutar(conf);
 
         return JSON.toString(mapa);
 

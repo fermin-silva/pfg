@@ -14,6 +14,7 @@ import es.uned.pfg.ae.seleccion.Seleccion;
 import es.uned.pfg.ae.seleccion.SeleccionFactory;
 import es.uned.pfg.ae.terminacion.Terminacion;
 import es.uned.pfg.ae.terminacion.TerminacionFija;
+import es.uned.pfg.ae.web.Servidor;
 
 import java.util.Arrays;
 
@@ -29,13 +30,17 @@ public class Bootstrap {
 
 		Configuracion conf = new Configuracion(Parametros.crear(args));
 
-		if (conf.getBenchmark()) {
+		if (conf.isBenchmark()) {
 			new Benchmark(conf);
+		}
+		else if (conf.getPuerto() != null) {
+			Servidor servidor = new Servidor(conf);
+			servidor.start();
+			servidor.join();
 		}
 		else {
 			correrConsola(conf);
 		}
-		//TODO corrida rest/http?
 	}
 
 	private static void correrConsola(Configuracion conf) {

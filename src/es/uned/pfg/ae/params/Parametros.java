@@ -47,7 +47,14 @@ public class Parametros {
 			   				 "de parametros. Los parametros tienen mas " +
 			   				 "prioridad que las propiedades")
 	public String properties;
-	
+
+	@Parameter(names = { "-puerto" },
+			   description = "Puerto en el que escucha la aplicacion WEB. De " +
+					   		 "no utilizarse ninguno la aplicacion correra en " +
+					   		 "modo consola. En archivo de properties es '" +
+							 PROP_PUERTO + "'")
+	public Integer puerto;
+
 	@Parameter(names = { "-tamañoTorneo" },
 			   validateValueWith = MayorQueCero.class,
 			   description = "Tamaño del torneo (solamente utilizada para " +
