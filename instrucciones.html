@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>PFG Algoritmos Geneticos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./bootstrap.css" media="screen">
+    <link rel="stylesheet" href="./assets/css/bootswatch.min.css">
+    <link rel="shortcut icon" href="http://portal.uned.es/favicon.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->   
+  </head>
+  <body>
+  	<!-- top nav bar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">PFG<small>AE</small></a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" style="border-color:#ECF0F1">
+            <i class="fa fa-bars" style="color:white"></i>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">
+              	<i class="fa fa-book"></i>&nbsp; Documentos <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="anteproyecto.html">Anteproyecto</a></li>
+                <li><a href="memoria.html">Memoria</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="instrucciones.html"><i class="fa fa-info-circle"></i>&nbsp; Instrucciones</a>
+            </li>
+            <li>
+              <a href="ejecutar.html"><i class="fa fa-cogs"></i>&nbsp; Ejecutar</a>
+            </li>
+            <li>
+              <a href="benchmarks.html"><i class="fa fa-bar-chart"></i>&nbsp; Pruebas Empíricas</a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+          	<li><a href="http://www.ii.uned.es/" target="_blank">ETSI Informatica</a></li>
+            <li><a href="http://portal.uned.es/" target="_blank" class="no-padding"><img style="max-height:60px" src="http://portal.uned.es/NUEVOWEB/IMAGENES/logo_uned.gif"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<!-- END top nav bar -->
+
+	<div class="container">
+
+		  <div class="page-header">
+	        <div class="row">
+	          <div class="col-lg-8 col-md-8 col-sm-8">
+	            <h1>Instrucciones</h1>
+	            <p class="lead">Descargar, Compilar, Ejecutar</p>
+	          </div>
+	    	</div>
+	    </div>	
+
+      <div class="row">
+          <div class="col-lg-10">
+            <h1 class="underline" id="intro">Introducción</h1>
+            	<p>
+            		La aplicación permite ejecutar un servicio Web para interactuar con el Algoritmo Genético, así
+                como para recopilar información general, de manera que sea totalmente autocontenida.  De esta forma se permite desacoplar el algoritmo de la interfaz gráfica. <br>
+              </p>
+              <p>
+                De no querer instalar la aplicación, puede accederse a una versión pública online desde la plataforma GitHub pinchando <a href="http://fermin-silva.github.io/pfg/">aquí</a>. <br>
+                Alternativamente, puede ejecutarse la aplicación en el propio ordenador y acceder al navegador. 
+                Se verá a continuación como realizarlo.
+            	</p>
+              <p>
+                También se muestran las distintas formas de ejecución e instrucciones sobre cada una.
+              </p>
+          </div>
+      </div> <!-- fin introduccion -->
+
+      <div class="row linkable" id="secciones"> 
+          <div class="col-lg-4 text">
+            <div class="list-group">
+              <span class="list-group-item active">
+                <h4 class="list-group-item-heading">Secciones</h4>
+              </span>
+              <a href="#instalacion" class="list-group-item">
+                <p class="list-group-item-text">Instalación Básica</p>
+              </a>
+              <a href="#compilacion" class="list-group-item">
+                <p class="list-group-item-text">Instalación desde el código Fuente</p>
+              </a>
+              <a href="#ejecucion" class="list-group-item">
+                <p class="list-group-item-text">Ejecución</p>
+              </a>
+              <a href="#ayuda" class="list-group-item">
+                <p class="list-group-item-text">Ayuda de ejecución</p>
+              </a>
+            </div>
+          </div> 
+      </div>
+
+
+      <div class="row linkable" id="instalacion">
+          <div class="col-lg-10">
+            <h1 class="underline">Instalación Básica</h1>
+            <p>
+              La manera más sencilla de instalar la aplicación es descargando el empaquetado desde el
+              siguiente <a href="https://www.dropbox.com/s/g81zjno079m6ivj/pfg.zip?dl=1">enlace</a>. <br>
+              Al no requerir compilación, solo es necesario el entorno de ejecución Java JRE (no JDK).
+              El mismo puede obtenerse desde la <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">página de Oracle</a>.
+            </p>
+            <p>
+              Una vez descomprimidos los contenidos, se tendrá la siguiente estructura de archivos:
+              <ul>
+                <li><code>lib/</code>: librerias necesarias para ejecutar la aplicación</li>
+                <li><code>web/</code>: contenidos estaticos para la interfaz web (html, css, etc.)</li>
+                <li><code>pfg.jar</code>: la aplicación Java ya compilada</li>
+              </ul>
+            </p>
+            <p>
+              La aplicación ya estará instalada y lista para ejecutarse.
+            </p>
+          </div>
+      </div> <!-- fin instalacion basica -->
+
+
+      <div class="row linkable" id="compilacion">
+          <div class="col-lg-10">
+            <h1 class="underline">Instalación desde el código Fuente</h1>
+            <p>
+              Recordar que para compilar una aplicación Java hace falta de tener instalado el
+              entorno de desarrollo JDK, versión 6 o superior. Descargar desde la <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">página de Oracle</a>.
+            </p>
+            <p>
+              Para compilar el proyecto utilizaremos la línea de comandos. Se recomienda utilizar Linux o MAC OSX,
+              o en Windows alguna versión de <a href="https://www.cygwin.com/">Cygwin</a>.
+            </p>
+            <h3>Pasos</h3>
+            <ol>
+              
+              <li> <!-- paso 1 -->
+                <p>
+                	Descargar una copia de la última versión del código: 
+                </p>
+                <div>
+                  <pre><span class="gp">$ </span>git clone https://github.com/fermin-silva/pfg.git</pre>
+                </div>
+                <p>De no disponer de git, <a href="https://github.com/fermin-silva/pfg/archive/master.zip">Descargar la versión .zip</a>, luego descomprimirla en una carpeta llamada pfg</p>
+              </li> <!-- fin paso 1 -->
+
+              <li> <!-- paso 2 -->
+                <p>
+                  Entrar en la carpeta pfg y compilar:
+                </p>
+                <ul>
+                  <li>
+                    <p>En linux o MAC OSX:</p>
+                    <div><pre><span class="gp">$ </span>sh ./compilar.sh</pre></div>
+                  </li>
+                  <li>
+                    <p>En Windows:</p>
+                    <div><pre><span class="gp">$ </span>compilar.bat</pre></div>
+                  </li>
+                </ul>
+              </li> <!-- fin paso 2 -->
+
+              <p>Esto generará un archivo llamado <code>pfg.jar</code>, listo para ser ejecutado.</p>
+
+            </ol> <!-- fin lista -->
+          </div>
+      </div> <!-- fin row Instalacion source -->
+
+
+      <div class="row linkable" id="ejecucion">
+          <div class="col-lg-10">
+            <h1 class="underline">Ejecución</h1>
+              <p>
+                Luego de instalar la aplicación, es necesario abrir la línea de comandos y entrar al directorio.  <br>
+                Una vez allí, podremos ejecutar el algoritmo de tres formas distintas:
+                <ol>
+                  <li>
+                      <strong>Por línea de comandos</strong>: ejecución básica del algoritmo. Se eligen los parámetros y se 
+                      imprime el resultado por pantalla en modo texto.
+                  </li>
+                  <li>
+                    <strong>Via Web/HTTP</strong>: ejecuta un servidor Web que permite visualizar estas pantallas
+                    así como ejecutar el algoritmo eligiendo los parámetros en la interfaz Web.
+                  </li>
+                  <li>
+                    <strong>Pruebas empíricas de rendimiento</strong>: ejecuta una batería de pruebas con las distintas recombinaciones implementadas por línea de comandos.
+                  </li>
+                </ol>
+              </p>
+              
+              <h3>Ejecución por línea de comandos</h3>
+              <p>
+                En los ejemplos se mostrarán ejecuciones en un entorno Linux. De ejecutarse en Windows,
+                utilizar el comando <code>ejecutar.bat</code> en vez de <code>ejecutar.sh</code>
+              </p>
+              <p>Ejecución de Ejemplo:</p>
+              <div><pre><span class="gp">$ </span>sh ejecutar.sh -f Schwefel -r Simple -s Torneo -d 10 -g 100</pre></div>
+              <p>
+                Con ello se ejecutará el algoritmo con la Funcion Schwefel de 10 dimensiones, Recombinación Simple y Torneo Binario, por 100 generaciones. <br>
+                La salida del algoritmo contendrá el mínimo obtenido y sus cordenadas, así como otros datos 
+                de interés. 
+              </p>
+              <p>
+                También se generarán dos imágenes con las curvas de progreso. Tomar nota de las direcciones 
+                y abrirlas con cualquier explorador de archivos. <br>
+                Ejemplo de las imágenes de salida:
+              </p>
+              <div><pre>
+... 
+Guardando el archivo en /Users/dev/workspace/pfg/./Schwefel(10)_momento.png
+Guardando el archivo en /Users/dev/workspace/pfg/./Schwefel(10)_progreso.png</pre></div>
+
+              <h3>Ejecución del servidor Web</h3>
+              <p>Nuevamente en la línea de comandos, ejecutar:</p>
+              <div><pre><span class="gp">$ </span>sh ejecutar.sh -puerto 8080</pre></div>
+              <p>
+                Esto ejecutará el servidor web en el puerto especificado indefinidamente, hasta que se 
+                cancele la ejecución con la señal <code>CTRL+C</code>.
+              </p>
+              <p>
+                Con el servidor corriendo, sólo basta acceder a un navegador de Internet a la dirección
+                <a href="http://localhost:8080" target="blank">http://localhost:8080</a> (si se utilizó el puerto 8080). <br>
+                Se verá esta misma página Web, solo que servida desde el ordenador propio en vez desde uno remoto.
+              </p>
+
+              <h3>Ejecución de las pruebas de rendimiento</h3>
+              <p>
+                Es similar a la ejecución normal por línea de comandos, sólo que no se utiliza el parámetro de 
+                Recombinación (ya que se utilizan todas). Debe agregarse el parámetro <code>-benchmark</code> 
+                para indicar que se quieren realizar las pruebas de rendimiento.
+              </p>
+              <p>
+                La salida del algoritmo es una serie de imágenes (curva de progreso, curva de convergencia 
+                de la población y tiempos) por cada función y recombinación en el directorio actual.
+              </p>
+          </div>
+      </div> <!-- fin ejecucion -->
+
+
+      <div class="row linkable" id="ayuda">
+          <div class="col-lg-10">
+            <h1 class="underline">Ayuda de ejecución</h1>
+            <p>
+              Ante cualquier duda sobre cómo ejecutar el algoritmo o los parámetros disponibles,
+              puede acudirse a la ayuda autocontenida. Siempre y cuando la aplicación se encuentre ya
+              instalada.
+            </p>
+            <p>
+              Situados en el directorio donde se encuentra el archivo <code>.jar</code>, ejecutar:
+              <ul>
+                <li>En Linux o MAC OSX:
+                  <div><pre><span class="gp">$ </span>sh ejecutar.sh -h</pre></div>
+                </li>
+                <li>En Windows:
+                  <div><pre><span class="gp">$ </span>sh ejecutar.sh -h</pre></div>
+                </li>
+              </ul>
+            </p>
+            <p>
+              La salida serán todos los parámetros disponibles y una breve descripción de los mismos. <br>
+              Por ejemplo:
+              <div><pre>
+Usage: &lt;main class&gt; [options]
+  Options:
+    -alpha
+       Para las recombinaciones que utilizan un valor alpha para el promedio
+       ponderado. En archivo de properties es 'alpha'
+    -benchmark
+       Si esta presente se activa el elitismo, de lo contrario se asume que no
+       se utiliza. En archivo de properties es 'elitismo'
+    -beta
+       Para las recombinaciones que utilizan un valor beta para el promedio
+       ponderado de la segunda cria. En archivo de properties es 'beta'
+    -desviacion
+       Para la mutacion normal, el valor de la desviacion tipica. En archivo de
+       properties es 'desviacion.mutacion'
+    -dimension, -d
+       La dimension de la funcion (si es que la funcion asi lo requiere). En
+       archivo de properties es 'dimension.funcion'
+       Default: 2
+...     </pre></div>
+            </p>
+          </div>
+      </div> <!-- fin ayuda -->
+
+
+		<footer>
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <div class="row">
+		          <div class="col-lg-12">
+		            <p class="pull-right"><a href="#top">Ir hacia arriba</a></li>
+		            <p>Realizado por el Alumno <a rel="nofollow">Fermin Silva</a>.</p>
+		            <p>Dirigido por el Prof. <a href="http://www.ia.uned.es/~seve/" target="_blank" rel="nofollow">Severino Fernández Galán</a>.</p>
+		            <p>Basado en <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Iconos de <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts de <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+		          </div>
+		        </div>
+			  </div>
+			</div>
+	        
+
+	    </footer>
+
+	</div> <!-- END container -->
+
+	
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./assets/js/bootswatch.js"></script>
+  </body>
+</html>
