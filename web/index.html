@@ -1,1 +1,125 @@
-Hello world
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>PFG Algoritmos Geneticos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./bootstrap.css" media="screen">
+    <link rel="stylesheet" href="./assets/css/bootswatch.min.css">
+    <link rel="shortcut icon" href="http://portal.uned.es/favicon.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->   
+  </head>
+  <body>
+  	<!-- top nav bar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">PFG<small>AE</small></a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" style="border-color:#ECF0F1">
+            <i class="fa fa-bars" style="color:white"></i>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">
+              	<i class="fa fa-book"></i>&nbsp; Documentos <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="anteproyecto.html">Anteproyecto</a></li>
+                <li><a href="memoria.html">Memoria</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="instrucciones.html"><i class="fa fa-info-circle"></i>&nbsp; Instrucciones</a>
+            </li>
+            <li>
+              <a href="ejecutar.html"><i class="fa fa-cogs"></i>&nbsp; Ejecutar</a>
+            </li>
+            <li>
+              <a href="benchmarks.html"><i class="fa fa-bar-chart"></i>&nbsp; Pruebas Empíricas</a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+          	<li><a href="http://www.ii.uned.es/" target="_blank">ETSI Informatica</a></li>
+            <li><a href="http://portal.uned.es/" target="_blank" class="no-padding"><img style="max-height:60px" src="http://portal.uned.es/NUEVOWEB/IMAGENES/logo_uned.gif"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<!-- END top nav bar -->
+
+	<div class="container">
+
+		<div class="page-header">
+	        <div class="row">
+	          <div class="col-lg-10 col-md-7 col-sm-6">
+	            <h1>Inicio</h1>
+	            <p class="lead">Diseño, Implementación y Evaluación de un Algoritmo Genético aplicado a la Optimización de Funciones Reales de Varias Variables</p>
+	          </div>
+	    	</div>
+	    </div>	
+
+        <div class="row">
+          <div class="col-lg-10">
+            <h1 class="underline" id="quickstart">Introducción</h1>
+            	<p>
+            		Bienvenido al Proyecto de Fin de Grado sobre Algoritmos Evolutivos (PFG<small>AE</small>). <br>
+            		Deste esta página podrá ver información general sobre el algoritmo, asi como ejecutarlo
+            		y ver los resultados. <br>
+            		Si es la primera vez que accede a esta página, se recomienda acceder a la sección de <a href="instrucciones.html">Instrucciones</a>.
+            	</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10">
+            <h1 class="underline" id="customization">Secciones</h1>
+            <p>
+            	Podrá acceder a las distintas secciones en la barra superior. <br>
+            	Si está visitanto la página desde un dispositivo móvil, podrá tener acceso
+            	a dicha sección presionando el botón <i class="fa fa-bars"></i>, que aparecerá
+            	en dicha barra.
+            </p>
+            <ul>
+              <li><p><strong>Documentos</strong>: Podrá ver las ultimas versiones de la memoria y anteproyecto en linea</p></li>
+              <li><p><strong>Instrucciones</strong>: Instrucciones generales sobre como compilar, ejecutar y configurar el algoritmo</p></li>
+              <li><p><strong>Ejecutar</strong>: Permite configurar los parámetros del algoritmo, ejecutarlo y visualizar su salida</p></li>
+              <li><p><strong>Pruebas Empíricas</strong>: Muestra algunas pruebas realizadas para comparar las distintas etapas de Recombinación</p></li>
+            </ul>
+          </div>
+        </div>
+
+		<footer>
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <div class="row">
+		          <div class="col-lg-12">
+		            <p class="pull-right"><a href="#top">Ir hacia arriba</a></li>
+		            <p>Realizado por el Alumno <a rel="nofollow">Fermin Silva</a>.</p>
+		            <p>Dirigido por el Prof. <a href="http://www.ia.uned.es/~seve/" target="_blank" rel="nofollow">Severino Fernández Galán</a>.</p>
+		            <p>Basado en <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Iconos de <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts de <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+		          </div>
+		        </div>
+			  </div>
+			</div>
+	        
+
+	    </footer>
+
+	</div> <!-- END container -->
+
+	
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./assets/js/bootswatch.js"></script>
+  </body>
+</html>

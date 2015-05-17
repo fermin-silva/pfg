@@ -121,7 +121,7 @@ public class Configuracion {
      * Si el entero no es nulo, lo devuelve, sino intenta buscar en las
      * properties, y si ahi tambien es nulo, devuelve el valor por defecto.
      */
-    protected int getInt(Integer i, String clave, Integer defecto) {
+    protected Integer getInt(Integer i, String clave, Integer defecto) {
         if (i != null) {
             return i;
         }
