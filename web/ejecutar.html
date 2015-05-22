@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>PFG Algoritmos Geneticos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="./bootstrap.css" media="screen">
+    <link rel="stylesheet" href="./assets/css/bootswatch.min.css">
+    <link rel="shortcut icon" href="http://portal.uned.es/favicon.png" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->   
+  </head>
+  <body>
+  	<!-- top nav bar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">PFG<small>AE</small></a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" style="border-color:#ECF0F1">
+            <i class="fa fa-bars" style="color:white"></i>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">
+              	<i class="fa fa-book"></i>&nbsp; Documentos <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="themes">
+                <li><a href="anteproyecto.html">Anteproyecto</a></li>
+                <li><a href="memoria.html">Memoria</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="instrucciones.html"><i class="fa fa-info-circle"></i>&nbsp; Instrucciones</a>
+            </li>
+            <li>
+              <a href="ejecutar.html"><i class="fa fa-cogs"></i>&nbsp; Ejecutar</a>
+            </li>
+            <li>
+              <a href="benchmarks.html"><i class="fa fa-bar-chart"></i>&nbsp; Pruebas Empíricas</a>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://portal.uned.es/" target="_blank" class="no-padding"><img style="max-height:60px" src="http://portal.uned.es/NUEVOWEB/IMAGENES/logo_uned.gif"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<!-- END top nav bar -->
+
+	<div class="container">
+
+    <div class="page-header">
+      <div class="row">
+        <div class="col-lg-10 col-md-7 col-sm-6">
+          <h1>Ejecución</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="alert alert-dismissible alert-warning">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>Atención!</h4>
+            <p>El servidor público aún no se encuentra disponible. Hasta entonces la ejecución no tendrá efecto :(</p>
+          </div>
+        </div>
+      </div>
+    </div>	
+
+    
+
+    <div class="row"> <!-- Inicio del form input -->
+      <div class="col-md-8">
+        <div class="well" style="padding-right: 50px;">
+          <form class="form-horizontal">
+            <fieldset>
+              <legend>Elección de Parámetros</legend>
+
+              <div class="form-group"> <!-- Tamaño poblacion -->
+                <label for="poblacion" class="col-xs-6 control-label">Tamaño de la Población</label>
+                
+                <div class="input-group">
+                  <input type="text" class="form-control" value="1000" name="poblacion" id="poblacion">
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Número entero con el tamaño de la población">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+
+              </div>  <!-- fin generaciones -->
+
+              <div class="form-group"> <!-- Generaciones -->
+                <label for="generaciones" class="col-xs-6 control-label">Generaciones</label>
+                
+                <div class="input-group">
+                  <input type="text" class="form-control" value="100" id="generaciones" name="generaciones">
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Número entero con la cantidad de iteraciones a ejecutar">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+
+              </div>  <!-- fin generaciones -->
+
+              <div class="form-group"> <!-- select Funcion -->
+                <label for="selectFuncion" class="col-xs-6 control-label">Función</label>
+
+                <div class="input-group">
+                  <select class="form-control" id="selectFuncion" name="selectFuncion">
+                    <option selected="selected">Rastrigin</option>
+                    <option>Griewank</option>
+                    <option>Schaffer2</option>
+                    <option>Schubert</option>
+                    <option>Ackley</option>
+                    <option>Schwefel</option>
+                  </select>
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Nombre de la función a minimizar">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+                
+              </div>  <!-- Fin seleccion de funcion -->
+
+              <div class="form-group"> <!-- dimension -->
+                <label for="dimension" class="col-xs-6 control-label">Dimensión</label>
+                
+                <div class="input-group">
+                  <input type="text" class="form-control" value="3" id="dimension" name="dimension">
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Dimensionalidad de la función (si es aplicable y no fija)">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+
+              </div>  <!-- fin dimension -->
+
+              
+              <legend>Elección de Operadores</legend>
+
+              <div class="form-group"> <!-- select recombinacion -->
+                <label for="selectRecombinacion" class="col-xs-6 control-label">Recombinación</label>
+
+                <div class="input-group">
+                  <select class="form-control" id="selectRecombinacion" name="selectRecombinacion">
+                    <option>NoOp</option>
+                    <option>DiscretaBGA</option>
+                    <option>AlphaBeta</option>
+                    <option selected="selected">K</option>
+                    <option>AritmeticaCompleta</option>
+                    <option>Simple</option>
+                    <option>Unica</option>
+                    <option>UnPunto</option>
+                  </select>
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Nombre de la Recombinación">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+                
+              </div>  <!-- Fin seleccion de recombinacion -->
+
+              <div class="form-group"> <!-- select seleccion -->
+                <label for="selectSeleccion" class="col-xs-6 control-label">Selección</label>
+
+                <div class="input-group">
+                  <select class="form-control" id="selectSeleccion" name="selectSeleccion">
+                    <option>NoOp</option>
+                    <option selected="selected">Torneo</option>
+                  </select>
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Nombre de la Selección">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+                
+              </div>  <!-- Fin seleccion de seleccion -->
+
+              <div class="form-group"> <!-- select mutacion -->
+                <label for="selectMutacion" class="col-xs-6 control-label">Mutación</label>
+
+                <div class="input-group">
+                  <select class="form-control" id="selectMutacion" name="selectMutacion">
+                    <option>NoOp</option>
+                    <option selected="selected">Normal</option>
+                    <option>Uniforme</option>
+                  </select>
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Nombre de la Mutación">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+                
+              </div>  <!-- Fin seleccion de mutacion -->
+
+              <legend>Otros Parámetros</legend>
+
+              <div class="form-group"> <!-- desviacion -->
+                <label for="desviacion" class="col-xs-6 control-label">Desviación</label>
+                
+                <div class="input-group">
+                  <input type="text" class="form-control" value="1.0" id="desviacion" name="desviacion">
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Número real mayor que cero">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>                  
+                </div>
+
+                <span class="help-block col-sm-6 col-sm-offset-6">Aplicable solamente a la Mutación Normal</span>
+
+              </div>  <!-- fin desviacion -->
+
+              <div class="form-group"> <!-- prob mutacion -->
+                <label for="probMutacion" class="col-xs-6 control-label">Probabilidad de Mutación</label>
+                
+                <div class="input-group" >
+                  <input type="text" class="form-control" value="0.8" id="probMutacion" name="probMutacion">
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Probabilidad de mutación entre [0, 1]">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+
+              </div>  <!-- fin prob mutacion -->
+
+              <div class="form-group"> <!-- select tamaño K -->
+                <label for="selectTamanioK" class="col-xs-6 control-label">Tamaño de K</label>
+
+                <div class="input-group">
+                  <select class="form-control" id="selectTamanioK" name="selectTamanioK">
+                    <option selected="selected">2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Cantidad de ejes a recombinar">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+                
+                <span class="help-block col-sm-6 col-sm-offset-6">Aplicable solamente a la Recombinación K</span>
+
+              </div>  <!-- Fin tamaño de K -->
+
+              <div class="form-group"> <!-- select tamaño torneo -->
+                <label for="selectTamanioTorneo" class="col-xs-6 control-label">Tamaño del Torneo</label>
+
+                <div class="input-group">
+                  <select class="form-control" id="selectTamanioTorneo" name="selectTamanioTorneo">
+                    <option selected="selected">2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Tamaño del torneo (aplica solamente a Selección por Torneo)">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+                
+                <span class="help-block col-sm-6 col-sm-offset-6">Aplicable solamente a la Selección por Torneo</span>
+
+              </div>  <!-- Fin tamaño del torneo -->
+
+              <div class="form-group"> <!-- alpha Beta-->
+                <label for="alpha" class="col-sm-3 col-xs-6 control-label">Alpha</label>
+                
+                <div class="input-group col-sm-3 col-xs-6" style="float: left;">
+                  <input type="text" class="form-control" value="0.1" id="alpha" name="alpha">
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Valor de alpha (si aplica), entre [0, 1]">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+
+                <label for="beta" class="col-sm-3 col-xs-6 control-label">Beta</label>
+                
+                <div class="input-group col-sm-3 col-xs-6" style="float: left;">
+                  <input type="text" class="form-control" value="0.1" id="beta" name="beta">
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-info" title="" data-toggle="popover" 
+                       data-trigger="focus" data-placement="right"
+                       data-content="Valor de beta (si aplica), entre [0, 1]">
+                      <i class="fa fa-question-circle"></i>
+                    </a>
+                  </span>
+                </div>
+              </div>  <!-- fin alpha Beta -->
+
+              <br><br>
+
+              <div class="form-group">
+                <div class="pull-right">
+                  <button type="reset" class="btn btn-default">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div> <!-- FIN del form input -->
+
+		<footer>
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <div class="row">
+		          <div class="col-lg-12">
+		            <p class="pull-right"><a href="#top">Ir hacia arriba</a></li>
+		            <p>Realizado por el Alumno <a rel="nofollow">Fermin Silva</a>.</p>
+		            <p>Dirigido por el Prof. <a href="http://www.ia.uned.es/~seve/" target="_blank" rel="nofollow">Severino Fernández Galán</a>.</p>
+		            <p>Basado en <a href="http://getbootstrap.com" rel="nofollow">Bootstrap</a>. Iconos de <a href="http://fortawesome.github.io/Font-Awesome/" rel="nofollow">Font Awesome</a>. Web fonts de <a href="http://www.google.com/webfonts" rel="nofollow">Google</a>.</p>
+		          </div>
+		        </div>
+			  </div>
+			</div>
+	        
+
+	    </footer>
+
+	</div> <!-- END container -->
+
+	
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./assets/js/bootswatch.js"></script>
+  </body>
+</html>
