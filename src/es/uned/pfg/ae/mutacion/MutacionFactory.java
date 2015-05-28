@@ -39,14 +39,12 @@ public class MutacionFactory {
 		
 		mutacion.setMin(funcion.getMin());
 		mutacion.setMax(funcion.getMax());
-		
+		mutacion.setProb(conf.getProbMutacion());
+
 		if (mutacion instanceof MutacionNormal) {
 			((MutacionNormal)mutacion).setDesviacion(conf.getDesviacionMutacion());
 		}
-		else if (mutacion instanceof MutacionUniforme) {
-			((MutacionUniforme)mutacion).setProb(conf.getProbMutacion());
-		}
-		
+
 		return mutacion;
 	}
 	

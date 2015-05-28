@@ -42,11 +42,6 @@ public class FuncionSchaffer2 implements Funcion {
 	}
 
 	@Override
-	public boolean isLimitada() {
-		return true;
-	}
-
-	@Override
 	public double calcular(double[] valores) {
 		double x12 = valores[0] * valores[0];
 		double x22 = valores[1] * valores[1];

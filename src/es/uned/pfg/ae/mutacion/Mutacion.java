@@ -10,4 +10,5 @@ public interface Mutacion {
 	public void set(Aleatorio aleatorio);
 	public void setMin(double min);
 	public void setMax(double max);
+	public void setProb(double prob);
 }

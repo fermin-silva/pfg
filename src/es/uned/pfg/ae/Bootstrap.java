@@ -77,5 +77,7 @@ public class Bootstrap {
 		basePlot.setMostrarLeyenda(false);
 		basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getMomentosInercia());
 		basePlot.guardar(Benchmark.ANCHO, Benchmark.ALTO);
+
+		//TODO mejorar la salida, por ejemplo imprimir el minimo, todas las coordenadas y centroide
 	}
 }

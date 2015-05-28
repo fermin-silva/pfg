@@ -15,7 +15,7 @@ public class MutacionUniforme implements Mutacion {
 	}
 	
 	public MutacionUniforme(double min, double max, Aleatorio aleatorio, 
-							 double prob) 
+							double prob)
 	{
 		this.min = min;
 		this.max = max;
@@ -53,7 +53,8 @@ public class MutacionUniforme implements Mutacion {
 	public void setMax(double max) {
 		this.max = max;
 	}
-	
+
+	@Override
 	public void setProb(double prob) {
 		this.prob = prob;
 	}

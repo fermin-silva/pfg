@@ -25,18 +25,6 @@ public class MutacionNormal implements Mutacion {
 		
 	}
 	
-	public MutacionNormal(double desviacion, Aleatorio aleatorio, double min, 
-						   double max) 
-	{
-		this.aleatorio = aleatorio;
-		this.desviacion = desviacion;
-		this.min = min;
-		this.max = max;
-		
-		//TODO parametrizar esta probabilidad
-		this.prob = 1.0;
-	}
-
 	@Override
 	public void mutar(Individuo i) {
 		double[] alelos = i.getValores();
@@ -76,7 +64,12 @@ public class MutacionNormal implements Mutacion {
 	public void setMax(double max) {
 		this.max = max;
 	}
-	
+
+	@Override
+	public void setProb(double prob) {
+		this.prob = prob;
+	}
+
 	public void setDesviacion(double desviacion) {
 		this.desviacion = desviacion;
 	}

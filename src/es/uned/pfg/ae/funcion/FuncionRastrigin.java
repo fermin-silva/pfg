@@ -44,11 +44,6 @@ public class FuncionRastrigin implements Funcion {
 	}
 
 	@Override
-	public boolean isLimitada() {
-		return true;
-	}
-
-	@Override
 	public double calcular(double[] valores) {
 		if (d <= 0) {
 			throw new RuntimeException("Llamar a setDimension primero");

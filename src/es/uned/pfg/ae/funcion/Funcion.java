@@ -16,8 +16,6 @@ public interface Funcion {
 	
 	public double getMinimoGlobal();
 	
-	public boolean isLimitada();
-	
 	public double calcular(double[] valores);
 }
 

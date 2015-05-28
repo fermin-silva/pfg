@@ -46,11 +46,6 @@ public class FuncionSchubert implements Funcion {
 	}
 
 	@Override
-	public boolean isLimitada() {
-		return true;
-	}
-
-	@Override
 	public double calcular(double[] valores) {
 		double x1 = valores[0];
 		double x2 = valores[1];

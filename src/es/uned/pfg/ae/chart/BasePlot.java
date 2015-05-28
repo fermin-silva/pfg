@@ -11,7 +11,7 @@ import java.util.List;
 public class BasePlot {
 
     private GraficadorCurvas graficadorFitness;
-    private GraficadorCurvas graficadorMomento;
+    private GraficadorCurvas graficadorConvergencia;
 
     protected String nombre;
 
@@ -27,25 +27,25 @@ public class BasePlot {
                                                  "Fitness",
                                                  maxGeneraciones);
 
-        graficadorMomento = new GraficadorCurvas("Convergencia " + nombre,
-                                                 "Desviacion",
-                                                 maxGeneraciones);
+        graficadorConvergencia = new GraficadorCurvas("Convergencia " + nombre,
+                                                      "Desviacion",
+                                                      maxGeneraciones);
     }
 
     public void setMostrarLeyenda(boolean mostrarLeyenda) {
         graficadorFitness.setMostrarLeyenda(mostrarLeyenda);
-        graficadorMomento.setMostrarLeyenda(mostrarLeyenda);
+        graficadorConvergencia.setMostrarLeyenda(mostrarLeyenda);
     }
 
     public void agregar(String nombre, List<Double> curvaProgreso,
-                        List<Double> curvaMomentoInercia)
+                        List<Double> curvaConvergencia)
     {
         graficadorFitness.agregar(nombre, curvaProgreso);
-        graficadorMomento.agregar(nombre, curvaMomentoInercia);
+        graficadorConvergencia.agregar(nombre, curvaConvergencia);
     }
 
     public void guardar(String nombre, int ancho, int alto) {
-        graficadorMomento.guardar(nombre + "_momento.png", ancho, alto);
+        graficadorConvergencia.guardar(nombre + "_momento.png", ancho, alto);
         graficadorFitness.guardar(nombre + "_progreso.png", ancho, alto);
     }
 

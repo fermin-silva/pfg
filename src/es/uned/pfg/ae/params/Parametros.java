@@ -22,9 +22,7 @@ public class Parametros {
 			   description = "El tamaño de la poblacion")
 	public Integer tamañoPoblacion;
 	
-	//TODO si la cantidad es -1, iterar hasta que converja
-	
-	@Parameter(names = { "-generaciones", "-g" }, 
+	@Parameter(names = { "-generaciones", "-g" },
 			   validateValueWith = MayorQueCero.class,
 			   description = "La cantidad de iteraciones. En archivo de " +
 			   				 "properties es '" + PROP_GENERACIONES + "'")
@@ -90,9 +88,8 @@ public class Parametros {
 	public Boolean elitismo;
 
 	@Parameter(names = { "-benchmark" },
-			description = "Si esta presente se activa el elitismo, de lo " +
-					"contrario se asume que no se utiliza. En " +
-					"archivo de properties es '" + PROP_ELITISMO + "'")
+			description = "Si esta presente se ejecuta en modo benchmark. En " +
+						  "archivo de properties es '" + PROP_BENCHMARK + "'")
 	public Boolean benchmark;
 
 	@Parameter(names = { "-alpha" }, validateValueWith = Validador01.class,

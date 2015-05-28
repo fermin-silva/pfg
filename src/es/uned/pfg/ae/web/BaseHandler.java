@@ -40,6 +40,8 @@ public class BaseHandler extends AbstractHandler {
             return;
         }
 
+        //TODO usar request.getRequestURI() en vez de target? Que pasa con query String?
+
         Recurso recurso = recursos.get(target);
         String metodo = baseRequest.getMethod();
 

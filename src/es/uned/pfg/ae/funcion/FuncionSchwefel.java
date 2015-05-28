@@ -48,11 +48,6 @@ public class FuncionSchwefel implements Funcion {
 	}
 
 	@Override
-	public boolean isLimitada() {
-		return true;
-	}
-	
-	@Override
 	public double getMin() {
 		return MIN;
 	}
