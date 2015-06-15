@@ -3,6 +3,7 @@ package es.uned.pfg.ae.funcion;
 import es.uned.pfg.ae.Configuracion;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -13,13 +14,13 @@ import java.util.Map;
 public class FuncionFactory {
 
 	private static final Map<String, Funcion> FUNCIONES =
-			new HashMap<String, Funcion>() 
+			new LinkedHashMap<String, Funcion>()
 	{{
-		put(   "Ackley", new FuncionAckley());
-		put( "Griewank", new FuncionGriewank());
-		put("Rastrigin", new FuncionRastrigin());
-		put("Schaffer2", new FuncionSchaffer2());  //muy baja dimensionalidad
-		put( "Schubert", new FuncionSchubert());   //muy baja dimensionalidad
+//		put(   "Ackley", new FuncionAckley());
+//		put( "Griewank", new FuncionGriewank());
+//		put("Rastrigin", new FuncionRastrigin());
+//		put("Schaffer2", new FuncionSchaffer2());  //muy baja dimensionalidad
+//		put( "Schubert", new FuncionSchubert());   //muy baja dimensionalidad
 		put( "Schwefel", new FuncionSchwefel());
 	}};
 	

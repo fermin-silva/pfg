@@ -43,7 +43,6 @@ public class RecombinacionSimple extends RecombinacionAlpha {
 		double[] x2 = new double[n];
 		double[] y2 = new double[n];
 		
-		
 		//desde 0 hasta k se copian los valores del padre
 		for (int i = 0; i <= k; i++) {
 			x2[i] = x[i];
@@ -60,7 +59,7 @@ public class RecombinacionSimple extends RecombinacionAlpha {
 			y2[i] = Utils.clamp(alpha * y[i] + (1 - alpha) * x[i],
 								min, max);
 		}
-		
+
 		//TODO cambiarle la iteracion, no es cero!
 		return new Individuo[] { new Individuo(0, x2, funcion), 
 								 new Individuo(0, y2, funcion) };

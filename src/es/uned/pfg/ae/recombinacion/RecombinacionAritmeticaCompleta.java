@@ -36,22 +36,20 @@ public class RecombinacionAritmeticaCompleta extends RecombinacionAlpha {
 		double[] x = i1.getValores();
 		double[] y = i2.getValores();
 		
-		double[] x1 = new double[x.length];
-		double[] y1 = new double[y.length];
+		double[] x2 = new double[x.length];
+		double[] y2 = new double[y.length];
 		
 		for (int i = 0; i < x.length; i++) {
-			x1[i] = alpha * x[i] + (1 - alpha) * y[i];
-			y1[i] = alpha * y[i] + (1 - alpha) * x[i];
+			x2[i] = alpha * x[i] + (1 - alpha) * y[i];
+			y2[i] = alpha * y[i] + (1 - alpha) * x[i];
 			
-			x1[i] = Utils.clamp(x1[i], min, max);
-			y1[i] = Utils.clamp(y1[i], min, max);
+			x2[i] = Utils.clamp(x2[i], min, max);
+			y2[i] = Utils.clamp(y2[i], min, max);
 		}
-		
-		//TODO cambiarle la iteracion, no es cero!
-		Individuo i11 = new Individuo(0, x1, funcion);
-		Individuo i22 = new Individuo(0, y1, funcion);
 
-		return new Individuo[] { i11, i22 };
+		//TODO cambiarle la iteracion, no es cero!
+		return new Individuo[] { new Individuo(0, x2, funcion),
+								 new Individuo(0, y2, funcion) };
 	}
 	
 	@Override

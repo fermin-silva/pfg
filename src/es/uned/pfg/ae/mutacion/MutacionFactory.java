@@ -34,11 +34,14 @@ public class MutacionFactory {
 		}
 		
 		mutacion.set(Configuracion.ALEATORIO);
-		
-		Funcion funcion = FuncionFactory.crear(conf);
-		
-		mutacion.setMin(funcion.getMin());
-		mutacion.setMax(funcion.getMax());
+
+		if (!conf.isBenchmark()) {
+			Funcion funcion = FuncionFactory.crear(conf);
+
+			mutacion.setMin(funcion.getMin());
+			mutacion.setMax(funcion.getMax());
+		}
+
 		mutacion.setProb(conf.getProbMutacion());
 
 		if (mutacion instanceof MutacionNormal) {

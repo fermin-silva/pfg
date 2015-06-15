@@ -14,9 +14,9 @@ import java.util.Map;
 public class RecombinacionFactory {
 
 	private static final Map<String, Recombinacion> RECOMBINACIONES =
-			new HashMap<String, Recombinacion>() 
+			new HashMap<String, Recombinacion>()
 	{{
-		put(              "NoOp", new RecombinacionNoOp());
+//		put(              "NoOp", new RecombinacionNoOp());
 		put("AritmeticaCompleta", new RecombinacionAritmeticaCompleta());
 		put(                 "K", new RecombinacionK());
 		put(         "AlphaBeta", new RecombinacionAlphaBeta());
@@ -40,8 +40,11 @@ public class RecombinacionFactory {
 		}
 		
 		recombinacion.set(Configuracion.ALEATORIO);
-		recombinacion.setFuncion(FuncionFactory.crear(conf));
-		
+
+		if (!conf.isBenchmark()) {
+			recombinacion.setFuncion(FuncionFactory.crear(conf));
+		}
+
 		if (recombinacion instanceof RecombinacionAlpha) {
 			((RecombinacionAlpha)recombinacion).setAlpha(conf.getAlpha());
 		}

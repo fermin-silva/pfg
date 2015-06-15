@@ -47,10 +47,10 @@ public class RecombinacionK extends RecombinacionAlpha {
 		//se copian los arrays enteros, luego se sobreescriben algunos alelos
 		double[] x2 = Arrays.copyOf(x, n);
 		double[] y2 = Arrays.copyOf(y, n);
-		
+
 		//sobreescribir k alelos:
-		for (int cantidad = 0; cantidad < k; cantidad++) {
-			int i = aleatorio.getInt(n); //punto de cruce
+		for (int cantidad = 0; cantidad < Math.min(k, n); cantidad++) {
+			int i = aleatorio.getInt(n); //punto de cruce (con reemplazamiento!)
 			
 			//TODO agregar esta conclusion a la tesis
 			//asi era originalmente, pero haciendo el algebra en el cuaderno me da al reves

@@ -337,8 +337,8 @@
 
               <div class="form-group">
                 <div class="pull-right">
-                  <button type="reset" class="btn btn-default">Cancel</button>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="reset" class="btn btn-default">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Ejecutar</button>
                 </div>
               </div>
 
@@ -377,7 +377,7 @@
            // send xhr request
            $.ajax({
                type: $theForm.attr('method'),
-               url: $theForm.attr('action'),
+               url: "/api/ag",
                data: $theForm.serialize(),
                success: function(data) {
                    console.log('Yay! Form sent with data ' + data);

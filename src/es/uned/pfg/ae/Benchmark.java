@@ -21,7 +21,7 @@ import es.uned.pfg.ae.utils.Aleatorio;
  */
 public class Benchmark {
 
-	public static final int RUNS = 10;
+	public static final int RUNS = 100;
 
 	//TODO parametrizar
 	public static final int ANCHO = 640;
