@@ -16,11 +16,11 @@ public class FuncionFactory {
 	private static final Map<String, Funcion> FUNCIONES =
 			new LinkedHashMap<String, Funcion>()
 	{{
-//		put(   "Ackley", new FuncionAckley());
-//		put( "Griewank", new FuncionGriewank());
-//		put("Rastrigin", new FuncionRastrigin());
-//		put("Schaffer2", new FuncionSchaffer2());  //muy baja dimensionalidad
-//		put( "Schubert", new FuncionSchubert());   //muy baja dimensionalidad
+		put(   "Ackley", new FuncionAckley());
+		put( "Griewank", new FuncionGriewank());
+		put("Rastrigin", new FuncionRastrigin());
+		put("Schaffer2", new FuncionSchaffer2());
+		put( "Schubert", new FuncionSchubert());
 		put( "Schwefel", new FuncionSchwefel());
 	}};
 	

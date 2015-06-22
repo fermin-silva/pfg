@@ -14,8 +14,10 @@ import es.uned.pfg.ae.seleccion.Seleccion;
 import es.uned.pfg.ae.seleccion.SeleccionFactory;
 import es.uned.pfg.ae.terminacion.Terminacion;
 import es.uned.pfg.ae.terminacion.TerminacionFija;
+import es.uned.pfg.ae.utils.Utils;
 import es.uned.pfg.ae.web.Servidor;
 
+import javax.rmi.CORBA.Util;
 import java.util.Arrays;
 
 /**
@@ -56,6 +58,13 @@ public class Bootstrap {
 
 		Terminacion terminacion = new TerminacionFija(conf.getGeneraciones());
 
+		System.out.println("Funcion: " + f);
+		System.out.println("Seleccion: " + seleccion);
+		System.out.println("Recombinacion: " + recombinacion);
+		System.out.println("Mutacion: " + mutacion);
+		System.out.println("Tamaño poblacional: " + t);
+		System.out.println("Generaciones: " + conf.getGeneraciones());
+		System.out.println("");
 
 		AlgoritmoGenetico ag = new AlgoritmoGenetico(poblacion, seleccion,
 													 recombinacion, mutacion,
@@ -63,19 +72,56 @@ public class Bootstrap {
 
 		ag.comenzar();
 
-		individuos = poblacion.getIndividuos();
-		Arrays.sort(individuos);
+		Individuo mejor = poblacion.getMejorIndividuo();
 
-		int top = 20;
+		double mejorFitnes = mejor.getFitness();
+		double[] mejorCoordenadas = mejor.getValores();
+		double[] centroide = poblacion.getCentroide();
 
-		System.out.println("=== Top " + top + " Individuos ===");
-		for (int i = 0; i < Math.min(top, individuos.length); i++) {
-			System.out.println(individuos[i]);
-		}
+		double desviacion = poblacion.getDesviacion();
+		double tiempo = ag.getTiempo();
+
+		imprimirResultado(mejorFitnes, mejorCoordenadas, centroide, desviacion,
+						  tiempo);
 
 		BasePlot basePlot = new BasePlot(f, conf.getGeneraciones());
 		basePlot.setMostrarLeyenda(false);
 		basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getMomentosInercia());
 		basePlot.guardar(Benchmark.ANCHO, Benchmark.ALTO);
+	}
+
+	private static void imprimirResultado(double mejor, double[] coords,
+										  double[] centroide, double desviacion,
+										  double tiempo)
+	{
+		System.out.println("-------------------");
+		System.out.println("Progreso finalizado");
+		System.out.println("-------------------");
+		System.out.println("");
+		System.out.println("Tiempo de Ejecucion: " +
+						   (int)(tiempo) + "ms");
+		System.out.println("");
+		System.out.println("Mejor Individuo");
+		System.out.println("\tFitness: " + Utils.toString(mejor));
+		System.out.println("\tCoordenadas: ");
+		for (int i = 0; i < coords.length; i++) {
+
+			System.out.println("\t\t" + padIzq("x" + (i + 1), 3) + ": " +
+					Utils.toString(coords[i]));
+		}
+		System.out.println("");
+		System.out.println("Centroide de la Poblacion (promedio):");
+		for (int i = 0; i < coords.length; i++) {
+			System.out.println("\t\t" + padIzq("x" + (i + 1), 3) + ": " +
+								Utils.toString(centroide[i]));
+		}
+		System.out.println("");
+		System.out.println("Desviacion Tipica de la poblacion con respecto " +
+						   "al centroide: " + Utils.toString(desviacion));
+		System.out.println("");
+	}
+
+	private static String padIzq(String s, int n) {
+		return String.format("%1$" + n + "s", s);
 	}
 }
