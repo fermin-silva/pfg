@@ -402,7 +402,7 @@
                   $('#resultado')
                       .append('<h1 class="underline">Resultado de la Ejecución</h1>')
                       .append('<br><br>')
-                      .append('<p>Tiempo de Ejecucion: ' + data.tiempo + 'ms</p>')
+                      .append('<p>Tiempo de Ejecucion: <b>' + data.tiempo + 'ms</b></p>')
                       .append('<p>Fitness del mejor individuo obtenido: <b>' +
                               data.minimo.toFixed(3) + '</b></p>')
                       .append('<p>Coordenadas del mínimo:</p>')
@@ -412,6 +412,9 @@
                       .append('<p>Coordenadas del centroide:</p>')
                       .append('<ul class="list-unstyled">' + centro.join('') + '</ul>')
                       .append('<div class="clearfix"><br></div>')
+                      .append('<br>')
+                      .append('<p>Desviación final de la población: <b>' +
+                              data.desviacion.toFixed(3) + '</b></p>')
                       .append('<hr>')
                       .append('<p>La curva de progreso a continuación muestra la fitness del mejor individuo en las sucesivas iteraciones:</p>')
                       .append(progreso)
