@@ -5,7 +5,7 @@
     <title>PFG Algoritmos Geneticos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="./bootstrap.css" media="screen">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="./assets/css/bootswatch.min.css">
     <link rel="shortcut icon" href="http://portal.uned.es/favicon.png" />
     <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
@@ -14,7 +14,7 @@
     <!--[if lt IE 9]>
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="../bower_components/respond/dest/respond.min.js"></script>
-    <![endif]-->   
+    <![endif]-->
   </head>
   <body>
   	<!-- top nav bar -->
@@ -65,7 +65,7 @@
 	            <p class="lead">Descargar, Compilar, Ejecutar</p>
 	          </div>
 	    	</div>
-	    </div>	
+	    </div>
 
       <div class="row">
           <div class="col-lg-10">
@@ -76,7 +76,7 @@
               </p>
               <p>
                 De no querer instalar la aplicación, puede accederse a una versión pública online desde la plataforma GitHub pinchando <a href="http://fermin-silva.github.io/pfg/">aquí</a>. <br>
-                Alternativamente, puede ejecutarse la aplicación en el propio ordenador y acceder al navegador. 
+                Alternativamente, puede ejecutarse la aplicación en el propio ordenador y acceder al navegador.
                 Se verá a continuación como realizarlo.
             	</p>
               <p>
@@ -85,7 +85,7 @@
           </div>
       </div> <!-- fin introduccion -->
 
-      <div class="row linkable" id="secciones"> 
+      <div class="row linkable" id="secciones">
           <div class="col-lg-4 text">
             <div class="list-group">
               <span class="list-group-item active">
@@ -104,7 +104,7 @@
                 <p class="list-group-item-text">Ayuda de ejecución</p>
               </a>
             </div>
-          </div> 
+          </div>
       </div>
 
 
@@ -145,10 +145,10 @@
             </p>
             <h3>Pasos</h3>
             <ol>
-              
+
               <li> <!-- paso 1 -->
                 <p>
-                	Descargar una copia de la última versión del código: 
+                	Descargar una copia de la última versión del código:
                 </p>
                 <div>
                   <pre><span class="gp">$ </span>git clone https://github.com/fermin-silva/pfg.git</pre>
@@ -187,7 +187,7 @@
                 Una vez allí, podremos ejecutar el algoritmo de tres formas distintas:
                 <ol>
                   <li>
-                      <strong>Por línea de comandos</strong>: ejecución básica del algoritmo. Se eligen los parámetros y se 
+                      <strong>Por línea de comandos</strong>: ejecución básica del algoritmo. Se eligen los parámetros y se
                       imprime el resultado por pantalla en modo texto.
                   </li>
                   <li>
@@ -199,7 +199,7 @@
                   </li>
                 </ol>
               </p>
-              
+
               <h3>Ejecución por línea de comandos</h3>
               <p>
                 En los ejemplos se mostrarán ejecuciones en un entorno Linux. De ejecutarse en Windows,
@@ -209,16 +209,16 @@
               <div><pre><span class="gp">$ </span>sh ejecutar.sh -f Schwefel -r Simple -s Torneo -d 10 -g 100</pre></div>
               <p>
                 Con ello se ejecutará el algoritmo con la Funcion Schwefel de 10 dimensiones, Recombinación Simple y Torneo Binario, por 100 generaciones. <br>
-                La salida del algoritmo contendrá el mínimo obtenido y sus cordenadas, así como otros datos 
-                de interés. 
+                La salida del algoritmo contendrá el mínimo obtenido y sus cordenadas, así como otros datos
+                de interés.
               </p>
               <p>
-                También se generarán dos imágenes con las curvas de progreso. Tomar nota de las direcciones 
+                También se generarán dos imágenes con las curvas de progreso. Tomar nota de las direcciones
                 y abrirlas con cualquier explorador de archivos. <br>
                 Ejemplo de las imágenes de salida:
               </p>
               <div><pre>
-... 
+...
 Guardando el archivo en /Users/dev/workspace/pfg/./Schwefel(10)_momento.png
 Guardando el archivo en /Users/dev/workspace/pfg/./Schwefel(10)_progreso.png</pre></div>
 
@@ -226,7 +226,7 @@ Guardando el archivo en /Users/dev/workspace/pfg/./Schwefel(10)_progreso.png</pr
               <p>Nuevamente en la línea de comandos, ejecutar:</p>
               <div><pre><span class="gp">$ </span>sh ejecutar.sh -puerto 8080</pre></div>
               <p>
-                Esto ejecutará el servidor web en el puerto especificado indefinidamente, hasta que se 
+                Esto ejecutará el servidor web en el puerto especificado indefinidamente, hasta que se
                 cancele la ejecución con la señal <code>CTRL+C</code>.
               </p>
               <p>
@@ -237,12 +237,12 @@ Guardando el archivo en /Users/dev/workspace/pfg/./Schwefel(10)_progreso.png</pr
 
               <h3>Ejecución de las pruebas de rendimiento</h3>
               <p>
-                Es similar a la ejecución normal por línea de comandos, sólo que no se utiliza el parámetro de 
-                Recombinación (ya que se utilizan todas). Debe agregarse el parámetro <code>-benchmark</code> 
+                Es similar a la ejecución normal por línea de comandos, sólo que no se utiliza el parámetro de
+                Recombinación (ya que se utilizan todas). Debe agregarse el parámetro <code>-benchmark</code>
                 para indicar que se quieren realizar las pruebas de rendimiento.
               </p>
               <p>
-                La salida del algoritmo es una serie de imágenes (curva de progreso, curva de convergencia 
+                La salida del algoritmo es una serie de imágenes (curva de progreso, curva de convergencia
                 de la población y tiempos) por cada función y recombinación en el directorio actual.
               </p>
           </div>
@@ -309,13 +309,13 @@ Usage: &lt;main class&gt; [options]
 		        </div>
 			  </div>
 			</div>
-	        
+
 
 	    </footer>
 
 	</div> <!-- END container -->
 
-	
+
 
     <!-- <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script> -->
     <script src="./bower_components/jquery/jquery-1.10.2.min.js"></script>
