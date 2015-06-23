@@ -28,6 +28,7 @@ public class BaseHandler extends AbstractHandler {
 
         //TODO completar recursos REST
         recursos.put("/api/ag", new RecursoAG(config, imgPath, webPath));
+        recursos.put("/host.js", new RecursoHost(config, imgPath, webPath));
     }
 
     @Override
@@ -52,6 +53,7 @@ public class BaseHandler extends AbstractHandler {
                 String respuesta = recurso.get(new MultiMap(parametros));
 
                 response.setContentType("application/json;charset=utf-8");
+                response.setHeader("Access-Control-Allow-Origin", "*");
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().println(respuesta);
             }
