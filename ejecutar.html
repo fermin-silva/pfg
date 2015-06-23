@@ -369,14 +369,14 @@
     <script src="./bower_components/jquery/jquery-1.10.2.min.js"></script>
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./assets/js/bootswatch.js"></script>
-
+    <script src="./host.js"></script>
     <script type="text/javascript">
       $('#theForm').submit(function() {
            $theForm = $(this);
 
            $.ajax({
                type: $theForm.attr('method'),
-               url: "/api/ag",
+               url: host + "/api/ag",
                data: $theForm.serialize(),
                success: function(data) {
                   var progreso = document.createElement("img");
@@ -428,8 +428,43 @@
                   })(jQuery);
 
                   $("#ejecutar").attr("disabled", false).html("Ejecutar");
-               }
-            });
+               }, // fin on success
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                var html = '<div class="row">' +
+                                '<div class="col-lg-12">' +
+                                  '<div class="bs-component">' +
+                                    '<div class="alert alert-dismissible alert-danger">' +
+                                      '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                                      '<h4>Error!</h4>' +
+                                      '<p>[[MENSAJE]]</p>' +
+                                    '</div>' +
+                                  '</div>' +
+                                '</div>' +
+                              '</div>';
+
+                var error = "";
+                var mensaje = "";
+
+                if (XMLHttpRequest.status == 0) {
+                  error = "Error!";
+                  mensaje = "No se pudo conectar con el servidor, revise " +
+                            "su conexión y que la dirección del servidor " +
+                            "funcione correctamente. <br>" +
+                            "Si se está utilizando el servidor local, asegurese que " +
+                            "este esté ejecutandose correctamente.";
+                }
+                else {
+                  error = "Error HTTP " + XMLHttpRequest.status + " (" +
+                                       textStatus + ")";
+                  mensaje = errorThrown;
+                }
+
+                $('#resultado').html(html.replace("[[ERROR]]", error)
+                                         .replace("[[MENSAJE]]", mensaje));
+
+                $("#ejecutar").attr("disabled", false).html("Ejecutar");
+              } //fin on error
+            }); //fin de la llamada ajax
 
             $("#ejecutar").attr("disabled", true);
             $("#ejecutar").html('<i class="fa fa-refresh fa-spin"></i>');
