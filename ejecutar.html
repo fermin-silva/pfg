@@ -380,11 +380,11 @@
                data: $theForm.serialize(),
                success: function(data) {
                   var progreso = document.createElement("img");
-                  progreso.setAttribute('src', data['img.progreso']);
+                  progreso.setAttribute('src', host + data['img.progreso']);
                   progreso.setAttribute('width', '100%');
 
                   var convergencia = document.createElement("img");
-                  convergencia.setAttribute('src', data['img.momento']);
+                  convergencia.setAttribute('src', host + data['img.momento']);
                   convergencia.setAttribute('width', '100%');
 
                   var coords = new Array();
