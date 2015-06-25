@@ -49,11 +49,12 @@ public class BaseHandler extends AbstractHandler {
         if (recurso != null && metodo.equalsIgnoreCase("GET")) {
             Map<String, String[]> parametros = request.getParameterMap();
 
+            response.setHeader("Access-Control-Allow-Origin", "*");
+
             try {
                 String respuesta = recurso.get(new MultiMap(parametros));
 
                 response.setContentType("application/json;charset=utf-8");
-                response.setHeader("Access-Control-Allow-Origin", "*");
                 response.setStatus(HttpServletResponse.SC_OK);
                 response.getWriter().println(respuesta);
             }
