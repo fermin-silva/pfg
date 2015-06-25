@@ -49,14 +49,14 @@ public class GraficadorBarras {
         renderer.setBarPainter(new StandardBarPainter());
         renderer.setShadowVisible(false);
 
-        renderer.setSeriesPaint(0, new Color(226, 34, 34, 180));
-        renderer.setSeriesPaint(1, new Color(83, 152, 218, 180));
-        renderer.setSeriesPaint(2, new Color(246, 162, 54, 180));
-        renderer.setSeriesPaint(3, new Color(96, 189, 104, 180));
-        renderer.setSeriesPaint(4, new Color(171, 107, 235, 180));
-        renderer.setSeriesPaint(5, new Color(178, 145, 47, 180));
-        renderer.setSeriesPaint(6, new Color(222, 207, 63, 180));
-        renderer.setSeriesPaint(7, new Color(77, 77, 77, 180));
+        renderer.setSeriesPaint(0, new Color(44, 62, 80, 200));
+        renderer.setSeriesPaint(1, new Color(226, 34, 34, 200));
+        renderer.setSeriesPaint(2, new Color(246, 162, 54, 200));
+        renderer.setSeriesPaint(3, new Color(96, 189, 104, 200));
+        renderer.setSeriesPaint(4, new Color(171, 107, 235, 200));
+        renderer.setSeriesPaint(5, new Color(178, 145, 47, 200));
+        renderer.setSeriesPaint(6, new Color(222, 207, 63, 200));
+        renderer.setSeriesPaint(7, new Color(77, 77, 77, 200));
 
         CategoryPlot plot = new CategoryPlot(dataset, xAxis, yAxis, renderer);
 

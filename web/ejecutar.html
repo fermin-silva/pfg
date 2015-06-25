@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="http://portal.uned.es/favicon.png" />
     <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/ekko-lightbox.min.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
@@ -112,12 +113,16 @@
 
                 <div class="input-group">
                   <select class="form-control" id="selectFuncion" name="funcion">
-                    <option selected="selected">Rastrigin</option>
-                    <option>Griewank</option>
-                    <option>Schaffer2</option>
-                    <option>Schubert</option>
-                    <option>Ackley</option>
-                    <option>Schwefel</option>
+                    <optgroup label="Multidimensionales">
+                      <option selected="selected">Rastrigin</option>
+                      <option>Griewank</option>
+                      <option>Ackley</option>
+                      <option>Schwefel</option>
+                    </optgroup>
+                    <optgroup label="Dos Dimensiones">
+                      <option>Schaffer2</option>
+                      <option>Schubert</option>
+                    </optgroup>
                   </select>
                   <span class="input-group-btn">
                     <a href="#" class="btn btn-info" title="" data-toggle="popover"
@@ -154,14 +159,20 @@
 
                 <div class="input-group">
                   <select class="form-control" id="selectRecombinacion" name="recombinacion">
-                    <option>NoOp</option>
-                    <option selected="selected">DiscretaBGA</option>
-                    <option>AlphaBeta</option>
-                    <option>K</option>
-                    <option>AritmeticaCompleta</option>
-                    <option>Simple</option>
-                    <option>Unica</option>
-                    <option>UnPunto</option>
+                    <optgroup label="Discretas">
+                      <option selected="selected">DiscretaBGA</option>
+                      <option>UnPunto</option>
+                    </optgroup>
+                    <optgroup label="Aritméticas">
+                      <option>AlphaBeta</option>
+                      <option>K</option>
+                      <option>AritmeticaCompleta</option>
+                      <option>Simple</option>
+                      <option>Unica</option>
+                    </optgroup>
+                    <optgroup label="Otras">
+                      <option>NoOp</option>
+                    </optgroup>
                   </select>
                   <span class="input-group-btn">
                     <a href="#" class="btn btn-info" title="" data-toggle="popover"
@@ -175,7 +186,7 @@
               </div>  <!-- Fin seleccion de recombinacion -->
 
               <div class="form-group"> <!-- select seleccion -->
-                <label for="selectSeleccion" class="col-xs-6 control-label">Selección</label>
+                <label for="selectSeleccion" class="col-xs-6 control-label">Selección de Padres</label>
 
                 <div class="input-group">
                   <select class="form-control" id="selectSeleccion" name="seleccion">
@@ -240,8 +251,8 @@
                   <input type="text" class="form-control" value="0.05" id="probMutacion" name="probabilidad.mutacion">
                   <span class="input-group-btn">
                     <a href="#" class="btn btn-info" title="" data-toggle="popover"
-                       data-trigger="focus" data-placement="right"
-                       data-content="Probabilidad de mutación entre [0, 1]">
+                       data-trigger="focus" data-placement="right" data-html="true"
+                       data-content="Probabilidad de mutación <b>para cada gen</b>. Debe valer entre [0, 1]">
                       <i class="fa fa-question-circle"></i>
                     </a>
                   </span>
@@ -258,11 +269,16 @@
                     <option>3</option>
                     <option>4</option>
                     <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
                   </select>
                   <span class="input-group-btn">
                     <a href="#" class="btn btn-info" title="" data-toggle="popover"
                        data-trigger="focus" data-placement="right"
-                       data-content="Cantidad de ejes a recombinar">
+                       data-content="Cantidad de ejes a recombinar. Debe ser menor o igual que la dimensión de la población">
                       <i class="fa fa-question-circle"></i>
                     </a>
                   </span>
@@ -276,21 +292,15 @@
                 <label for="selectTamanioTorneo" class="col-xs-6 control-label">Tamaño del Torneo</label>
 
                 <div class="input-group">
-                  <select class="form-control" id="selectTamanioTorneo" name="tamaño.torneo">
-                    <option>2</option>
-                    <option selected="selected">4</option>
-                    <option>6</option>
-                    <option>8</option>
-                  </select>
+                  <input type="text" class="form-control" value="2" id="desviacion" name="tamaño.torneo">
                   <span class="input-group-btn">
                     <a href="#" class="btn btn-info" title="" data-toggle="popover"
                        data-trigger="focus" data-placement="right"
-                       data-content="Tamaño del torneo (aplica solamente a Selección por Torneo)">
+                       data-content="Número entero mayor que 1 y menor que el tamaño de la población">
                       <i class="fa fa-question-circle"></i>
                     </a>
                   </span>
                 </div>
-
                 <span class="help-block col-sm-6 col-sm-offset-6">Aplicable solamente a la Selección por Torneo</span>
 
               </div>  <!-- Fin tamaño del torneo -->
@@ -312,7 +322,7 @@
                 <label for="beta" class="col-sm-3 col-xs-6 control-label">Beta</label>
 
                 <div class="input-group col-sm-3 col-xs-6" style="float: left;">
-                  <input type="text" class="form-control" value="0.1" id="beta" name="beta">
+                  <input type="text" class="form-control" value="0.3" id="beta" name="beta">
                   <span class="input-group-btn">
                     <a href="#" class="btn btn-info" title="" data-toggle="popover"
                        data-trigger="focus" data-placement="right"
@@ -338,7 +348,7 @@
       </div>
     </div> <!-- FIN del form input -->
 
-    <div id="anclaje" />
+    <div id="anclaje"></div>
 
     <div class="row linkable"> <!-- Inicio del form input -->
       <div class="col-md-8">
@@ -369,6 +379,9 @@
     <script src="./bower_components/jquery/jquery-1.10.2.min.js"></script>
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./assets/js/bootswatch.js"></script>
+    <script src="./assets/js/ekko-lightbox.min.js"></script>
+    <script src="./assets/js/lightbox_init.js"></script>
+
     <script src="./host.js"></script>
     <script type="text/javascript">
       $('#theForm').submit(function() {
@@ -383,9 +396,21 @@
                   progreso.setAttribute('src', host + "/" + data['img.progreso']);
                   progreso.setAttribute('width', '100%');
 
+                  var aProgreso = document.createElement("a");
+                  aProgreso.setAttribute("href", host + "/" + data['img.progreso']);
+                  aProgreso.setAttribute("data-toggle", "lightbox");
+                  aProgreso.appendChild(progreso);
+
+
                   var convergencia = document.createElement("img");
                   convergencia.setAttribute('src', host + "/" + data['img.momento']);
                   convergencia.setAttribute('width', '100%');
+
+                  var aConvergencia = document.createElement("a");
+                  aConvergencia.setAttribute("href", host + "/" + data['img.momento']);
+                  aConvergencia.setAttribute("data-toggle", "lightbox");
+                  aConvergencia.appendChild(convergencia);
+
 
                   var coords = new Array();
                   $.each(data.coords, function(i, coord) {
@@ -402,9 +427,9 @@
                   $('#resultado')
                       .append('<h1 class="underline">Resultado de la Ejecución</h1>')
                       .append('<br><br>')
-                      .append('<p>Tiempo de Ejecucion: <b>' + data.tiempo + 'ms</b></p>')
-                      .append('<p>Fitness del mejor individuo obtenido: <b>' +
-                              data.minimo.toFixed(3) + '</b></p>')
+                      .append('<p>Tiempo de Ejecución: <b>' + data.tiempo + 'ms</b></p>')
+                      .append('<p>Fitness del mejor Individuo obtenido: <b>' +
+                              data.mejorFitness.toFixed(3) + '</b></p>')
                       .append('<p>Coordenadas del mínimo:</p>')
                       .append('<ul class="list-unstyled">' + coords.join('') + '</ul>')
                       .append('<div class="clearfix"><br></div>')
@@ -413,14 +438,17 @@
                       .append('<ul class="list-unstyled">' + centro.join('') + '</ul>')
                       .append('<div class="clearfix"><br></div>')
                       .append('<br>')
-                      .append('<p>Desviación final de la población: <b>' +
-                              data.desviacion.toFixed(3) + '</b></p>')
                       .append('<hr>')
                       .append('<p>La curva de progreso a continuación muestra la fitness del mejor individuo en las sucesivas iteraciones:</p>')
-                      .append(progreso)
+                      .append(aProgreso)
+                      .append('<p>Valor mínimo encontrado: <b>' +
+                              data.minimo.toFixed(3) + '</b> (mínimo global en <b>' +
+                              data.minimoGlobal.toFixed(3)+ '</b>)</p>')
                       .append('<br><hr>')
                       .append('<p>La curva a continuación muestra la convergencia de la población, medida como la desviación típica de la población con respecto a su centroide:</p>')
-                      .append(convergencia);
+                      .append(aConvergencia)
+                      .append('<p>Desviación final de la población: <b>' +
+                              data.desviacion.toFixed(3) + '</b></p>');
 
                   (function($) {
                       $(document).ready(function() {
@@ -432,6 +460,7 @@
 
                   $("#ejecutar").attr("disabled", false).html("Ejecutar");
                }, // fin on success
+
               error: function(XMLHttpRequest, textStatus, errorThrown) {
                 var html = '<div class="row">' +
                                 '<div class="col-lg-12">' +

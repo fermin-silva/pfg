@@ -43,13 +43,22 @@ public class FuncionFactory {
 	}
 	
 	public static Funcion[] crearBenchmark(Configuracion conf) {
-		Funcion[] funciones = new Funcion[FUNCIONES.size()];
-		
-		int i = 0;
-		for (String nombre : FUNCIONES.keySet()) {
-			funciones[i++] = crear(conf, nombre);
+		Funcion[] funciones = null;
+
+		if (conf.getFuncionNoDefault() != null) {
+			Funcion f = crear(conf, conf.getFuncion());
+
+			funciones = new Funcion[]{ f };
 		}
-		
+		else {
+			funciones = new Funcion[FUNCIONES.size()];
+
+			int i = 0;
+			for (String nombre : FUNCIONES.keySet()) {
+				funciones[i++] = crear(conf, nombre);
+			}
+		}
+
 		return funciones;
 	}
 	

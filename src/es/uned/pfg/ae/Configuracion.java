@@ -113,6 +113,10 @@ public class Configuracion {
         return getString(params.funcion, PROP_FUNCION, "Schwefel");
     }
 
+    public String getFuncionNoDefault() {
+        return getString(params.funcion, PROP_FUNCION, null);
+    }
+
     public Integer getPuerto() {
         return getInt(params.puerto, PROP_PUERTO, null);
     }

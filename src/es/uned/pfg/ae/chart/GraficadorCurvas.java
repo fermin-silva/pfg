@@ -125,8 +125,8 @@ public class GraficadorCurvas {
 			renderer.setSeriesStroke(i, new BasicStroke(2));
 		}
 
-		renderer.setSeriesPaint(0, new Color(226, 34, 34, 200));
-		renderer.setSeriesPaint(1, new Color(83, 152, 218, 200));
+		renderer.setSeriesPaint(0, new Color(44, 62, 80, 200));
+		renderer.setSeriesPaint(1, new Color(226, 34, 34, 200));
 		renderer.setSeriesPaint(2, new Color(246, 162, 54, 200));
 		renderer.setSeriesPaint(3, new Color(96, 189, 104, 200));
 		renderer.setSeriesPaint(4, new Color(171, 107, 235, 200));

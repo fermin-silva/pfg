@@ -42,7 +42,8 @@ public class ResultadoBenchmark {
 		if (min == null || individuo.getFitness() < min.getFitness()) {
 			min = individuo;
 		}
-		else if (max == null || individuo.getFitness() > max.getFitness()) {
+
+		if (max == null || individuo.getFitness() > max.getFitness()) {
 			max = individuo;
 		}
 

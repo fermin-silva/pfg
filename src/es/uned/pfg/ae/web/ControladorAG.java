@@ -58,15 +58,22 @@ public class ControladorAG {
         mapa.put("tiempo", ag.getTiempo());
 
         graficar(f, conf, ag, mapa);
-        agregarPoblacion(poblacion, mapa);
+        agregarPoblacion(poblacion, f, mapa);
 
         return mapa;
     }
 
-    protected void agregarPoblacion(Poblacion p, Map<String, Object> mapa) {
+    protected void agregarPoblacion(Poblacion p, Funcion f,
+                                    Map<String, Object> mapa)
+    {
         Individuo mejor = p.getMejorIndividuo();
 
-        mapa.put("minimo", mejor.getFitness());
+        double minimoGlobal = f.getMinimoGlobal();
+        double minimo = mejor.getValorFuncion();
+
+        mapa.put("minimo", minimo);
+        mapa.put("minimoGlobal", minimoGlobal);
+        mapa.put("mejorFitness", mejor.getFitness());
         mapa.put("coords", mejor.getValores());
         mapa.put("centroide", p.getCentroide());
         mapa.put("desviacion", p.getDesviacion());

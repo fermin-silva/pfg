@@ -29,7 +29,11 @@ public class Individuo implements Comparable<Individuo> {
 	protected Individuo() {
 		
 	}
-	
+
+	public double getValorFuncion() {
+		return funcion.calcular(valores);
+	}
+
 	public void calcularFitness() {
 		//TODO si es un problema de maximizacion, +funcion, sino -funcion
 		this.fitness = funcion.getMinimoGlobal() - funcion.calcular(valores);
