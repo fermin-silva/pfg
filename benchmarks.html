@@ -5,11 +5,13 @@
     <title>PFG Algoritmos Geneticos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="http://portal.uned.es/favicon.png" />
+
     <link rel="stylesheet" href="./assets/css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="./assets/css/bootswatch.min.css">
-    <link rel="shortcut icon" href="http://portal.uned.es/favicon.png" />
-    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/ekko-lightbox.min.css">
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
@@ -70,11 +72,226 @@
         <div class="col-xs-6">
           <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            Proximamente...
+            En construcción...
           </div>
         </div>
       </div>
     </div>
+
+    <div class="row">
+        <div class="col-lg-10">
+          <h1 class="underline" id="intro">Introducción</h1>
+          <div class="row">
+              <div class="col-sm-8 text">
+                <p>
+                  En esta sección se recopilan brevemente una serie de pruebas de rendimiento sobre
+                  un conjunto conocido de funciones. Se incluyen los parámetros de ejecución del
+                  algoritmo así como los gráficos con los resultados obtenidos. Las conclusiones
+                  sobre el rendimiento pueden obtenerse en el Capítulo 5 de la Memoria.
+                </p>
+              </div>
+              <div class="col-sm-4 text">
+                <div class="list-group">
+                  <span class="list-group-item active">
+                    <h4 class="list-group-item-heading">Funciones</h4>
+                  </span>
+                  <a href="#fAckley" class="list-group-item">
+                    <p class="list-group-item-text">Ackley</p>
+                  </a>
+                  <a href="#fGriewank" class="list-group-item">
+                    <p class="list-group-item-text">Griewank</p>
+                  </a>
+                  <a href="#fRastrigin" class="list-group-item">
+                    <p class="list-group-item-text">Rastrigin</p>
+                  </a>
+                  <a href="#fSchwefel" class="list-group-item">
+                    <p class="list-group-item-text">Schwefel</p>
+                  </a>
+                </div>
+              </div>
+          </div>
+
+        </div>
+    </div> <!-- fin introduccion -->
+
+    <!-- inicio funcion ackley -->
+    <div class="row linkable" id="fAckley">
+        <div class="col-lg-10">
+          <h2 class="text-center">Función Ackley</h2>
+            <br>
+            <p>Parámetros de Ejecución:</p>
+            <div>
+              <pre style="white-space: pre-line;"><span class="gp">$ </span>sh ejecutar.sh -f Ackley -elitismo -benchmark -g 100 -t 1000 -s Torneo -m Normal -desviacion 0.5 -k 3 -tamañoTorneo 2 -d 20 -alpha 0.1 -beta 0.3 -probMutacion 0.01</pre>
+            </div>
+
+            <!-- inicio de las navs-->
+            <ul class="nav nav-tabs">
+              <li class="active"><a aria-expanded="true" href="#progresoAckley" data-toggle="tab">Curva de Progreso</a></li>
+              <li class=""><a aria-expanded="false" href="#boxplotAckley" data-toggle="tab">BoxPlot</a></li>
+              <li class=""><a aria-expanded="false" href="#convergenciaAckley" data-toggle="tab">Curva de Convergencia</a></li>
+              <li class=""><a aria-expanded="false" href="#tiemposAckley" data-toggle="tab">Tiempos de Ejecución</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="progresoAckley">
+                <a href="benchmarks/Ackley_progreso.png" data-toggle="lightbox">
+                    <img src="benchmarks/Ackley_progreso.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="boxplotAckley">
+                <a href="benchmarks/Ackley_boxplot.png" data-toggle="lightbox">
+                    <img src="benchmarks/Ackley_boxplot.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="convergenciaAckley">
+                <a href="benchmarks/Ackley_convergencia.png" data-toggle="lightbox">
+                    <img src="benchmarks/Ackley_convergencia.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tiemposAckley">
+                <a href="benchmarks/Ackley_tiempos.png" data-toggle="lightbox">
+                    <img src="benchmarks/Ackley_tiempos.png" width="100%">
+                </a>
+              </div>
+            </div>
+            <!-- fin de las navs -->
+
+        </div>
+    </div> <!-- fin ackley -->
+
+
+    <!-- inicio funcion griewank -->
+    <div class="row linkable" id="fGriewank">
+        <div class="col-lg-10">
+          <h2  class="text-center">Función Griewank</h2>
+            <br>
+            <p>Parámetros de Ejecución:</p>
+            <div>
+              <pre style="white-space: pre-line;"><span class="gp">$ </span>sh ejecutar.sh -f Griewank -elitismo -benchmark -g 100 -t 1000 -s Torneo -m Normal -desviacion 1.0 -k 3 -tamañoTorneo 2 -d 20 -alpha 0.1 -beta 0.3 -probMutacion 0.01</pre>
+            </div>
+
+            <!-- inicio de las navs-->
+            <ul class="nav nav-tabs">
+              <li class="active"><a aria-expanded="true" href="#progresoGriewank" data-toggle="tab">Curva de Progreso</a></li>
+              <li class=""><a aria-expanded="false" href="#boxplotGriewank" data-toggle="tab">BoxPlot</a></li>
+              <li class=""><a aria-expanded="false" href="#convergenciaGriewank" data-toggle="tab">Curva de Convergencia</a></li>
+              <li class=""><a aria-expanded="false" href="#tiemposGriewank" data-toggle="tab">Tiempos de Ejecución</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="progresoGriewank">
+                <a href="benchmarks/Griewank_progreso.png" data-toggle="lightbox">
+                    <img src="benchmarks/Griewank_progreso.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="boxplotGriewank">
+                <a href="benchmarks/Griewank_boxplot.png" data-toggle="lightbox">
+                    <img src="benchmarks/Griewank_boxplot.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="convergenciaGriewank">
+                <a href="benchmarks/Griewank_convergencia.png" data-toggle="lightbox">
+                    <img src="benchmarks/Griewank_convergencia.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tiemposGriewank">
+                <a href="benchmarks/Griewank_tiempos.png" data-toggle="lightbox">
+                    <img src="benchmarks/Griewank_tiempos.png" width="100%">
+                </a>
+              </div>
+            </div>
+            <!-- fin de las navs -->
+
+        </div>
+    </div> <!-- fin griewank -->
+
+
+    <!-- inicio funcion Rastrigin -->
+    <div class="row linkable" id="fRastrigin">
+        <div class="col-lg-10">
+          <h2 class="text-center">Función Rastrigin</h2>
+            <br>
+            <p>Parámetros de Ejecución:</p>
+            <div>
+              <pre style="white-space: pre-line;"><span class="gp">$ </span>sh ejecutar.sh -f Rastrigin -elitismo -benchmark -g 100 -t 1000 -s Torneo -m Normal -desviacion 2.0 -k 3 -tamañoTorneo 4 -d 20 -alpha 0.1 -beta 0.3 -probMutacion 0.01</pre>
+            </div>
+
+            <!-- inicio de las navs-->
+            <ul class="nav nav-tabs">
+              <li class="active"><a aria-expanded="true" href="#progresoRastrigin" data-toggle="tab">Curva de Progreso</a></li>
+              <li class=""><a aria-expanded="false" href="#boxplotRastrigin" data-toggle="tab">BoxPlot</a></li>
+              <li class=""><a aria-expanded="false" href="#convergenciaRastrigin" data-toggle="tab">Curva de Convergencia</a></li>
+              <li class=""><a aria-expanded="false" href="#tiemposRastrigin" data-toggle="tab">Tiempos de Ejecución</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="progresoRastrigin">
+                <a href="benchmarks/Rastrigin_progreso.png" data-toggle="lightbox">
+                    <img src="benchmarks/Rastrigin_progreso.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="boxplotRastrigin">
+                <a href="benchmarks/Rastrigin_boxplot.png" data-toggle="lightbox">
+                    <img src="benchmarks/Rastrigin_boxplot.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="convergenciaRastrigin">
+                <a href="benchmarks/Rastrigin_convergencia.png" data-toggle="lightbox">
+                    <img src="benchmarks/Rastrigin_convergencia.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tiemposRastrigin">
+                <a href="benchmarks/Rastrigin_tiempos.png" data-toggle="lightbox">
+                    <img src="benchmarks/Rastrigin_tiempos.png" width="100%">
+                </a>
+              </div>
+            </div>
+            <!-- fin de las navs -->
+
+        </div>
+    </div> <!-- fin Rastrigin -->
+
+
+    <!-- inicio funcion Schwefel -->
+    <div class="row linkable" id="fSchwefel">
+        <div class="col-lg-10">
+          <h2 class="text-center">Función Schwefel</h2>
+            <br>
+            <p>Parámetros de Ejecución:</p>
+            <div>
+              <pre style="white-space: pre-line;"><span class="gp">$ </span>sh ejecutar.sh -f Schwefel -elitismo -benchmark -g 100 -t 2000 -s Torneo -m Normal -desviacion 15 -k 3 -tamañoTorneo 2 -d 20 -alpha 0.1 -beta 0.3 -probMutacion 0.001</pre>
+            </div>
+
+            <!-- inicio de las navs-->
+            <ul class="nav nav-tabs">
+              <li class="active"><a aria-expanded="true" href="#progresoSchwefel" data-toggle="tab">Curva de Progreso</a></li>
+              <li class=""><a aria-expanded="false" href="#boxplotSchwefel" data-toggle="tab">BoxPlot</a></li>
+              <li class=""><a aria-expanded="false" href="#convergenciaSchwefel" data-toggle="tab">Curva de Convergencia</a></li>
+              <li class=""><a aria-expanded="false" href="#tiemposSchwefel" data-toggle="tab">Tiempos de Ejecución</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="progresoSchwefel">
+                <a href="benchmarks/Schwefel_progreso.png" data-toggle="lightbox">
+                    <img src="benchmarks/Schwefel_progreso.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="boxplotSchwefel">
+                <a href="benchmarks/Schwefel_boxplot.png" data-toggle="lightbox">
+                    <img src="benchmarks/Schwefel_boxplot.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="convergenciaSchwefel">
+                <a href="benchmarks/Schwefel_convergencia.png" data-toggle="lightbox">
+                    <img src="benchmarks/Schwefel_convergencia.png" width="100%">
+                </a>
+              </div>
+              <div class="tab-pane fade" id="tiemposSchwefel">
+                <a href="benchmarks/Schwefel_tiempos.png" data-toggle="lightbox">
+                    <img src="benchmarks/Schwefel_tiempos.png" width="100%">
+                </a>
+              </div>
+            </div>
+            <!-- fin de las navs -->
+
+        </div>
+    </div> <!-- fin Schwefel -->
 
 		<footer>
 			<div class="panel panel-default">
@@ -89,9 +306,7 @@
 		        </div>
 			  </div>
 			</div>
-
-
-	    </footer>
+    </footer>
 
 	</div> <!-- END container -->
 
@@ -99,5 +314,7 @@
     <script src="./bower_components/jquery/jquery-1.10.2.min.js"></script>
     <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="./assets/js/bootswatch.js"></script>
+    <script src="./assets/js/ekko-lightbox.min.js"></script>
+    <script src="./assets/js/lightbox_init.js"></script>
   </body>
 </html>
