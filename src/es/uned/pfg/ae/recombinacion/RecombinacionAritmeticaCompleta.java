@@ -26,7 +26,6 @@ public class RecombinacionAritmeticaCompleta extends RecombinacionAlpha {
 	private double max;
 
 
-	//TODO y si se usa alpha = nextGaussian centrado en cero y con stdev de 1/3 ?
 	public RecombinacionAritmeticaCompleta() {
 
 	}
@@ -47,9 +46,8 @@ public class RecombinacionAritmeticaCompleta extends RecombinacionAlpha {
 			y2[i] = Utils.clamp(y2[i], min, max);
 		}
 
-		//TODO cambiarle la iteracion, no es cero!
-		return new Individuo[] { new Individuo(0, x2, funcion),
-								 new Individuo(0, y2, funcion) };
+		return new Individuo[] { new Individuo(x2, funcion),
+								 new Individuo(y2, funcion) };
 	}
 	
 	@Override

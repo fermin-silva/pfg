@@ -55,14 +55,11 @@ public class RecombinacionAlphaBeta extends RecombinacionAlpha {
 			x2[i] = (1 - alpha) * y[i] + alpha * x[i];
 		}
 		
-		//TODO estudiar el espacio de soluciones segun posibles valores de alpha y beta (donde pueden caer las crias)
-		
 		x2[i] = Utils.clamp(x2[i], min, max);
 		y2[i] = Utils.clamp(y2[i], min, max);			
 		
-		//TODO cambiarle la iteracion, no es cero!
-		return new Individuo[] { new Individuo(0, x2, funcion), 
-								 new Individuo(0, y2, funcion) };
+		return new Individuo[] { new Individuo(x2, funcion),
+								 new Individuo(y2, funcion) };
 	}
 
 	@Override

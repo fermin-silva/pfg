@@ -15,9 +15,9 @@ public class TestRecombinacionSimple {
 		Aleatorio a = new AleatorioMock();
 		Funcion f = new FuncionSchwefel();
 		
-		//                                               >> | << ese es el punto de cruce  
-		Individuo i1 = new Individuo(0, new double[] { 1, 2, 3, 4 }, f);
-		Individuo i2 = new Individuo(0, new double[] { 5, 6, 7, 8 }, f);
+		//                                           >> | << ese es el punto de cruce
+		Individuo i1 = new Individuo(new double[] { 1, 2, 3, 4 }, f);
+		Individuo i2 = new Individuo(new double[] { 5, 6, 7, 8 }, f);
 		
 		RecombinacionSimple recombinacion = new RecombinacionSimple();
 		

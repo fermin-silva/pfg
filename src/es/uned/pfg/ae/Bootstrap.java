@@ -27,9 +27,6 @@ import java.util.Arrays;
 public class Bootstrap {
 
 	public static void main(String[] args) throws Exception {
-		//TODO profilear usando el parametro -J-agentlib:hprof=cpu=times
-		// http://docs.oracle.com/javase/7/docs/technotes/samples/hprof.html
-
 		Configuracion conf = new Configuracion(Parametros.crear(args));
 
 		if (conf.isBenchmark()) {

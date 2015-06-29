@@ -99,9 +99,9 @@ public class GraficadorCurvas {
 				nombreEje,             // y axis label
 				dataset,
 				PlotOrientation.VERTICAL,
-				true,                     // incluir leyenda
-				true,                     // tooltips
-				false                     // urls
+				true,                  // incluir leyenda
+				true,                  // tooltips
+				false                  // urls
 		);
 
 		chart.setBackgroundPaint(Color.white);
@@ -150,20 +150,6 @@ public class GraficadorCurvas {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-	}
-
-	//TODO eliminar este main de prueba
-	public static void main(String[] args) {
-		GraficadorCurvas graf = new GraficadorCurvas("Prueba", "y", 300);
-		Random rnd = new Random();
-
-		for (int j = 0; j < 5; j++) {
-			for (int i = 0; i < 100; i++) {
-				graf.agregar("funcion" + j, i, rnd.nextInt(300));
-			}
-		}
-
-		graf.show();
 	}
 }
 

@@ -72,7 +72,6 @@ public abstract class Poblacion {
 			}
 		}
 
-		//TODO diferencias entre devolver con o sin raiz cuadrada
 		return Math.sqrt(sum / individuos.length);
 	}
 
@@ -97,10 +96,6 @@ public abstract class Poblacion {
 
 	public Individuo[] getIndividuos() {
 		return individuos;
-	}
-	
-	public int getTamaño() {
-		return individuos.length;
 	}
 	
 	@Override

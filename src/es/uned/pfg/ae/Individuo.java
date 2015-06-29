@@ -15,11 +15,8 @@ public class Individuo implements Comparable<Individuo> {
 	
 	private Funcion funcion;
 	
-	private int generacion;
-	
 	//TODO valores deberia ser un genotipo y el individuo tener el mapeo a fenotipo?
-	public Individuo(int generacion, double[] valores, Funcion f) {
-		this.generacion = generacion;
+	public Individuo(double[] valores, Funcion f) {
 		this.valores = valores;
 		this.funcion = f;
 		
@@ -51,10 +48,6 @@ public class Individuo implements Comparable<Individuo> {
 		return valores;
 	}
 
-	public int getGeneracion() {
-		return generacion;
-	}
-	
 	public void setValores(double[] valores) {
 		this.valores = valores;
 	}
@@ -81,7 +74,7 @@ public class Individuo implements Comparable<Individuo> {
 
 
 	public Individuo clone() {
-		return new Individuo(generacion, Arrays.copyOf(valores, valores.length), funcion);
+		return new Individuo(Arrays.copyOf(valores, valores.length), funcion);
 	}
 	
 	@Override
@@ -108,7 +101,7 @@ public class Individuo implements Comparable<Individuo> {
 				valores[j] = aleatorio.getEntre(f.getMin(), f.getMax());
 			}
 
-			individuos[i] = new Individuo(i, valores, f);
+			individuos[i] = new Individuo(valores, f);
 		}
 
 		return individuos;

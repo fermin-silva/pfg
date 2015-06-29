@@ -47,9 +47,8 @@ public class RecombinacionUnPunto implements Recombinacion {
             y2[i] = x[i];
         }
 
-        //TODO cambiarle la iteracion, no es cero!
-        return new Individuo[] { new Individuo(0, x2, funcion),
-                                 new Individuo(0, y2, funcion) };
+        return new Individuo[] { new Individuo(x2, funcion),
+                                 new Individuo(y2, funcion) };
     }
 
     @Override

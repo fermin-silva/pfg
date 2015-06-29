@@ -22,6 +22,6 @@ public class RecursoHost extends Recurso {
 
     @Override
     public String get(MultiMap multiMap) {
-        return "var host = 'http://127.0.0.1:" + config.getPuerto() + "'";
+        return "var host = '/'";
     }
 }
