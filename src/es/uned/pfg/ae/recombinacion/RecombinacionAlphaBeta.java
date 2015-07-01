@@ -7,6 +7,17 @@ import es.uned.pfg.ae.utils.Utils;
 
 import java.util.Arrays;
 
+/**
+ * Recombinacion propuesta por el alumno, no forma parte de la bibliografia.
+ * Utiliza dos valores para el promedio aritmetico: alfa para la distancia del
+ * padre con mejor fitness y beta para la distancia del peor padre. Se asume
+ * que alfa < beta. <br>
+ * La intuicion es generar a los hijos mas cerca del mejor padre, en vez de a
+ * distancias iguales. <br>
+ * En la memoria se explica con mayor profundidad.
+ *
+ * @author Fermin Silva
+ */
 public class RecombinacionAlphaBeta extends RecombinacionAlpha {
 
 	private double beta;
@@ -34,23 +45,13 @@ public class RecombinacionAlphaBeta extends RecombinacionAlpha {
 		double[] y2 = Arrays.copyOf(y, n);
 		
 		int i = aleatorio.getInt(n); //punto de cruce
-	
-//		Asi me da a mi en el cuaderno, pero la version que intercambia el gen de padre funciona mejor
-//		if (i1.getFitness() > i2.getFitness()) {
-//			x2[i] = (1 - alpha) * x[i] + alpha * y[i];
-//			y2[i] = (1 - beta)  * y[i] +  beta * x[i];
-//		}
-//		else {
-//			x2[i] = (1 - beta)  * x[i] +  beta * y[i];
-//			y2[i] = (1 - alpha) * y[i] + alpha * x[i];
-//		}
-		
-		//asi viene en el libro: el gen i de x viene del padre y, y viceversa
+
+		//si el primer padre es mejor que el segundo
 		if (i1.getFitness() > i2.getFitness()) {
 			y2[i] = (1 - alpha) * x[i] + alpha * y[i];
 			x2[i] = (1 - beta)  * y[i] +  beta * x[i];
 		}
-		else {
+		else { //si el segundo es mejor que el primero
 			y2[i] = (1 - beta)  * x[i] +  beta * y[i];
 			x2[i] = (1 - alpha) * y[i] + alpha * x[i];
 		}

@@ -4,8 +4,9 @@ import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.utils.Aleatorio;
 
 /**
- *  
- * @author Fermin Silva < fermins@olx.com >
+ *  Mutacion No Operacion (NoOp), que no realiza nada.
+ *
+ *	@author Fermin Silva
  */
 public class MutacionNoOp implements Mutacion {
 

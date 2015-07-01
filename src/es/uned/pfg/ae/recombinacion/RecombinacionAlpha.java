@@ -2,8 +2,10 @@ package es.uned.pfg.ae.recombinacion;
 
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Clase abstracta cuyo unico proposito es almacenar el valor de alfa para
+ * todas las recombinaciones aritmeticas.
+ *
+ * @author Fermin Silva
  */
 public abstract class RecombinacionAlpha implements Recombinacion {
 

@@ -13,7 +13,7 @@ import static java.lang.System.out;
 
 /**
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class Parametros {
 

@@ -6,16 +6,21 @@ import es.uned.pfg.ae.utils.Utils;
 
 import java.util.Arrays;
 
+/**
+ * Individuo de la poblacion sujeto a la seleccion natural.
+ * Contiene una serie de valores geneticos (su genotipo), que lo hacen mas
+ * o menos apto. Almacenan su valor de aptitud de supervivencia en la variable
+ * fitness.
+ *
+ * @author Fermin Silva
+ */
 public class Individuo implements Comparable<Individuo> {
 
-	public static final boolean USAR_JSON = false;
-	
 	protected double fitness;
 	private double[] valores;
 	
 	private Funcion funcion;
 	
-	//TODO valores deberia ser un genotipo y el individuo tener el mapeo a fenotipo?
 	public Individuo(double[] valores, Funcion f) {
 		this.valores = valores;
 		this.funcion = f;
@@ -31,6 +36,11 @@ public class Individuo implements Comparable<Individuo> {
 		return funcion.calcular(valores);
 	}
 
+	/**
+	 * Calcula el valor de aptitud del individuo segun sus genes.
+	 * El valor de la fitness es tanto mayor cuanto mejor sea la aptitud del
+	 * individuo.
+	 */
 	public void calcularFitness() {
 		//TODO si es un problema de maximizacion, +funcion, sino -funcion
 		this.fitness = funcion.getMinimoGlobal() - funcion.calcular(valores);
@@ -55,15 +65,7 @@ public class Individuo implements Comparable<Individuo> {
 	
 	@Override
 	public String toString() {
-		if (USAR_JSON) {
-			return "{ \"fit\" : " + Utils.toString(getFitness()) + 
-					", \"vals\" : " + Utils.toShortString(valores) + " }";
-		}
-		else {
 			return Utils.toShortString(valores) + " == " + Utils.toString(getFitness());
-//			return Utils.toString(getFitness()) + 
-//					" ==> " + toShortString(valores);
-		}
 	}
 	
 	@Override
@@ -72,7 +74,9 @@ public class Individuo implements Comparable<Individuo> {
 			   Arrays.equals(valores, ((Individuo)obj).valores);
 	}
 
-
+	/**
+	 * Genera un individuo identico, un clon.
+	 */
 	public Individuo clone() {
 		return new Individuo(Arrays.copyOf(valores, valores.length), funcion);
 	}
@@ -83,11 +87,17 @@ public class Individuo implements Comparable<Individuo> {
 	}
 
 
-
+	/**
+	 * Genera una poblacion aleatoria de individuos
+	 */
 	public static Individuo[] getIndividuosInicial(int tamaño, Funcion f) {
 		return getIndividuosInicial(tamaño, f, Configuracion.ALEATORIO);
 	}
 
+	/**
+	 * Genera una poblacion aleatoria de individuos utilizando un determinado
+	 * generador de numeros aleatorios.
+	 */
 	public static Individuo[] getIndividuosInicial(int tamaño, Funcion f,
 												   Aleatorio aleatorio) {
 		int dimension = f.getDimension();

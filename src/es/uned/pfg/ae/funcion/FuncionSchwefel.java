@@ -7,7 +7,7 @@ package es.uned.pfg.ae.funcion;
  * 
  * El minimo se encuentra en la coordenada 420.9687 para cada xi.
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class FuncionSchwefel implements Funcion {
 

@@ -6,20 +6,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Factoria que crea instancias de los operadores de seleccion segun la
+ * configuracion de entrada.
+ *
+ * @author Fermin Silva
  */
 @SuppressWarnings("serial")
 public class SeleccionFactory {
 
+	/**
+	 * Mapa con todas las recombinaciones implementadas y el nombre asignado a
+	 * ellas. Este nombre se utiliza al teclear los parametros de entrada.
+	 * Si se agrega un operador de recombinacion nuevo, este debe agregarse en
+	 * este mapa.
+	 */
 	private static final Map<String, Seleccion> SELECCIONES =
 			new HashMap<String, Seleccion>() 
 	{{
 		put(       "NoOp", new SeleccionNoOp());
 		put(     "Torneo", new SeleccionTorneo());
 	}};
-	
-	
+
+	/**
+	 * Crea la seleccion especificada en la configuracion y le asigna todos
+	 * los parametros necesarios
+	 */
 	public static Seleccion crear(Configuracion conf) {
 		String nombre = conf.getSeleccion();
 		
@@ -38,7 +49,10 @@ public class SeleccionFactory {
 		
 		return seleccion;
 	}
-	
+
+	/**
+	 * Devuelve el nombre de todas las selecciones disponbiles
+	 */
 	public static String getNombres() {
 		return SELECCIONES.keySet().toString();
 	}

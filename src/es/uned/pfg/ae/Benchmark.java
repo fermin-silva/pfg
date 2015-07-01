@@ -16,8 +16,10 @@ import es.uned.pfg.ae.terminacion.TerminacionFija;
 import es.uned.pfg.ae.utils.Aleatorio;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Modo de ejecucion que prueba todas las funciones y recombinaciones,
+ * imprimiendo resultados y obteniendo estadisticas sobre cada una de ellas.
+ *
+ * @author Fermin Silva
  */
 public class Benchmark {
 
@@ -35,7 +37,13 @@ public class Benchmark {
 		Recombinacion[] recombinaciones = RecombinacionFactory.crearBenchmark(conf);
 		
 		Terminacion terminacion = new TerminacionFija(conf.getGeneraciones());
-		
+
+		//calentamiento para evitar mal rendimiento de la primera recombinacion
+		for (Recombinacion r : recombinaciones) {
+			//solo se ejecuta, no se imprime ni genera grafico
+			ejecucion(conf, seleccion, mutacion, r, terminacion, fs[0], null);
+		}
+
 		System.out.println(seleccion);
 		System.out.println(mutacion);
 		System.out.println("Iteraciones: " + conf.getGeneraciones());
@@ -45,10 +53,15 @@ public class Benchmark {
 		ResultadoBenchmark resultado = null;
 		
 		System.out.println("Recombinacion\tFuncion\tMin_fit\tAvg_fit\tMax_fit\tStdev\tAvg_time");
+
+		//por cada funcion probar cada recombinacion n cantidad de veces
 		for (Funcion f : fs) {
+			//crear un graficador para las pruebas con esta funcion
 			BenchmarkPlot plot = new BenchmarkPlot(f, conf.getGeneraciones());
 
 			for (Recombinacion recombinacion : recombinaciones) {
+				//crear el objeto resultado para almacenar el rendimiento de
+				//las n ejecuciones (minimo, maximo, promedio, etc)
 				resultado = new ResultadoBenchmark(f, recombinacion);
 
 				for (int i = 1; i <= RUNS; i++) {
@@ -63,7 +76,10 @@ public class Benchmark {
 			plot.guardar(ANCHO, ALTO);
 		}
 	}
-	
+
+	/**
+	 * Ejecucion en si del algoritmo genetico una unica vez
+	 */
 	protected void ejecucion(Configuracion conf, Seleccion seleccion, 
 							 Mutacion mutacion, Recombinacion recombinacion,
 							 Terminacion terminacion, Funcion f,
@@ -92,7 +108,10 @@ public class Benchmark {
 								      				 terminacion);
 		
 		ag.comenzar();
-		resultado.recolectar(ag);
+
+		if (resultado != null) {
+			resultado.recolectar(ag);
+		}
 	}
 }
 

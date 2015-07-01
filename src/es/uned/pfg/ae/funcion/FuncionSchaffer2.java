@@ -10,7 +10,7 @@ import static java.lang.Math.sin;
  * 
  * El minimo se encuentra en la coordenada (0, 0).
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class FuncionSchaffer2 implements Funcion {
 	

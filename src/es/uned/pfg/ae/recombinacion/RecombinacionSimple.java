@@ -17,7 +17,7 @@ import es.uned.pfg.ae.utils.Utils;
  * <br>
  * En el libro: Simple Arithmetic Recombination (no confundir con SiNGle)
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class RecombinacionSimple extends RecombinacionAlpha {
 
@@ -51,13 +51,8 @@ public class RecombinacionSimple extends RecombinacionAlpha {
 		
 		//desde k hasta n se utiliza el promedio aritmetico de los padres
 		for (int i = k + 1; i < n; i++) {
-			//TODO en el libro el hijo x usa alpha * y
-			x2[i] = Utils.clamp(alpha * x[i] + (1 - alpha) * y[i],
-								min, max);
-
-			//TODO en el libro el hijo y usa alpha * x
-			y2[i] = Utils.clamp(alpha * y[i] + (1 - alpha) * x[i],
-								min, max);
+			x2[i] = Utils.clamp(alpha * x[i] + (1 - alpha) * y[i], min, max);
+			y2[i] = Utils.clamp(alpha * y[i] + (1 - alpha) * x[i], min, max);
 		}
 
 		return new Individuo[] { new Individuo(x2, funcion),

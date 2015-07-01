@@ -5,10 +5,16 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Fermin Silva < fermins@olx.com >
+ * Clase utilitaria para acceder con facilidad a un Mapa de String a String[].
+ * Se utiliza en el modo de ejecucion web.
+ *
+ * @author Fermin Silva
  */
 public class MultiMap implements Map<String, String[]> {
 
+    /**
+     * Mapa interno que almacena los datos
+     */
     private final Map<String, String[]> mapa;
 
 
@@ -16,12 +22,21 @@ public class MultiMap implements Map<String, String[]> {
         this.mapa = mapa;
     }
 
+    /**
+     * Obtiene el primer valor dentro del arreglo de String asignado para la
+     * clave (key) especificada. Si la clave no existe, retorna el valor
+     * por defecto
+     */
     public String getPrimero(String key, String defecto) {
         String primero = getPrimero(key);
 
         return primero != null? primero : defecto;
     }
 
+    /**
+     * Obtiene el primer valor dentro del arreglo de String asociado a la
+     * clave (key) especificada. Si la clave no existe, retorna el valor nulo
+     */
     public String getPrimero(String key) {
         String[] valores = this.mapa.get(key);
 
@@ -53,6 +68,10 @@ public class MultiMap implements Map<String, String[]> {
         return mapa.containsValue(value);
     }
 
+    /**
+     * Devuelve el arreglo de String asociado a la clave (key) especificada.
+     * Si la clave no existe, retorna un arreglo con el valor por defecto.
+     */
     public String[] get(Object key, String defecto) {
         String[] valores = mapa.get(key);
 

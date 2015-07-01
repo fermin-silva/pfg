@@ -8,9 +8,10 @@ package es.uned.pfg.ae.recombinacion;
  * Hijo1 = { x<sub>1</sub> ... x<sub>k - 1</sub>, a * y<sub>k</sub> +
  * 		   (1 - a) * x<sub>k</sub>, ... x<sub>n</sub> } <br><br>
  *
- * En el libro: Single Arithmetic Recombination
+ * En el libro: Single Arithmetic Recombination.
+ * Se modela como una instancia particular de la recombinacion K, donde k = 1.
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class RecombinacionUnica extends RecombinacionK {
 
@@ -20,6 +21,6 @@ public class RecombinacionUnica extends RecombinacionK {
 	
 	@Override
 	public String toString() {
-		return "RecombinacionUnica (" + alpha + ")"; 
+		return "RecombinacionUnica (" + getK() + ", " + alpha + ")";
 	}
 }

@@ -5,13 +5,15 @@ import es.uned.pfg.ae.poblacion.Poblacion;
 import es.uned.pfg.ae.utils.Aleatorio;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ *  Seleccion No Operacion (NoOp), que no realiza nada.
+ *
+ *	@author Fermin Silva
  */
 public class SeleccionNoOp implements Seleccion {
 
 	@Override
 	public Individuo[] seleccionar(Poblacion p) {
+		//devuelve la misma poblacion sin cambios ni selecciones
 		return p.getIndividuos();
 	}
 	

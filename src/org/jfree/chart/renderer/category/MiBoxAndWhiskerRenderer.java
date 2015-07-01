@@ -78,6 +78,10 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * Copia del codigo de la libreria JFreeChart aunque con algunas mejoras y
+ * modificaciones para adaptarlo a los requisitos de este trabajo.
+ * Se copia a continuacion la descripcion original: <br>
+ *
  * A box-and-whisker renderer.  This renderer requires a
  * {@link BoxAndWhiskerCategoryDataset} and is for use with the
  * {@link CategoryPlot} class.  The example shown here is generated
@@ -86,6 +90,8 @@ import java.util.List;
  * <br><br>
  * <img src="../../../../../images/BoxAndWhiskerRendererSample.png"
  * alt="BoxAndWhiskerRendererSample.png">
+ *
+ * @author Fermin Silva
  */
 public class MiBoxAndWhiskerRenderer extends AbstractCategoryItemRenderer
         implements Cloneable, PublicCloneable, Serializable {

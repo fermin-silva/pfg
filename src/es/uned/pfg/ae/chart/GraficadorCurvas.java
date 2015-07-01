@@ -21,16 +21,28 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Clase generadora de graficos de curvas. Proporciona una interfaz a alto nivel
+ * por sobre JFreeChart. <br>
+ * Se utiliza principalmente para generar graficos con la curva de progreso y
+ * curva de convergencia para cada una de las recombinaciones implementadas.
+ *
+ * @author Fermin Silva
  */
 public class GraficadorCurvas {
 
 	private final String titulo;
 	private final String nombreEje;
 
+	/**
+	 * mapa de nombre de recombinacion a estructura de datos que almacena
+	 * la lista de puntos para formar la curva
+	 */
 	private Map<String, XYSeries> series;
 
+	/**
+	 * se especifica la maxima generacion/iteracion para poder terminar el eje
+	 * de las x alli y que este no sea ni mas corto ni mas largo
+	 */
 	private int maxIteracion;
 	private boolean mostrarLeyenda = true;
 
@@ -49,6 +61,10 @@ public class GraficadorCurvas {
 		this.mostrarLeyenda = mostrarLeyenda;
 	}
 
+	/**
+	 * Agrega la curva (lista de puntos) a la estructura de datos identificada
+	 * por el nombre (por ejemplo de la recombinacion)
+	 */
 	public void agregar(String nombre, List<Double> progreso) {
 		int i = 0;
 
@@ -57,11 +73,20 @@ public class GraficadorCurvas {
 		}
 	}
 
+	/**
+	 *
+	 * @param nombre Nombre del conjunto de datos (por ejemplo de la recombinacion)
+	 * @param iteracion Numero de iteracion para el eje de las X
+	 * @param fitness Valor a graficar en el eje Y
+	 */
 	public void agregar(String nombre, int iteracion, double fitness) {
 		nombre = nombre.replace("Recombinacion", "");
 
+		//obtener la serie de datos del mapa
 		XYSeries serie = this.series.get(nombre);
 
+		//si es nula, es la primera vez que se inserta un valor en dicha serie
+		//por lo que debe ser creada
 		if (serie == null) {
 			serie = new XYSeries(nombre);
 			series.put(nombre, serie);
@@ -69,7 +94,12 @@ public class GraficadorCurvas {
 
 		serie.add(iteracion, fitness);
 	}
-	
+
+	/**
+	 * Almacena el grafico generado por esta misma clase en un archivo con el
+	 * doble de las dimensiones especificadas. Se utiliza un escalado doble
+	 * para aumentar la calidad del grafico si este luego se achica a la mitad.
+	 */
 	public void guardar(String archivo, int ancho, int alto) {
 		try {
 			archivo = archivo.replace(' ', '_');
@@ -86,6 +116,11 @@ public class GraficadorCurvas {
 		}
 	}
 
+	/**
+	 * Crea un objeto de JFreeChart con el grafico, configurando los colores
+	 * y los elementos del grafico. Este objeto puede ser luego almacenado en
+	 * disco o devuelto por un Stream.
+	 */
 	public JFreeChart getChart() {
 		final XYSeriesCollection dataset = new XYSeriesCollection();
 
@@ -95,8 +130,8 @@ public class GraficadorCurvas {
 
 		JFreeChart chart = ChartFactory.createXYLineChart(
 				titulo,
-				"Iteracion",           // x axis label
-				nombreEje,             // y axis label
+				"Iteracion",           // etiqueta del eje x
+				nombreEje,             // etiqueta del eje y
 				dataset,
 				PlotOrientation.VERTICAL,
 				true,                  // incluir leyenda
@@ -116,7 +151,6 @@ public class GraficadorCurvas {
 		plot.setDomainGridlinePaint(Color.WHITE);
 		plot.setDomainGridlinesVisible(false);
 		plot.setRangeGridlinePaint(Color.WHITE);
-//		plot.setRangeGridlineStroke(new BasicStroke(1));
 
 		XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 		renderer.setBaseShapesVisible(false);
@@ -125,6 +159,7 @@ public class GraficadorCurvas {
 			renderer.setSeriesStroke(i, new BasicStroke(2));
 		}
 
+		//color para cada una de las lineas
 		renderer.setSeriesPaint(0, new Color(44, 62, 80, 200));
 		renderer.setSeriesPaint(1, new Color(226, 34, 34, 200));
 		renderer.setSeriesPaint(2, new Color(246, 162, 54, 200));
@@ -139,17 +174,6 @@ public class GraficadorCurvas {
 		plot.setRenderer(renderer);
 
 		return chart;
-	}
-
-	public void show() {
-		JFrame frame = new JFrame();
-		frame.setPreferredSize(new Dimension(1280, 1280));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		frame.add(new ChartPanel(getChart(), false), BorderLayout.CENTER);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
 	}
 }
 

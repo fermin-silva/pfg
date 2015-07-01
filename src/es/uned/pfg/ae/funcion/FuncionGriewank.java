@@ -10,7 +10,7 @@ import static java.lang.Math.sqrt;
  *  
  * El minimo se encuentra en la coordenada 0 para cada xi. 
  *  
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class FuncionGriewank implements Funcion {
 

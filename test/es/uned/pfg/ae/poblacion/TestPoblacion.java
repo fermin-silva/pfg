@@ -5,7 +5,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * 
+ * Prueba el metodo de obtener el mejor individuo de de una poblacion
+ *
  * @author Fermin Silva < fermins@olx.com >
  */
 public class TestPoblacion {

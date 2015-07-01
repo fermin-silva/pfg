@@ -3,6 +3,13 @@ package es.uned.pfg.ae.mutacion;
 import es.uned.pfg.ae.Individuo;
 import es.uned.pfg.ae.utils.Aleatorio;
 
+/**
+ * Mutacion que genera un valor aleatorio uniforme entre todo el dominio de la
+ * funcion.
+ * Tiene como desventaja que puede generar mutaciones muy grandes.
+ *
+ * @author Fermin Silva
+ */
 public class MutacionUniforme implements Mutacion {
 
 	private double max;
@@ -12,15 +19,6 @@ public class MutacionUniforme implements Mutacion {
 	
 	public MutacionUniforme() {
 		
-	}
-	
-	public MutacionUniforme(double min, double max, Aleatorio aleatorio, 
-							double prob)
-	{
-		this.min = min;
-		this.max = max;
-		this.aleatorio = aleatorio;
-		this.prob = prob;
 	}
 	
 	@Override

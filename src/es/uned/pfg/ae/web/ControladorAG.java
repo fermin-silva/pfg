@@ -22,7 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Fermin Silva < fermins@olx.com >
+ * Controlador con la logica para ejecutar el algoritmo genetico via Web.
+ * El RecursoAG lo invocara para obtener los resultados de la ejecucion y
+ * devolverlos al navegador del cliente.
+ *
+ * @author Fermin Silva
  */
 public class ControladorAG {
 
@@ -34,6 +38,11 @@ public class ControladorAG {
         this.webDir = webDir;
     }
 
+    /**
+     * Ejecuta el algoritmo genetico de manera similar al modo de ejecucion
+     * por consola, solo que en vez de imprimir los resultados por pantalla,
+     * los agrega a un mapa
+     */
     public Map<String, Object> ejecutar(Configuracion conf) {
         Map<String, Object> mapa = new HashMap<String, Object>();
 
@@ -63,6 +72,10 @@ public class ControladorAG {
         return mapa;
     }
 
+    /**
+     * Agrega los datos de la poblacion, su mejor individuo, fitness promedio,
+     * etc al mapa con los resultados de la ejecucion.
+     */
     protected void agregarPoblacion(Poblacion p, Funcion f,
                                     Map<String, Object> mapa)
     {
@@ -79,14 +92,24 @@ public class ControladorAG {
         mapa.put("desviacion", p.getDesviacion());
     }
 
+    /**
+     * Genera los graficos con los resultados de la ejecucion en un
+     * directorio temporal. Estos graficos son luego pedidos por el navegador
+     * del cliente, por lo que seran servidos por el ResourceHandler de
+     * Jetty. <br>
+     * Se le asigna un nombre aleatorio a cada uno para permitir ejecucion
+     * en simultaneo por parte de varios clientes.
+     */
     protected void graficar(Funcion f, Configuracion conf,
                             AlgoritmoGenetico ag, Map<String, Object> mapa)
     {
+        //se usa la hora actual como parte del nombre del archivo para
+        //garantizar la unicidad de los nombres
         String imgPath = tmpDir + System.currentTimeMillis();
 
         BasePlot basePlot = new BasePlot(f, conf.getGeneraciones());
         basePlot.setMostrarLeyenda(false);
-        basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getMomentosInercia());
+        basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getCurvaCovergencia());
         basePlot.guardar(webDir + imgPath, Benchmark.ANCHO, Benchmark.ALTO);
 
         mapa.put("img.momento", imgPath + "_momento.png");

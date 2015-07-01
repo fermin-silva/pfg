@@ -6,7 +6,9 @@ import es.uned.pfg.ae.recombinacion.Recombinacion;
 import java.util.List;
 
 /**
- * @author Fermin Silva < fermins@olx.com >
+ * Clase utilitaria que genera los graficos de fitness y convergencia.
+ *
+ * @author Fermin Silva
  */
 public class BasePlot {
 
@@ -32,6 +34,9 @@ public class BasePlot {
                                                       maxGeneraciones);
     }
 
+    /**
+     * Indica si los graficos deben contener la leyenda o no
+     */
     public void setMostrarLeyenda(boolean mostrarLeyenda) {
         graficadorFitness.setMostrarLeyenda(mostrarLeyenda);
         graficadorConvergencia.setMostrarLeyenda(mostrarLeyenda);
@@ -44,6 +49,11 @@ public class BasePlot {
         graficadorConvergencia.agregar(nombre, curvaConvergencia);
     }
 
+    /**
+     * Salva ambos graficos en formato de imagen en el disco duro
+     * @param nombre ruta completa del archivo a salvar, incluido el nombre
+     *               del fichero
+     */
     public void guardar(String nombre, int ancho, int alto) {
         graficadorConvergencia.guardar(nombre + "_momento.png", ancho, alto);
         graficadorFitness.guardar(nombre + "_progreso.png", ancho, alto);
@@ -53,6 +63,9 @@ public class BasePlot {
         guardar("./" + this.nombre, ancho, alto);
     }
 
+    /**
+     * Obtiene un nombre amigable para una recombinacion determinada
+     */
     public String getNombre(Recombinacion r) {
         return r.getClass().getSimpleName().replace("Recombinacion", "");
     }

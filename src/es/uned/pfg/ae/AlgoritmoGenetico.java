@@ -9,6 +9,11 @@ import es.uned.pfg.ae.terminacion.Terminacion;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase principal del proyecto que realiza la ejecucion del Algoritmo Genetico.
+ *
+ * @author Fermin Silva
+ */
 public class AlgoritmoGenetico {
 
 	private Poblacion poblacion;
@@ -17,7 +22,7 @@ public class AlgoritmoGenetico {
 	private Mutacion mutacion;
 	private Terminacion terminacion;
 	private List<Double> curvaProgreso;
-	private List<Double> momentosInercia;
+	private List<Double> curvaCovergencia;
 	
 	private long tiempo = -1;
 	
@@ -31,7 +36,7 @@ public class AlgoritmoGenetico {
 		this.mutacion = mutacion;
 		this.terminacion = terminacion;
 		this.curvaProgreso = new ArrayList<Double>();
-		this.momentosInercia= new ArrayList<Double>();
+		this.curvaCovergencia = new ArrayList<Double>();
 	}
 	
 	public void comenzar() {
@@ -44,18 +49,23 @@ public class AlgoritmoGenetico {
 		
 		tiempo = System.currentTimeMillis() - start;
 	}
-	
+
+	/**
+	 * Ejecuta una iteracion o generacion del algoritmo.
+	 * Devuelve verdadero o falso segun si se ha alcanzado el criterio de
+	 * terminacion o no.
+	 */
 	public boolean iteracion(int iteracion) {
 		Individuo[] padres = seleccion.seleccionar(poblacion);
 		
-		//TODO la seleccion deberia devolver grupos de a 2 padres para recombinar
-		
 		Individuo[] crias = new Individuo[padres.length];
-			
+
+		//se recorren los padres de a dos en dos
 		for (int i = 0; i < padres.length - 1; i += 2) {
 			Individuo[] c = recombinacion.getCrias(padres[i], padres[i + 1]);
 			
 			if (c == null || c.length == 0) { //no se han recombinado
+				//se copian a la nueva generacion sin mutaciones
 				crias[i] = padres[i];
 				crias[i + 1] = padres[i + 1];
 			}
@@ -72,13 +82,13 @@ public class AlgoritmoGenetico {
 		poblacion.setSobrevivientes(crias);
 	
 		curvaProgreso.add(poblacion.getMejorIndividuo().getFitness());
-		momentosInercia.add(poblacion.getDesviacion());
+		curvaCovergencia.add(poblacion.getDesviacion());
 
 		return terminacion.isTerminado(iteracion, poblacion);
 	}
 
-	public List<Double> getMomentosInercia() {
-		return momentosInercia;
+	public List<Double> getCurvaCovergencia() {
+		return curvaCovergencia;
 	}
 
 	public Individuo getMejorIndividuo() {

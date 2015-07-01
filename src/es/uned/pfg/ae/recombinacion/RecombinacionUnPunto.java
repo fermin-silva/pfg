@@ -7,12 +7,12 @@ import es.uned.pfg.ae.utils.Aleatorio;
 import java.util.Arrays;
 
 /**
- * Recombinacion Discreta de un punto (one point crossover)
+ * Recombinacion Discreta de un punto (one point crossover).
  * Se elige un punto de cruce. Hasta ese punto cada cria tiene los genes del
  * padre correspondiente. A partir de ese punto se intercambian los genes del
  * otro padre.
  *
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class RecombinacionUnPunto implements Recombinacion {
 

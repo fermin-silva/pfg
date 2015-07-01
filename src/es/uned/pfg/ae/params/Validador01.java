@@ -6,7 +6,7 @@ import com.beust.jcommander.ParameterException;
 /**
  * Valida que un valor esté entre 0 y 1
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class Validador01 implements IValueValidator<Double> {
 

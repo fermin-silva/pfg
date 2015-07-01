@@ -10,16 +10,17 @@ import es.uned.pfg.ae.utils.Aleatorio;
  * En caso de que sí deban recombinarse, se delega eso a la recombinacion 
  * interna. 
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class RecombinacionProbable implements Recombinacion {
 
 	private Recombinacion recombinacion;
 	private Aleatorio aleatorio;
 	private int probabilidad;
-	
+
+	//TODO utilizar el parametro de probabilidad de recombinacion para esta clase
 	public RecombinacionProbable(Recombinacion recombinacion, 
-								  int probabilidad, Aleatorio aleatorio) 
+								 int probabilidad, Aleatorio aleatorio)
 	{
 		this.recombinacion = recombinacion;
 		this.aleatorio = aleatorio;
@@ -29,9 +30,11 @@ public class RecombinacionProbable implements Recombinacion {
 	@Override
 	public Individuo[] getCrias(Individuo i1, Individuo i2) {
 		if (!aleatorio.isMenorQue(probabilidad)) {
+			//no recombinar
 			return null;
 		}
-		
+
+		//llamar a la recombinacion interna para obtener los hijos
 		return recombinacion.getCrias(i1, i2);
 	}
 

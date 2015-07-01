@@ -3,7 +3,10 @@ package es.uned.pfg.ae.terminacion;
 import es.uned.pfg.ae.poblacion.Poblacion;
 
 /**
- * @author Fermin Silva < fermins@olx.com >
+ * Implementacion del criterio de terminacion que acaba la ejecucion cuando
+ * se cumple una cantidad de iteraciones fijada de antemano.
+ *
+ * @author Fermin Silva
  */
 public class TerminacionFija implements Terminacion {
 

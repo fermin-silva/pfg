@@ -4,8 +4,15 @@ import es.uned.pfg.ae.Individuo;
 
 import java.util.Random;
 
+/**
+ * Clase utilitaria que otorga funcionalidades de alto nivel al generador de
+ * numeros aleatorios.
+ *
+ * @author Fermin Silva
+ */
 public class Aleatorio {
 
+	/** Generador interno de numeros aleatorios */
 	private Random rnd;
 
 	public Aleatorio() {
@@ -31,7 +38,11 @@ public class Aleatorio {
 	public double getNormal() {
 		return getNormal(0, 1);
 	}
-	
+
+	/**
+	 * Devuelve el siguiente numero aleatorio distribuido uniformemente entre
+	 * dos valores especificados.
+	 */
 	public double getEntre(double a, double b) {
 		return get() * (b - a) + a;
 	}
@@ -57,7 +68,11 @@ public class Aleatorio {
 		
 		return val + media;
 	}
-	
+
+	/**
+	 * Devuelve n individuos aleatorios de un arreglo con reemplazamiento y
+	 * en orden aleatorio.
+	 */
 	public Individuo[] getDe(Individuo[] i, int cantidad) {
 		Individuo[] ret = new Individuo[cantidad];
 		
@@ -67,39 +82,29 @@ public class Aleatorio {
 		
 		return ret;
 	}
-	
+
+	/** devuelve un individuo aleatorio del arreglo */
 	public Individuo getDe(Individuo[] i) {
 		int index = rnd.nextInt(i.length); 
 
 		return i[index];
 	}
-	
-	public double getDe(double[] d) {
-		return d[rnd.nextInt(d.length)];
-	}
-	
+
+	/**
+	 * Genera un numero aleatorio y lo compara con el valor de la probabilidad
+	 * (entre 0 y 1). Devuelve verdadero si este ultimo es menor que el numero
+	 * generado. <br>
+	 * Util para sentencias del tipo 'hacer algo con probabilidad de x %'.
+	 * Para ello simplemente hacer if (isMenorQue(probabilidad)) hacer_algo
+	 */
 	public boolean isMenorQue(double probabilidad) {
 		return get() < probabilidad;
 	}
 
 	/**
-	 * Devuelve una posicion aleatoria del array
-	 */
-	public int getPosicion(double[] d) {
-		return rnd.nextInt(d.length);
-	}
-	
-	/**
 	 * Devuelve un numero entero aleatorio entre [0, n)
 	 */
 	public int getInt(int n) {
 		return rnd.nextInt(n);
-	}
-	
-	/**
-	 * Devuelve una posicion aleatoria del array
-	 */
-	public int getPosicion(Object[] o) {
-		return rnd.nextInt(o.length);
 	}
 }

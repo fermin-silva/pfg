@@ -7,6 +7,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Clase que proporciona una interfaz a alto nivel sobre los parametros de
+ * entrada, ofreciendo metodos especificos con manejo de valores nulos y
+ * valores por defecto.
+ *
+ * A su vez, permite que los parametros se especifiquen tanto por archivo de
+ * properties como linea de comandos.
+ */
 public class Configuracion {
 
     public static final String PROP_FUNCION = "funcion";
@@ -90,17 +98,18 @@ public class Configuracion {
     }
 
     public double getBeta() {
-        return getDouble(params.beta, PROP_BETA, 0.1);
+        return getDouble(params.beta, PROP_BETA, 0.3);
     }
 
     public int getK() {
-        return getInt(params.puntosCombinacion, PROP_PUNTOS_COMBINACION, 2);
+        return getInt(params.puntosCombinacion, PROP_PUNTOS_COMBINACION, 1);
     }
 
     public double getDesviacionMutacion() {
         return getDouble(params.desviacionMutacion, PROP_DESVIACION_MUT, 0.1);
     }
 
+    //TODO utilizar junto con la RecombinacionProbable
     public double getProbRecombinacion() {
         return getDouble(params.probRecombinacion, PROP_PROB_RECOMB, 0.5);
     }

@@ -17,12 +17,11 @@ import es.uned.pfg.ae.terminacion.TerminacionFija;
 import es.uned.pfg.ae.utils.Utils;
 import es.uned.pfg.ae.web.Servidor;
 
-import javax.rmi.CORBA.Util;
-import java.util.Arrays;
-
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Clase principal que comienza la ejecucion (main en Java).
+ * Esta derivara la ejecucion a la clase adecuada segun el modo de ejecucion.
+ *
+ * @author Fermin Silva
  */
 public class Bootstrap {
 
@@ -42,6 +41,11 @@ public class Bootstrap {
 		}
 	}
 
+	/**
+	 * Ejecuta el algoritmo por linea de comandos (consola), imprimiendo por
+	 * pantalla los resultados y generando graficas con los resultados en
+	 * el disco duro
+	 */
 	private static void correrConsola(Configuracion conf) {
 		Funcion f = FuncionFactory.crear(conf);
 		Seleccion seleccion = SeleccionFactory.crear(conf);
@@ -83,7 +87,7 @@ public class Bootstrap {
 
 		BasePlot basePlot = new BasePlot(f, conf.getGeneraciones());
 		basePlot.setMostrarLeyenda(false);
-		basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getMomentosInercia());
+		basePlot.agregar("nombre", ag.getCurvaProgreso(), ag.getCurvaCovergencia());
 		basePlot.guardar(Benchmark.ANCHO, Benchmark.ALTO);
 	}
 

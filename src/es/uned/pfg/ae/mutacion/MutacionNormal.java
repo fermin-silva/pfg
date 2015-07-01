@@ -11,7 +11,7 @@ import es.uned.pfg.ae.utils.Utils;
  * Para ello utiliza una función normal centrada en cero y con una desviación estandar
  * proporcionada por el usuario.
  *   
- * @author fermin
+ * @author Fermin Silva
  */
 public class MutacionNormal implements Mutacion {
 
@@ -32,23 +32,21 @@ public class MutacionNormal implements Mutacion {
 		boolean cambiado = false;
 		
 		for (int j = 0; j < alelos.length; j++) {
+			//generar un numero aleatorio y compararlo con la probabilidad de
+			//mutacion
 			if (aleatorio.isMenorQue(prob)) {
-				alelos[j] = Utils.clamp(alelos[j] + aleatorio.getNormal(0, desviacion),
-										min, max);
+				double mutacion = aleatorio.getNormal(0, desviacion);
+
+				//restringir el valor si este sale del intervalo permitido
+				alelos[j] = Utils.clamp(alelos[j] + mutacion, min, max);
 				cambiado = true;
 			}
 		}
 		
 		if (cambiado) {
+			//recalcular la fitness del individuo ya que se han cambiado sus
+			//genes sin que este haya tenido control sobre ello
 			i.calcularFitness();
-		}
-	}
-
-	public void iteracion() {
-		desviacion -= 1;
-		
-		if (desviacion <= 0) {
-			desviacion = 1;
 		}
 	}
 

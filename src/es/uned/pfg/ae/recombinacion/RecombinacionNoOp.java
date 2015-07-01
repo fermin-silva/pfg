@@ -5,14 +5,15 @@ import es.uned.pfg.ae.funcion.Funcion;
 import es.uned.pfg.ae.utils.Aleatorio;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Recombinacion de No Operacion (NoOp), que no realiza nada.
+ *
+ * @author Fermin Silva
  */
 public class RecombinacionNoOp implements Recombinacion {
 
 	@Override
 	public Individuo[] getCrias(Individuo i1, Individuo i2) {
-		return new Individuo[] { i1, i2 };
+		return null; //devolver nulo es equivalente a no recombinar los padres
 	}
 	
 	@Override

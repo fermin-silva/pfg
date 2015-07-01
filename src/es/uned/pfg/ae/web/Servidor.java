@@ -10,7 +10,9 @@ import org.eclipse.jetty.server.nio.SelectChannelConnector;
 import java.io.File;
 
 /**
- * @author Fermin Silva < fermins@olx.com >
+ * Clase de alto nivel para el servidor web de Jetty.
+ *
+ * @author Fermin Silva
  */
 public class Servidor {
 
@@ -44,11 +46,17 @@ public class Servidor {
     protected void agregarHandlers(Configuracion config) {
         crearDirectorios();
 
+        //el primer manejador sirve archivos estaticos desde el disco duro
         ResourceHandler resourceHandler = new ResourceHandler();
         resourceHandler.setDirectoriesListed(false);
         resourceHandler.setResourceBase(DIR_BASE);
+
+        //por defecto al acceder al recurso raiz "/", devolvera el archivo
+        //llamado index.html
         resourceHandler.setWelcomeFiles(new String[]{ "index.html" });
 
+        //el segundo manejador, hecho por el alumno, sirve para asignar
+        //distintas direcciones URL a los distintos recursos Web
         BaseHandler baseHandler = new BaseHandler(config, TMP, DIR_BASE);
 
         HandlerList handlers = new HandlerList();
@@ -57,6 +65,9 @@ public class Servidor {
         server.setHandler(handlers);
     }
 
+    /**
+     * Crea el directorio web y tmp, si estos no existen
+     */
     private void crearDirectorios() {
         File directorio = new File(DIR_BASE);
 
@@ -71,6 +82,9 @@ public class Servidor {
         }
     }
 
+    /**
+     * Arranca el servidor de Jetty
+     */
     public void start() {
         try {
             server.start();
@@ -80,6 +94,10 @@ public class Servidor {
         }
     }
 
+    /**
+     * Bloquea la ejecucion del hilo principal indefinidamente hasta que se
+     * interrumpa la ejecucion del servidor.
+     */
     public void join() {
         try {
             server.join();

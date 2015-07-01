@@ -16,7 +16,7 @@ import es.uned.pfg.ae.utils.Utils;
  * <br>
  * En el libro: Whole Arithmetic Recombination
  * 
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class RecombinacionAritmeticaCompleta extends RecombinacionAlpha {
 
@@ -52,7 +52,7 @@ public class RecombinacionAritmeticaCompleta extends RecombinacionAlpha {
 	
 	@Override
 	public void set(Aleatorio aleatorio) {
-		//no hacer nada
+		//no hacer nada, ya que no utiliza numeros aleatorios
 	}
 	
 	public void setFuncion(Funcion f) {

@@ -4,8 +4,10 @@ import com.beust.jcommander.IValueValidator;
 import com.beust.jcommander.ParameterException;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Validador de parametros numericos para asegurarse que estos sean mayores
+ * que cero.
+ *
+ * @author Fermin Silva
  */
 public class MayorQueCero implements IValueValidator<Integer> {
 

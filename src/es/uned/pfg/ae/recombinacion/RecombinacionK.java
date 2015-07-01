@@ -10,9 +10,9 @@ import java.util.Arrays;
 /**
  * Elige k alelos aleatorios. En esas posiciones se toma el promedio aritmetico
  * de los dos padres. El resto de los puntos se pasan sin modificaciones.
- * Es una extension a la Recombinacion Unica.
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Esta es propuesta por el alumno y no forma parte de la bibliografia basica.
+ *
+ * @author Fermin Silva
  */
 public class RecombinacionK extends RecombinacionAlpha {
 
@@ -52,7 +52,7 @@ public class RecombinacionK extends RecombinacionAlpha {
 			x2[i] = alpha * x[i] + (1 - alpha) * y[i];
 			y2[i] = alpha * y[i] + (1 - alpha) * x[i];
 			
-			//Asi es como me da a mi haciendo el algebra manualmente,
+			// Asi es como me da a mi haciendo el algebra manualmente,
 			// el gen i que se cambia es del padre correspondiente (x para x2 e y para y2)
 //			x2[i] = alpha * y[i] + (1 - alpha) * x[i];
 //			y2[i] = alpha * x[i] + (1 - alpha) * y[i];
@@ -75,13 +75,18 @@ public class RecombinacionK extends RecombinacionAlpha {
 		this.aleatorio = aleatorio;
 	}
 
-	public void setK(int k) {
-		this.k = k;
-	}
-	
+	@Override
 	public void setFuncion(Funcion f) {
 		this.funcion = f;
 		this.min = f.getMin();
 		this.max = f.getMax();
+	}
+
+	public void setK(int k) {
+		this.k = k;
+	}
+
+	public int getK() {
+		return k;
 	}
 }

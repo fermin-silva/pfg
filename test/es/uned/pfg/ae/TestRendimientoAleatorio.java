@@ -2,8 +2,13 @@ package es.uned.pfg.ae;
 
 import es.uned.pfg.ae.utils.Aleatorio;
 import es.uned.pfg.ae.utils.Utils;
+import org.junit.Test;
 
 /**
+ * Pequeña prueba del rendimiento del generador de numeros aleatorios vs las
+ * operaciones matematicas realizadas por la recombinacion aritmetica completa.
+ * Sirve para comparar el rendimiento.
+ *
  * @author Fermin Silva < fermins@olx.com >
  */
 public class TestRendimientoAleatorio {

@@ -9,7 +9,7 @@ import static java.lang.Math.cos;
  *  
  * El minimo global vale -186.7309 
  *  
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class FuncionSchubert implements Funcion {
 

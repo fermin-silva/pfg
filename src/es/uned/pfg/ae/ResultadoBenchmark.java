@@ -8,8 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Almacena los resultados de un benchmark para una funcion y recombinacion
+ * concretas. Saca estadisticas como el minimo, maximo, promedio, desviacion,
+ * etc asi como almacena las curvas de progreso y convergencia de las distintas
+ * ejecuciones para luego promediarlas.
+ *
+ * @author Fermin Silva
  */
 public class ResultadoBenchmark {
 
@@ -33,9 +37,12 @@ public class ResultadoBenchmark {
 		this.fitness = new ArrayList<Double>();
 	}
 
+	/**
+	 * Recoge los resultados de la ejecucion del AG
+	 */
 	public void recolectar(AlgoritmoGenetico ag) {
 		progresos.add(ag.getCurvaProgreso());
-		momentosInercia.add(ag.getMomentosInercia());
+		momentosInercia.add(ag.getCurvaCovergencia());
 
 		Individuo individuo = ag.getMejorIndividuo();
 
@@ -53,7 +60,11 @@ public class ResultadoBenchmark {
 		sumaT += ag.getTiempo();
 		n++;
 	}
-	
+
+	/**
+	 * Obtiene la desviacion tipica o estandar de la fitness entre todas las
+	 * ejecuciones del algoritmo
+	 */
 	public double getStdev() {
 		double avgFitness = sumaFitness / n;
 		double sum = 0;
@@ -92,11 +103,11 @@ public class ResultadoBenchmark {
 		double avgFitness = sumaFitness / n;
 		double avgT = sumaT / n / 1000;
 		double stdev = getStdev();
-		
-		return String.format("%s\t%s\t%.2f\t%.2f\t%.2f\t%.2f\t%.2fs", 
-							  recombinacion.toString(), funcion.toString(), 
-							  min.getFitness(), avgFitness, max.getFitness(), 
-							  stdev, avgT);
+
+		return String.format("%s\t%s\t%.2f\t%.2f\t%.2f\t%.2f\t%.2fs",
+							recombinacion.toString(), funcion.toString(),
+							min.getFitness(), avgFitness, max.getFitness(),
+							stdev, avgT);
 	}
 }
 

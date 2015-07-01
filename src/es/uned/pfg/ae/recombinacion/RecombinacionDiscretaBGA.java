@@ -14,10 +14,11 @@ import es.uned.pfg.ae.utils.Aleatorio;
  * Predictive models for the breeder genetic algorithm I. Continuous parameter
  * optimization (pagina 4)
  *
- * @author Fermin Silva < fermins@olx.com >
+ * @author Fermin Silva
  */
 public class RecombinacionDiscretaBGA implements Recombinacion {
 
+    //TODO parametrizar esta probabilidad
     public static final double PROBABILIDAD = 0.5;
 
     private Aleatorio aleatorio;
@@ -39,10 +40,12 @@ public class RecombinacionDiscretaBGA implements Recombinacion {
 
         for (int i = 0; i < n; i++) {
             if (aleatorio.isMenorQue(PROBABILIDAD)) {
+                //mantener los genes de los padres correspondientes
                 x2[i] = x[i];
                 y2[i] = y[i];
             }
             else {
+                //intercambiar los genes entre padres
                 x2[i] = y[i];
                 y2[i] = x[i];
             }

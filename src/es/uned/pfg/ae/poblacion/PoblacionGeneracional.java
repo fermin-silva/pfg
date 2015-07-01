@@ -3,8 +3,10 @@ package es.uned.pfg.ae.poblacion;
 import es.uned.pfg.ae.Individuo;
 
 /**
- * 
- * @author Fermin Silva < fermins@olx.com >
+ * Modelo poblacional llamado generacional, porque reemplaza la poblacion
+ * completa en cada generacion por los nuevos individuos (los hijos).
+ * A su vez, puede ser elitista o no. Si lo es, esta conservara en todo momento
+ * al mejor individuo obtenido, sin importar su generacion.
  */
 public class PoblacionGeneracional extends Poblacion {
 
@@ -39,8 +41,6 @@ public class PoblacionGeneracional extends Poblacion {
 		else {
 			setMejorIndividuo(getMejorIndividuo(crias));
 		}
-		
-//		Arrays.sort(individuos);
 	}
 }
 
