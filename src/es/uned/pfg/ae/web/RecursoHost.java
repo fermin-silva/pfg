@@ -34,6 +34,6 @@ public class RecursoHost extends Recurso {
     //visualizando la pagina
     @Override
     public String get(MultiMap multiMap) {
-        return "var host = '/'";
+        return "var host = ''";
     }
 }
